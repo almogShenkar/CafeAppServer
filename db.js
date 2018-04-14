@@ -1,10 +1,12 @@
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "cafeapp"
+            host: "localhost",
+            port: "8889",
+            user: "root",
+            password: "root",
+            database: "cafeapp",
+            socket: "/Applications/MAMP/tmp/mysql/mysql.sock"
       });
 
 
