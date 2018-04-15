@@ -29,7 +29,7 @@ app.use(cors({
 
 
 // Set server port
-const port = 3000
+const port = 3000;
 app.set('port', port);
 
 // Get our API routes
