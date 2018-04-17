@@ -53,11 +53,11 @@ orderedlistsController.listByStatus = function(req,res){
     });
 }
 
-
+//PUT
 orderedlistsController.update = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ?;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.olid,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview],
+    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview,orderedlistsModel.olid],
     function(err,rows){
         if(err){
             console.log(err);
@@ -68,10 +68,11 @@ orderedlistsController.update = function(req,res){
     });
 }
 
+//POST
 orderedlistsController.add = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.ol_dttm_real],
+    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview],
     function(err,rows){
         if(err){
             console.log(err);

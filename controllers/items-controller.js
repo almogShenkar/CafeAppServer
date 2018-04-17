@@ -44,7 +44,7 @@ itemController.add = function(req, res){
 //PUT by ID - update the item
 itemController.update = function(req, res){
     itemModel.clear();
-    itemModel = req.body;
+    itemModel.parse(req.body);
     db.query("UPDATE item SET supid = ?, name = ?, description = ?, qty = ?, url = ?, price = ?, type = ? , ispublished = ?  WHERE itemid = ?;",[itemModel.supid,itemModel.name,itemModel.description,itemModel.qty,itemModel.url,itemModel.price,itemModel.type,itemModel.ispublished,itemModel.itemid],
     function(err,rows){
         if(err){
