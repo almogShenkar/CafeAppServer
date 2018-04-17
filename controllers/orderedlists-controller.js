@@ -21,7 +21,7 @@ orderedlistsController.getByOlid = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows[0]);
+        return res.json(rows);
 
     });
 }
@@ -34,7 +34,7 @@ orderedlistsController.listByUserid = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows[0]);
+        return res.json(rows);
 
     });
 }
