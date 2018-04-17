@@ -21,7 +21,7 @@ orderedlistsController.getByOlid = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json(rows[0]);
 
     });
 }
