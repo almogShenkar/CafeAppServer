@@ -3,7 +3,6 @@ var fileController = {};
 fileController.upload=function(req,res){
     if (!req.files)
       return res.status(400).send('No files were uploaded.');
-    console.log(req.files);
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     let sampleFile = req.files[''];
     // Use the mv() method to place the file somewhere on your server

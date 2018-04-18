@@ -98,7 +98,7 @@ router.delete('/suppliers/:id', suppliersController.delete);
 //Files
 //Notice 'url' in db = 'filename' e.g flower.jpg
 
-//example: localhost:3000/api/upload/items/bird.jpg
+//example: localhost:3000/api/upload/items
 //make sure to remove header request: "Content-Type : application/x-www-form-urlencoded"
 router.post('/upload/:imgtype/',filesController.upload);
 
