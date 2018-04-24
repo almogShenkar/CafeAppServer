@@ -10,6 +10,7 @@ itemModel.url;
 itemModel.price;
 itemModel.type;
 itemModel.ispublished;
+itemModel.preptime;
 
 itemModel.parse = function(body){
     itemModel.itemid=body.itemid;
@@ -21,6 +22,7 @@ itemModel.parse = function(body){
     itemModel.price=body.price;
     itemModel.type=body.type;
     itemModel.ispublished=body.ispublished;
+    itemModel.preptime=body.preptime;
 }
 
 
@@ -34,6 +36,7 @@ itemModel.clear = function(){
     itemModel.price=null;
     itemModel.type=null;
     itemModel.ispublished=null;
+    itemModel.preptime=null;
 }
 
 module.exports = itemModel;

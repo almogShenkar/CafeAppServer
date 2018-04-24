@@ -14,6 +14,8 @@ var suppliersController = require('./controllers/suppliers-controller');
 var filesController = require('./controllers/files-controller');
 
 
+
+
 var suppliersController = require('./controllers/suppliers-controller');
 router.get('/', function (req, res) {
   res.send('API :: Hello World!');
@@ -22,7 +24,7 @@ router.get('/', function (req, res) {
 // --- Users API---//
 router.get('/users', usersController.list);
 router.get('/users/:id', usersController.get);
-router.put('/users', usersController.update);
+router.put('/users/:id', usersController.update);
 router.post('/users/signup', usersController.signup);
 router.post('/users/login', usersController.login);
 router.delete('/users/:id', usersController.delete);
@@ -54,6 +56,9 @@ router.get('/orderedlists/olid/:id', orderedlistsController.getByOlid);
 router.get('/orderedlists/userid/:id', orderedlistsController.listByUserid);
 //get OrderedLists by status
 router.get('/orderedlists/:status', orderedlistsController.listByStatus);
+
+//post "CheckTime"
+router.post('/orderedlistsTime', orderedlistsController.checkTime);
 router.put('/orderedlists',orderedlistsController.update);
 router.post('/orderedlists', orderedlistsController.add);
 router.delete('/orderedlists/:id', orderedlistsController.delete);

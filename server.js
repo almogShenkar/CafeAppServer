@@ -5,6 +5,7 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+var scheduler = require('./scheduler');
 const cors = require('cors');
 
 //Init app
@@ -12,6 +13,7 @@ const app = express();
 
 
 
+scheduler.ctor();
 //Set static folder
 app.use(express.static(__dirname+'/../images'));
 app.use(fileUpload());
@@ -43,4 +45,4 @@ app.use('/api', api);
 const server = http.createServer(app);
 
 // Start listening to requests
-server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
+server.listen(port, () => console.log('Listening on http://localhost:${port}'));

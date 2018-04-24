@@ -1,11 +1,14 @@
 var db = require('../db');
+var scheduler = require('../scheduler');
 var orderedlistsModel = require('../models/orderedlist-model');
+var orderedlistsNode = require('../models/orderedlists-node');
+var itemModel = require('../models/item-model');
 //main object
 var orderedlistsController = {};
 
 
 orderedlistsController.list = function(req,res){
-    db.query("SELECT * FROM orderlist;",function(err,rows){
+    db.query("SELECT * FROM orderlist ORDER BY ol_dttm DESC;",function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
@@ -16,7 +19,7 @@ orderedlistsController.list = function(req,res){
 }
 
 orderedlistsController.getByOlid = function(req,res){
-    db.query("SELECT * FROM orderlist WHERE olid = ?;",req.params.id,function(err,rows){
+    db.query("SELECT * FROM orderlist WHERE olid = ? ;",req.params.id,function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
@@ -29,21 +32,21 @@ orderedlistsController.getByOlid = function(req,res){
 
 //GET ALL by userid
 orderedlistsController.listByUserid = function(req,res){
-    db.query("SELECT * FROM orderlist WHERE userid = ?;",req.params.id,function(err,rows){
+    db.query("SELECT * FROM orderlist WHERE userid = ? ORDER BY ol_dttm DESC;",req.params.id,function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows[0]);
+        return res.json(rows);
 
     });
 }
 
 
 
-//GET ALL by userid
+//GET ALL by status
 orderedlistsController.listByStatus = function(req,res){
-    db.query("SELECT * FROM orderlist WHERE status = ?;",req.params.status,function(err,rows){
+    db.query("SELECT * FROM orderlist WHERE status = ? ORDER BY ol_dttm DESC;",req.params.status,function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
@@ -94,6 +97,23 @@ orderedlistsController.delete = function(req,res){
         return res.json(rows);
 
     });
+}
+
+orderedlistsController.checkTime = function(req,res){
+    orderedlistsNode.clear();
+    var totalPrepTime=0;
+    itemModel.clear();
+    itemModel.parse(req.body[i]);
+    db.query("SELECT itemid , preptime * ?  AS totalTime FROM item WHERE itemid = ?",[itemModel.qty,itemModel.itemid],function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        console.log(rows);
+        totalPrepTime+=rows[0].totalTime;
+    });
+    console.log("TotalPrepTime: "+totalPrepTime);
+    res.json({"TotalPrepTime":totalPrepTime});
 }
 
 module.exports = orderedlistsController;

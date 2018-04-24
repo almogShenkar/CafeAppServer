@@ -1,3 +1,4 @@
+var ordereditemsModel = require('./oredereditem-model');
 var orderlistModel = {};
 
 orderlistModel.olid;
@@ -28,6 +29,16 @@ orderlistModel.clear = function(){
     orderlistModel.ol_dttm_real=null;
     orderlistModel.status=null;
     orderlistModel.hasreview=null;
+}
+
+orderlistModel.calcOrderListFromOrderdItems = function(req){
+    var totalTime=0;
+    var pickTime = req.query.pickTime;
+    for(var i =0;i<req.body.length;i++){
+        db
+        //SELECT preptime FROM ordereditems WHERE orderid = body[i].orderid
+    }
+    
 }
 
 module.exports = orderlistModel;
