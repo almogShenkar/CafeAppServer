@@ -66,5 +66,15 @@ itemController.delete = function(req, res){
     });
 }
 
+itemController.listByStatus = function(req,res){
+    db.query("SELECT * FROM item WHERE type = ?;",[req.params.type],function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json(rows);
+    });
+}
+
 
 module.exports = itemController;

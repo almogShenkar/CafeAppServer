@@ -32,6 +32,7 @@ router.delete('/users/:id', usersController.delete);
 // --- Items API---//
 router.get('/items', itemsController.list);
 router.get('/items/:id', itemsController.get);
+router.get('/items/type/:type', itemsController.listByStatus);
 router.put('/items',itemsController.update);
 router.post('/items', itemsController.add);
 router.delete('/items/:id', itemsController.delete);
