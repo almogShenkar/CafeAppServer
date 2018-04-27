@@ -12,7 +12,7 @@ var employeesController = require('./controllers/employees-controller');
 var shiftsController = require('./controllers/shifts-controller');
 var suppliersController = require('./controllers/suppliers-controller');
 var filesController = require('./controllers/files-controller');
-
+var queriesController = require('./controllers/queries-controller');
 
 
 
@@ -24,8 +24,11 @@ router.get('/', function (req, res) {
 // --- Users API---//
 router.get('/users', usersController.list);
 router.get('/users/:id', usersController.get);
-router.put('/users/:id', usersController.update);
+//router.put('/users/:id', usersController.update);
+//router.put('/users/:id/url', usersController.updateUrl);
+router.put('/users/:id/credit', usersController.updateCredit);
 router.post('/users/signup', usersController.signup);
+router.post('/users/signupemployee', usersController.signupEmployee);
 router.post('/users/login', usersController.login);
 router.delete('/users/:id', usersController.delete);
 
@@ -33,7 +36,7 @@ router.delete('/users/:id', usersController.delete);
 router.get('/items', itemsController.list);
 router.get('/items/:id', itemsController.get);
 router.get('/items/type/:type', itemsController.listByStatus);
-router.put('/items',itemsController.update);
+router.put('/items/:id',itemsController.update);
 router.post('/items', itemsController.add);
 router.delete('/items/:id', itemsController.delete);
 
@@ -52,17 +55,15 @@ router.delete('/ordereditems/:id', ordereditemsController.delete);
 // --- OrderedLists API---//
 router.get('/orderedlists', orderedlistsController.list);
 //get OrderedLists by olid
-router.get('/orderedlists/olid/:id', orderedlistsController.getByOlid);
+router.get('/orderedlists/:id', orderedlistsController.getByOlid);
 //get OrderedLists by userid
 router.get('/orderedlists/userid/:id', orderedlistsController.listByUserid);
 //get OrderedLists by status
-router.get('/orderedlists/:status', orderedlistsController.listByStatus);
+router.get('/orderedlists/status/:status', orderedlistsController.listByStatus);
 
 //post "CheckTime"
 router.post('/orderedlistsTime', orderedlistsController.checkTime);
-router.put('/orderedlists',orderedlistsController.update);
-router.post('/orderedlists', orderedlistsController.add);
-router.delete('/orderedlists/:id', orderedlistsController.delete);
+
 
 
 
@@ -111,5 +112,7 @@ router.post('/upload/:imgtype/',filesController.upload);
 //example: localhost:3000/api/download/items/bird.jpg
 router.get('/download/:imgtype/:filename',filesController.download);
 
+
+router.get('/query/:selectedquery',queriesController.run);
 
 module.exports = router;

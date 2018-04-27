@@ -14,6 +14,10 @@ const app = express();
 
 
 scheduler.ctor();
+
+var minutes = 5, the_interval = minutes * 60 * 1000;
+setInterval(scheduler.clearSlots,the_interval);
+
 //Set static folder
 app.use(express.static(__dirname+'/../images'));
 app.use(fileUpload());

@@ -44,6 +44,23 @@ userController.signup = function(req, res){
     });
 }
 
+signupEmployee
+//POST - SIGNUP employee
+userController.signupEmployee = function(req, res){
+    userModel.clear();
+    userModel.parse(req.body);
+    //VALUES (NULL, 'eli@gmail.com', '1234', 'eli', 'cohen', '1000', '0542254548')
+    db.query("INSERT INTO user VALUES(?,?,?,?,?,?,?);",[userModel.userid,userModel.email,userModel.password,userModel.firstname,userModel.lastname,userModel.credit,userModel.phone],function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        userModel.clear;
+        userModel.userid=rows.insertId;
+        return res.json({"userid":userModel.userid});
+    });
+}
+
 //LOGIN
 userController.login = function(req, res){
     userModel.clear();
@@ -64,7 +81,7 @@ userController.login = function(req, res){
 }
 
 //PUT by ID - update credit
-userController.update = function(req, res){
+userController.updateCredit = function(req, res){
     userModel.clear();
     userModel.parse(req.body);
     db.query("UPDATE user SET credit = ? WHERE userid = ?;",[userModel.credit,req.params.id],function(err,rows){
