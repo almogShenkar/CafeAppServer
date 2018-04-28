@@ -29,7 +29,7 @@ itemController.get = function(req, res){
 itemController.add = function(req, res){
     itemModel.clear();
     itemModel.parse(req.body);
-    db.query("INSERT INTO item VALUES(?,?,?,?,?,?,?,?,?);",[null,itemModel.supid,itemModel.name,itemModel.description,itemModel.qty,itemModel.url,itemModel.price,itemModel.type,itemModel.ispublished],
+    db.query("INSERT INTO item VALUES(?,?,?,?,?,?,?,?,?,?);",[null,itemModel.supid,itemModel.name,itemModel.description,itemModel.qty,itemModel.url,itemModel.price,itemModel.type,itemModel.ispublished,itemModel.preptime],
     function(err,rows){
         if(err){
             console.log(err);

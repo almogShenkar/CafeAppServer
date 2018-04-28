@@ -75,7 +75,7 @@ orderedlistsController.update = function(req,res){
 orderedlistsController.add = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview],
+    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.preptime],
     function(err,rows){
         if(err){
             console.log(err);

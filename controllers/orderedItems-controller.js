@@ -30,7 +30,7 @@ ordereditemsController.get = function(req, res){
 
 //GET ALL by olid
 ordereditemsController.listByOlid = function(req, res){
-    db.query("SELECT * FROM ordereditem WHERE orderid = ?;",[req.params.id],function(err,rows){
+    db.query("SELECT * FROM ordereditem WHERE olid = ?;",[req.params.id],function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);

@@ -8,6 +8,7 @@ orderlistModel.ol_dttm;
 orderlistModel.ol_dttm_real;
 orderlistModel.status;
 orderlistModel.hasreview;
+orderlistModel.preptime;
 
 
 orderlistModel.parse = function(body){
@@ -18,6 +19,7 @@ orderlistModel.parse = function(body){
     orderlistModel.ol_dttm_real=body.ol_dttm_real;;
     orderlistModel.status=body.status;
     orderlistModel.hasreview=body.hasreview;
+    orderlistModel.preptime=body.preptime;
 
 }
 
@@ -29,6 +31,7 @@ orderlistModel.clear = function(){
     orderlistModel.ol_dttm_real=null;
     orderlistModel.status=null;
     orderlistModel.hasreview=null;
+    orderlistModel.preptime=null;
 }
 
 orderlistModel.calcOrderListFromOrderdItems = function(req){
