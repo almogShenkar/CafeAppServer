@@ -1,10 +1,12 @@
 var db = require('../db');
 var scheduler = require('../scheduler');
 var orderedlistsModel = require('../models/orderedlist-model');
-var orderedlistsNode = require('../models/orderedlists-node');
-var itemModel = require('../models/item-model');
+//var orderedlistsNode = require('../models/orderedlists-node');
+//var itemModel = require('../models/item-model');
 //main object
 var orderedlistsController = {};
+
+scheduler.ctor();
 
 
 orderedlistsController.list = function(req,res){
@@ -75,7 +77,7 @@ orderedlistsController.update = function(req,res){
 orderedlistsController.add = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.preptime],
+    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.totalpreptime],
     function(err,rows){
         if(err){
             console.log(err);
@@ -100,20 +102,15 @@ orderedlistsController.delete = function(req,res){
 }
 
 orderedlistsController.checkTime = function(req,res){
-    orderedlistsNode.clear();
-    var totalPrepTime=0;
-    itemModel.clear();
-    itemModel.parse(req.body[i]);
-    db.query("SELECT itemid , preptime * ?  AS totalTime FROM item WHERE itemid = ?",[itemModel.qty,itemModel.itemid],function(err,rows){
-        if(err){
-            console.log(err);
-            return res.send(err);
-        }
-        console.log(rows);
-        totalPrepTime+=rows[0].totalTime;
+    
+    scheduler.addOrder(1,2,3,function(rows){
+        console.log("addorderCall: "+JSON.stringify(rows));
     });
-    console.log("TotalPrepTime: "+totalPrepTime);
-    res.json({"TotalPrepTime":totalPrepTime});
+    
+    /* orderedlistsModel.clear();
+    orderedlistsModel.parse(req.body);
+    console.log("orderedlist:"+orderedlistsModel);
+    res.json({"TotalPrepTime":1111}); */
 }
 
 module.exports = orderedlistsController;

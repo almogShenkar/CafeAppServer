@@ -6,7 +6,8 @@ var connection = mysql.createConnection({
         user: "root",
         //adam  password: "root",
         password: "",
-        database: "cafeapp"
+        database: "cafeapp",
+        timezone: 'utc'  //<-here this line was missing
         //adam socket: "/Applications/MAMP/tmp/mysql/mysql.sock"
       });
 
@@ -17,7 +18,6 @@ connection.connect(function(err){
     }
     console.log('Connection established');
   });
-
 
 
 module.exports = connection;

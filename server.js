@@ -16,7 +16,7 @@ const app = express();
 scheduler.ctor();
 
 var minutes = 5, the_interval = minutes * 60 * 1000;
-setInterval(scheduler.clearSlots,the_interval);
+//setInterval(scheduler.clearSlots,the_interval);
 
 //Set static folder
 app.use(express.static(__dirname+'/../images'));
@@ -43,10 +43,11 @@ const api = require('./api');
 
 // Set our api routes
 app.use('/api', api);
+app.set('tz', 'GMT+2');
 
 
 // Create http server
 const server = http.createServer(app);
 
 // Start listening to requests
-server.listen(port, () => console.log('Listening on http://localhost:${port}'));
+server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
