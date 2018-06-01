@@ -8,6 +8,7 @@
   },
   "author": "",
   "license": "ISC",
+  
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.16.3",
@@ -15,5 +16,9 @@
     "nodemailer":"^4.6.4",
     "mysql": "^2.15.0",
     "singly-linked-list": "^0.2.7"
+  },
+  
+  "engines": {
+    "node": "4.1.1"
   }
 }
