@@ -35,7 +35,7 @@ app.use(cors({
 
 
 // Set server port
-const port = 3000;
+const port = process.env.PORT || 5000;
 app.set('port', port);
 
 // Get our API routes

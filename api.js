@@ -13,13 +13,13 @@ var shiftsController = require('./controllers/shifts-controller');
 var suppliersController = require('./controllers/suppliers-controller');
 var filesController = require('./controllers/files-controller');
 var queriesController = require('./controllers/queries-controller');
-
-
-
 var suppliersController = require('./controllers/suppliers-controller');
+
+
 router.get('/', function (req, res) {
   res.send('API :: Hello World!');
 });
+
 
 // --- Users API---//
 
