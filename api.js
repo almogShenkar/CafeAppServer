@@ -22,77 +22,46 @@ router.get('/', function (req, res) {
 
 
 // --- Users API---//
-
-//localhost:3000/api/users
 router.get('/users', usersController.list);
-//localhost:3000/api/users/1
 router.get('/users/:id', usersController.get);
-//localhost:3000/api/users
-router.put('/users', usersController.update);
-//localhost:3000/api/users/url
-router.put('/users/url', usersController.updateUrl);
-//localhost:3000/api/users/credit
-router.put('/users/credit', usersController.updateCredit);
-//localhost:3000/api/users/signup
+//router.put('/users/:id', usersController.update);
+//router.put('/users/:id/url', usersController.updateUrl);
+router.put('/users/:id/credit', usersController.updateCredit);
 router.post('/users/signup', usersController.signup);
-//todo
 router.post('/users/signupemployee', usersController.signupEmployee);
-//localhost:3000/api/users/login
 router.post('/users/login', usersController.login);
-//localhost:3000/api/users/11
 router.delete('/users/:id', usersController.delete);
 
 // --- Items API---//
-
-//localhost:3000/api/items
 router.get('/items', itemsController.list);
-//localhost:3000/api/items/1
 router.get('/items/:id', itemsController.get);
-//localhost:3000/api/items/type/drink
 router.get('/items/type/:type', itemsController.listByStatus);
-//localhost:3000/api/items
-router.put('/items',itemsController.update);
-//localhost:3000/api/items
+router.put('/items/:id',itemsController.update);
 router.post('/items', itemsController.add);
-//localhost:3000/api/items/27
 router.delete('/items/:id', itemsController.delete);
 
 // --- Ordereditems API---//
-
-//localhost:3000/api/ordereditems
 router.get('/ordereditems', ordereditemsController.list);
-//localhost:3000/api/ordereditems/2
-router.get('/ordereditems/:id', ordereditemsController.get);
-//localhost:3000/api/ordereditems/olid/5
+//get Ordereditems by ordereditemid
+router.get('/ordereditems/orderid/:id', ordereditemsController.get);
+//get Ordereditems by olid
 router.get('/ordereditems/olid/:id', ordereditemsController.listByOlid);
-//localhost:3000/api/ordereditems
 router.put('/ordereditems',ordereditemsController.update);
-//localhost:3000/api/ordereditems
 router.post('/ordereditems', ordereditemsController.add);
-//localhost:3000/api/ordereditems/6
 router.delete('/ordereditems/:id', ordereditemsController.delete);
 
 
 
 // --- OrderedLists API---//
-
-//localhost:3000/api/orderedlists
 router.get('/orderedlists', orderedlistsController.list);
-//localhost:3000/api/orderedlists/48
+//get OrderedLists by olid
 router.get('/orderedlists/:id', orderedlistsController.getByOlid);
-//localhost:3000/api/orderedlists/userid/2
+//get OrderedLists by userid
 router.get('/orderedlists/userid/:id', orderedlistsController.listByUserid);
-//localhost:3000/api/orderedlists/status/incoming
+//get OrderedLists by status
 router.get('/orderedlists/status/:status', orderedlistsController.listByStatus);
-//localhost:3000/api/orderedlists
-router.put('/orderedlists',orderedlistsController.update);
-//localhost:3000/api/orderedlists
-router.post('/orderedlists', orderedlistsController.add);
-//localhost:3000/api/orderedlists/49
-router.delete('/orderedlists/:id', orderedlistsController.delete);
 
-
-//post "CheckTime" TODO
+//post "CheckTime"
 router.post('/orderedlistsTime', orderedlistsController.checkTime);
 
 
@@ -120,29 +89,17 @@ router.post('/shifts', shiftsController.add);
 router.delete('/shifts/:id', shiftsController.delete);
 
 // --- Employees API---//
-
-//localhost:3000/api/employees
 router.get('/employees', employeesController.list);
-//localhost:3000/api/employees/1
 router.get('/employees/:id', employeesController.get);
-//localhost:3000/api/employees
 router.put('/employees',employeesController.update);
-//localhost:3000/api/employees
 router.post('/employees', employeesController.add);
-//localhost:3000/api/employees/3
 router.delete('/employees/:id', employeesController.delete);
 
 // --- Supplier API---//
-
-//localhost:3000/api/suppliers
 router.get('/suppliers', suppliersController.list);
-//localhost:3000/api/suppliers/1
 router.get('/suppliers/:id', suppliersController.get);
-//localhost:3000/api/suppliers
 router.put('/suppliers',suppliersController.update);
-//localhost:3000/api/suppliers
 router.post('/suppliers', suppliersController.add);
-//localhost:3000/api/suppliers/10
 router.delete('/suppliers/:id', suppliersController.delete);
 
 //Files
@@ -155,7 +112,7 @@ router.post('/upload/:imgtype/',filesController.upload);
 //example: localhost:3000/api/download/items/bird.jpg
 router.get('/download/:imgtype/:filename',filesController.download);
 
-//localhost:3000/api/query/monthworstitems
+
 router.get('/query/:selectedquery',queriesController.run);
 
 module.exports = router;

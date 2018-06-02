@@ -8,7 +8,10 @@ orderlistModel.ol_dttm;
 orderlistModel.ol_dttm_real;
 orderlistModel.status;
 orderlistModel.hasreview;
+<<<<<<< HEAD
 orderlistModel.totalpreptime;
+=======
+>>>>>>> parent of ee02334... api updates
 
 
 orderlistModel.parse = function(body){
@@ -19,7 +22,10 @@ orderlistModel.parse = function(body){
     orderlistModel.ol_dttm_real=body.ol_dttm_real;;
     orderlistModel.status=body.status;
     orderlistModel.hasreview=body.hasreview;
+<<<<<<< HEAD
     orderlistModel.totalpreptime=body.totalpreptime;
+=======
+>>>>>>> parent of ee02334... api updates
 
 }
 
@@ -31,7 +37,10 @@ orderlistModel.clear = function(){
     orderlistModel.ol_dttm_real=null;
     orderlistModel.status=null;
     orderlistModel.hasreview=null;
+<<<<<<< HEAD
     orderlistModel.totalpreptime=null;
+=======
+>>>>>>> parent of ee02334... api updates
 }
 
 orderlistModel.calcOrderListFromOrderdItems = function(req){

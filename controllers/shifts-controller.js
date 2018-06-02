@@ -4,7 +4,7 @@ var shiftModel = require('../models/shift-model');
 var shiftController = {};
 
 shiftController.list = function(req,res){
-    
+
 }
 
 shiftController.get = function(req,res){
