@@ -15,9 +15,6 @@ const app = express();
 
 scheduler.ctor();
 
-var minutes = 5, the_interval = minutes * 60 * 1000;
-//setInterval(scheduler.clearSlots,the_interval);
-
 //Set static folder
 app.use(express.static(__dirname+'/../images'));
 app.use(fileUpload());
@@ -35,7 +32,7 @@ app.use(cors({
 
 
 // Set server port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.set('port', port);
 
 // Get our API routes
@@ -43,7 +40,6 @@ const api = require('./api');
 
 // Set our api routes
 app.use('/api', api);
-app.set('tz', 'GMT+2');
 
 
 // Create http server

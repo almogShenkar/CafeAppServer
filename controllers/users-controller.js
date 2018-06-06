@@ -44,7 +44,6 @@ userController.signup = function(req, res){
     });
 }
 
-signupEmployee
 //POST - SIGNUP employee
 userController.signupEmployee = function(req, res){
     userModel.clear();

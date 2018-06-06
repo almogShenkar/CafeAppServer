@@ -6,8 +6,6 @@ var orderedlistsModel = require('../models/orderedlist-model');
 //main object
 var orderedlistsController = {};
 
-scheduler.ctor();
-
 
 orderedlistsController.list = function(req,res){
     db.query("SELECT * FROM orderlist ORDER BY ol_dttm DESC;",function(err,rows){
@@ -77,11 +75,7 @@ orderedlistsController.update = function(req,res){
 orderedlistsController.add = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-<<<<<<< HEAD
     db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.totalpreptime],
-=======
-    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview],
->>>>>>> parent of ee02334... api updates
     function(err,rows){
         if(err){
             console.log(err);
@@ -106,10 +100,9 @@ orderedlistsController.delete = function(req,res){
 }
 
 orderedlistsController.checkTime = function(req,res){
-    
-    scheduler.addOrder(1,2,3,function(rows){
-        console.log("addorderCall: "+JSON.stringify(rows));
-    });
+    orderedlistsModel.clear();
+    orderedlistsModel.parse(req.body);
+    scheduler.addOrder(orderedlistsModel.ol_dttm,orderedlistsModel.totalpreptime,orderedlistsModel.isbefore,orderedlistsModel.AddToIncomingQueue);
     
     /* orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);

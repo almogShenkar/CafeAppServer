@@ -1,4 +1,5 @@
 var queries = require('../queries');
+var db = require('../db');
 
 var queriesController = {};
 

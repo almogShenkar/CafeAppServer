@@ -24,6 +24,17 @@ reviewlistController.get = function(req,res){
     });
 }
 
+reviewlistController.getItemRevByUser = function(req,res){
+    db.query("SELECT * from reviewlist left JOIN review on (reviewlist.rlid=review.rlid) where userid=? and itemid in (SELECT itemid FROM orderlist left outer JOIN ordereditem ON ordereditem.olid=?);",
+        [req.params.userid,req.params.orderid],function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.send(rows);
+    });
+}
+
 reviewlistController.update = function(req,res){
     reviewlistModel.clear();
     reviewlistModel.parse(req.body);

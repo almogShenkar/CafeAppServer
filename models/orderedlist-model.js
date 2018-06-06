@@ -8,25 +8,26 @@ orderlistModel.ol_dttm;
 orderlistModel.ol_dttm_real;
 orderlistModel.status;
 orderlistModel.hasreview;
-<<<<<<< HEAD
 orderlistModel.totalpreptime;
-=======
->>>>>>> parent of ee02334... api updates
+ordereditemsModel.timestamp;
 
 
 orderlistModel.parse = function(body){
-    orderlistModel.olid=body.olid;
-    orderlistModel.userid=body.userid;
-    orderlistModel.totalprice=body.totalprice;
-    orderlistModel.ol_dttm=body.ol_dttm;
-    orderlistModel.ol_dttm_real=body.ol_dttm_real;;
-    orderlistModel.status=body.status;
-    orderlistModel.hasreview=body.hasreview;
-<<<<<<< HEAD
-    orderlistModel.totalpreptime=body.totalpreptime;
-=======
->>>>>>> parent of ee02334... api updates
-
+    try{
+        orderlistModel.olid=body.olid;
+        orderlistModel.userid=body.userid;
+        orderlistModel.totalprice=body.totalprice;
+        orderlistModel.ol_dttm=body.ol_dttm;
+        orderlistModel.ol_dttm_real=body.ol_dttm_real;;
+        orderlistModel.status=body.status;
+        orderlistModel.hasreview=body.hasreview;
+        orderlistModel.totalpreptime=body.totalpreptime;
+        ordereditemsModel.timestamp=body.timestamp;
+    }
+    catch (err){
+        console.log(`exception: ${err}`);
+    }
+    
 }
 
 orderlistModel.clear = function(){
@@ -37,10 +38,8 @@ orderlistModel.clear = function(){
     orderlistModel.ol_dttm_real=null;
     orderlistModel.status=null;
     orderlistModel.hasreview=null;
-<<<<<<< HEAD
     orderlistModel.totalpreptime=null;
-=======
->>>>>>> parent of ee02334... api updates
+    ordereditemsModel.timestamp=null;
 }
 
 orderlistModel.calcOrderListFromOrderdItems = function(req){
@@ -51,6 +50,10 @@ orderlistModel.calcOrderListFromOrderdItems = function(req){
         //SELECT preptime FROM ordereditems WHERE orderid = body[i].orderid
     }
     
+}
+
+orderlistModel.AddToIncomingQueue = function(rows,beforeOrAfter){
+    //console.log("addincomingotqueue");
 }
 
 module.exports = orderlistModel;
