@@ -1,5 +1,5 @@
 var db = require('../db');
-var scheduler = require('../scheduler');
+var scheduler = require('../utils/scheduler');
 var orderedlistsModel = require('../models/orderedlist-model');
 //var orderedlistsNode = require('../models/orderedlists-node');
 //var itemModel = require('../models/item-model');
@@ -60,13 +60,13 @@ orderedlistsController.listByStatus = function(req,res){
 orderedlistsController.update = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview,orderedlistsModel.olid],
+    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ? , timestamp = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.timestamp,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview,orderedlistsModel.olid],
     function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json({changedRows:rows.changedRows});
 
     });
 }
@@ -75,7 +75,7 @@ orderedlistsController.update = function(req,res){
 orderedlistsController.add = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.totalpreptime],
+    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.totalpreptime],
     function(err,rows){
         if(err){
             console.log(err);
@@ -83,7 +83,7 @@ orderedlistsController.add = function(req,res){
         }
         orderedlistsModel.clear();
         orderedlistsModel.olid=rows.insertId;
-        return res.json({"olid":orderedlistsModel.olid});
+        return res.json({olid:orderedlistsModel.olid});
     });
 }
 
@@ -94,7 +94,7 @@ orderedlistsController.delete = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json({affectedRows:rows.affectedRows});
 
     });
 }
@@ -102,12 +102,11 @@ orderedlistsController.delete = function(req,res){
 orderedlistsController.checkTime = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    scheduler.addOrder(orderedlistsModel.ol_dttm,orderedlistsModel.totalpreptime,orderedlistsModel.isbefore,orderedlistsModel.AddToIncomingQueue);
-    
-    /* orderedlistsModel.clear();
-    orderedlistsModel.parse(req.body);
-    console.log("orderedlist:"+orderedlistsModel);
-    res.json({"TotalPrepTime":1111}); */
+    scheduler.addOrder(orderedlistsModel,function(result) {orderedlistsController.sendSchedulerResult(res,result);});
+}
+
+orderedlistsController.sendSchedulerResult = function(res,result){
+    res.json(result);
 }
 
 module.exports = orderedlistsController;

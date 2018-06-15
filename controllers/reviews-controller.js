@@ -26,6 +26,16 @@ reviewController.get = function(req,res){
     });
 }
 
+reviewController.getReviewsByItem = function(req,res){
+    db.query("SELECT * FROM review WHERE revid in(SELECT rlid FROM reviewlist WHERE itemid=?)",req.params.itemid,function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json(rows);
+    });
+}
+
 reviewController.update = function(req,res){
     reviewModel.clear();
     reviewModel.parse(req.body);
@@ -35,8 +45,7 @@ reviewController.update = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
-
+        return res.json({changedRows:rows.changedRows});
     });
 }
 
@@ -51,7 +60,7 @@ reviewController.add = function(req,res){
         }
         reviewModel.clear();
         reviewModel.revid=rows.insertId;
-        return res.json({"revid":reviewModel.revid});
+        return res.json({revid:reviewModel.revid});
     });
 }
 
@@ -62,7 +71,7 @@ reviewController.delete = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json({affectedRows:rows.affectedRows});
 
     });
 }

@@ -24,17 +24,6 @@ reviewlistController.get = function(req,res){
     });
 }
 
-reviewlistController.getItemRevByUser = function(req,res){
-    db.query("SELECT * from reviewlist left JOIN review on (reviewlist.rlid=review.rlid) where userid=? and itemid in (SELECT itemid FROM orderlist left outer JOIN ordereditem ON ordereditem.olid=?);",
-        [req.params.userid,req.params.orderid],function(err,rows){
-        if(err){
-            console.log(err);
-            return res.send(err);
-        }
-        return res.send(rows);
-    });
-}
-
 reviewlistController.update = function(req,res){
     reviewlistModel.clear();
     reviewlistModel.parse(req.body);
@@ -43,7 +32,7 @@ reviewlistController.update = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.send(rows);
+        return res.json({changedRows:rows.changedRows});
     });
 }
 
@@ -57,10 +46,22 @@ reviewlistController.add = function(req,res){
         }
         reviewlistModel.clear();
         reviewlistModel.rlid=rows.insertId;
-        return res.json({"rlid":orderedlistsModel.rlid});
+        return res.json({rlid:reviewlistModel.rlid});
 
     });
 }
+
+reviewlistController.getItemRevByUser = function(req,res){
+    db.query("SELECT * from reviewlist left JOIN review on (reviewlist.rlid=review.rlid) where userid=? and itemid in (SELECT itemid FROM orderlist left outer JOIN ordereditem ON ordereditem.olid=?);",
+        [req.params.userid,req.params.orderid],function(err,rows){
+            if(err){
+                console.log(err);
+                return res.send(err);
+            }
+            return res.json(rows);
+        });
+}
+
 
 reviewlistController.delete = function(req,res){
     db.query("DELETE FROM reviewlist WHERE rlid=?;",[req.params.id],function(err,rows){
@@ -68,7 +69,7 @@ reviewlistController.delete = function(req,res){
             console.log(err);
             return res.send(err);
         }
-        return res.send(rows);
+        return res.json({affectedRows:rows.affectedRows});
     });
 }
 

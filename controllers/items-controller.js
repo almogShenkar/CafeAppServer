@@ -29,7 +29,7 @@ itemController.get = function(req, res){
 itemController.add = function(req, res){
     itemModel.clear();
     itemModel.parse(req.body);
-    db.query("INSERT INTO item VALUES(?,?,?,?,?,?,?,?,?);",[null,itemModel.supid,itemModel.name,itemModel.description,itemModel.qty,itemModel.url,itemModel.price,itemModel.type,itemModel.ispublished],
+    db.query("INSERT INTO item VALUES(?,?,?,?,?,?,?,?,?,?);",[null,itemModel.supid,itemModel.name,itemModel.description,itemModel.qty,itemModel.url,itemModel.price,itemModel.type,itemModel.ispublished,itemModel.preptime],
     function(err,rows){
         if(err){
             console.log(err);
@@ -51,7 +51,7 @@ itemController.update = function(req, res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json({changedRows:rows.changedRows});
     });
 }
 
@@ -62,11 +62,11 @@ itemController.delete = function(req, res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json({affectedRows:rows.affectedRows});
     });
 }
 
-itemController.listByStatus = function(req,res){
+itemController.listByType = function(req,res){
     db.query("SELECT * FROM item WHERE type = ?;",[req.params.type],function(err,rows){
         if(err){
             console.log(err);

@@ -30,7 +30,7 @@ ordereditemsController.get = function(req, res){
 
 //GET ALL by olid
 ordereditemsController.listByOlid = function(req, res){
-    db.query("SELECT * FROM ordereditem WHERE orderid = ?;",[req.params.id],function(err,rows){
+    db.query("SELECT * FROM ordereditem WHERE olid = ?;",[req.params.id],function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
@@ -51,7 +51,7 @@ ordereditemsController.add = function(req, res){
         }
         orderModel.clear();
         orderModel.orderid=rows.insertId;
-        return res.json({"orderid":orderModel.orderid});
+        return res.json({orderid:orderModel.orderid});
     });
 }
 
@@ -64,7 +64,7 @@ ordereditemsController.update = function(req, res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json({changedRows:rows.changedRows});
     });
 }
 
@@ -75,7 +75,7 @@ ordereditemsController.delete = function(req, res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        return res.json({affectedRows:rows.affectedRows});
     });
 }
 
