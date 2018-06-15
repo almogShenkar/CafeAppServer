@@ -59,6 +59,9 @@ app.use('/api/items', require('./api/items'));
 app.use('/api/files', require('./api/files'));
 app.use('/api/employees', require('./api/employees'));
 
+app.get('/', function (req, res) {
+    res.send('API :: Hello World!');
+  });
 
 
 app.set('tz', 'GMT+2');
