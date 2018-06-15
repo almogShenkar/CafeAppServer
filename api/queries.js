@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Controllers
-var queriesController = require('../controllers/queries-controller');
+var queriesController = require('../controllers/queries');
 
 
 

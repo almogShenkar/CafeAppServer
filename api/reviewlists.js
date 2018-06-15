@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Controllers
-var reviewlistsController = require('../controllers/reviewlists-controller');
+var reviewlistsController = require('../controllers/reviewlists');
 
 
 

@@ -1,5 +1,5 @@
 var db = require('../db');
-var supplierModel = require('../models/suppllier-model');
+var supplierModel = require('../models/suppllier');
 //main object
 var supplierController = {};
 

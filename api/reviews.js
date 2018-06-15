@@ -3,7 +3,7 @@ var router = express.Router();
 
 //Controllers
 
-var reviewsController = require('../controllers/reviews-controller');
+var reviewsController = require('../controllers/reviews');
 
 // --- Reviews API---//
 router.get('/', reviewsController.list);

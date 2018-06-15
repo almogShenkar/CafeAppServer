@@ -1,5 +1,5 @@
 var db = require('../db');
-var itemModel = require('../models/item-model');
+var itemModel = require('../models/item');
 //main object
 var itemController = {};
 

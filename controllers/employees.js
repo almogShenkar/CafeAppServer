@@ -1,5 +1,5 @@
 var db = require('../db');
-var employeeModel = require('../models/employee-model');
+var employeeModel = require('../models/employee');
 //main object
 var employeeController = {};
 

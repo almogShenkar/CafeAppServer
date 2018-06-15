@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Controllers
-var itemsController = require('../controllers/items-controller');
+var itemsController = require('../controllers/items');
 
 router.get('/', function (req, res) {
   res.send('API :: Hello World!');

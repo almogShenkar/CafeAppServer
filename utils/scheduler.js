@@ -1,4 +1,4 @@
-var orderedlistsModel = require('../models/orderedlist-model');
+var orderedlistsModel = require('../models/orderedlist');
 var moment = require('moment');
 var dblyLinkedList = require('dbly-linked-list');
 var db = require('../db');

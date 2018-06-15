@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Controllers
-var ordereditemsController = require('../controllers/ordereditems-controller');
+var ordereditemsController = require('../controllers/ordereditems');
 
 
 // --- Ordereditems API---//

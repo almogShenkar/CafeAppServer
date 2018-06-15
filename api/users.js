@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Controllers
-var usersController = require('../controllers/users-controller');
+var usersController = require('../controllers/users');
 
 /*
 router.get('/', function (req, res) {

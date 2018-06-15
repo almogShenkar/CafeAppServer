@@ -1,7 +1,7 @@
 
 var db = require('../db');
 //var con=sql.getConnection();
-var orderModel = require('../models/ordereditem-model');
+var orderModel = require('../models/ordereditem');
 //main object
 var ordereditemsController = {};
 

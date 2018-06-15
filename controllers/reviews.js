@@ -1,6 +1,6 @@
 
 var db = require('../db');
-var reviewModel = require('../models/review-model');
+var reviewModel = require('../models/review');
 //main object
 var reviewController = {};
 

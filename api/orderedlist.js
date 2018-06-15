@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Controllers
-var orderedlistsController = require('../controllers/orderedlists-controller');
+var orderedlistsController = require('../controllers/orderedlists');
 
 router.get('/', function (req, res) {
   res.send('API :: Hello World!');

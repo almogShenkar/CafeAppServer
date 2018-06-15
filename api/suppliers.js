@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Controllers
-var suppliersController = require('../controllers/suppliers-controller');
+var suppliersController = require('../controllers/suppliers');
 
 
 //localhost:3000/api/suppliers

@@ -1,5 +1,5 @@
 var db = require('../db');
-var shiftModel = require('../models/shift-model');
+var shiftModel = require('../models/shift');
 //main object
 var shiftController = {};
 

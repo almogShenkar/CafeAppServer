@@ -1,6 +1,6 @@
 var db = require('../db');
 var scheduler = require('../utils/scheduler');
-var orderedlistsModel = require('../models/orderedlist-model');
+var orderedlistsModel = require('../models/orderedlist');
 //var orderedlistsNode = require('../models/orderedlists-node');
 //var itemModel = require('../models/item-model');
 //main object
