@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/*
+
 //Controllers
 var ordereditemsController = require('../controllers/ordereditems');
 
@@ -23,4 +23,3 @@ router.delete('/:id', ordereditemsController.delete);
 
 
 module.exports = router;
-*/

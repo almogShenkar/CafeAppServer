@@ -1,4 +1,4 @@
-/*
+
 var db = require('../db');
 //var con=sql.getConnection();
 var orderModel = require('../models/ordereditem');
@@ -81,4 +81,3 @@ ordereditemsController.delete = function(req, res){
 
 
 module.exports = ordereditemsController;
-*/
