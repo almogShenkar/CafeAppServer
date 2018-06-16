@@ -13,7 +13,7 @@
   "main": "server.js",
   "scripts": {
     "prestart": "next build",
-    "start": "next  -p ${PORT}",
+    "start": "next start -p ${PORT}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
