@@ -53,10 +53,10 @@ app.use('/api/reviews', require('./api/reviews'));
 app.use('/api/reviewlists', require('./api/reviewlists'));
 app.use('/api/queries', require('./api/queries'));
 app.use('/api/orderedlist', require('./api/orderedlist'));
-//app.use('/api/ordereditems', require('./api/ordereditems'));
 app.use('/api/items', require('./api/items'));
 app.use('/api/files', require('./api/files'));
 app.use('/api/employees', require('./api/employees'));
+app.use('/api/ordereditems', require('./api/ordereditems'));
 
 app.get('/', function (req, res) {
     res.send('API :: Hello World!AAAAAA');
