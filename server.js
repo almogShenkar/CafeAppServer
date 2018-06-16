@@ -71,4 +71,4 @@ const server = http.createServer(app);
 
 // Start listening to requests
 //server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
-server.listen(port, () => console.log(`Listening on ${port}`));
+server.listen(port, () => console.log(`Listening on port:${port}`));

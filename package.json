@@ -5,7 +5,11 @@
     "node": "8.9.4",
     "npm": "5.6.x"
   },
-  "description": "",
+  "description": "cafeapp server",
+  "repository":  { 
+      "type" : "git",
+      "url" : "https://github.com/almogShenkar/CafeAppServer/tree/almog"
+    },
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
