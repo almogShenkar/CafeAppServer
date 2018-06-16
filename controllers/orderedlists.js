@@ -42,6 +42,16 @@ orderedlistController.listByUserid = function(req,res){
     });
 }
 
+//GET TodayasOrders
+orderedlistController.todayfutureorders = function(req,res){
+    db.query("SELECT * FROM todayfutureorders;",function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json(rows);
+    });
+}
 
 
 //GET ALL by status
@@ -60,7 +70,7 @@ orderedlistController.listByStatus = function(req,res){
 orderedlistController.update = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ? , timestamp = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.timestamp,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview,orderedlistsModel.olid],
+    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ?, totalpreptime= ? , timestamp = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.totalpreptime,orderedlistsModel.timestamp,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview,orderedlistsModel.olid],
     function(err,rows){
         if(err){
             console.log(err);

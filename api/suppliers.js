@@ -6,14 +6,14 @@ var suppliersController = require('../controllers/suppliers');
 
 
 //localhost:3000/api/suppliers
-router.get('/suppliers', suppliersController.list);
+router.get('/', suppliersController.list);
 //localhost:3000/api/suppliers/1
-router.get('/suppliers/:id', suppliersController.get);
+router.get('/:id', suppliersController.get);
 //localhost:3000/api/suppliers
-router.put('/suppliers',suppliersController.update);
+router.put('/',suppliersController.update);
 //localhost:3000/api/suppliers
-router.post('/suppliers', suppliersController.add);
+router.post('/', suppliersController.add);
 //localhost:3000/api/suppliers/10
-router.delete('/suppliers/:id', suppliersController.delete);
+router.delete('/:id', suppliersController.delete);
 
 module.exports = router;

@@ -6,10 +6,10 @@
     "npm": "5.6.x"
   },
   "description": "cafeapp server",
-  "repository":  { 
-      "type" : "git",
-      "url" : "https://github.com/almogShenkar/CafeAppServer/tree/almog"
-    },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/almogShenkar/CafeAppServer/tree/almog"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -25,6 +25,7 @@
     "log4js": "^2.8.0",
     "moment": "^2.22.2",
     "mysql": "^2.15.0",
+    "nexmo": "^2.3.0",
     "nodemailer": "^4.6.4"
   }
 }

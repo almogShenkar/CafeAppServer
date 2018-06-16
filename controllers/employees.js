@@ -1,10 +1,11 @@
+/*
 var db = require('../db');
 var employeeModel = require('../models/employee');
 //main object
 var employeeController = {};
 
 employeeController.list = function(req,res){
-    db.query("SELECT * FROM EMPLOYEE",function(err,rows){
+    db.query("SELECT * FROM user",function(err,rows){
         if(err){
             console.log(err);
             res.send(err);
@@ -15,7 +16,7 @@ employeeController.list = function(req,res){
 }
 
 employeeController.get = function(req,res){
-    db.query("SELECT * FROM EMPLOYEE WHERE empid=?",[req.params.id],function(err,rows){
+    db.query("SELECT * FROM user WHERE empid=?",[req.params.id],function(err,rows){
         if(err){
             console.log(err);
             res.send(err);
@@ -28,7 +29,7 @@ employeeController.get = function(req,res){
 employeeController.add = function(req,res){
     employeeModel.clear();
     employeeModel.parse(req.body);
-    db.query("INSERT INTO EMPLOYEE VALUES(?,?,?,?,?,?)",[employeeModel.empid,employeeModel.email,employeeModel.password,employeeModel.firstname,employeeModel.lastname,employeeModel.phone],function(err,rows){
+    db.query("INSERT INTO user VALUES(?,?,?,?,?,?)",[employeeModel.empid,employeeModel.email,employeeModel.password,employeeModel.firstname,employeeModel.lastname,employeeModel.phone],function(err,rows){
         if(err){
             console.log(err);
             res.send(err);
@@ -43,7 +44,7 @@ employeeController.add = function(req,res){
 employeeController.update = function(req,res){
     employeeModel.clear();
     employeeModel.parse(req.body);
-    db.query("UPDATE EMPLOYEE SET email=? , password=?, firstname=? , lastname=?,phone=? WHERE empid=?",[employeeModel.email,employeeModel.password,employeeModel.firstname,employeeModel.lastname,employeeModel.phone,employeeModel.empid],function(err,rows){
+    db.query("UPDATE user SET email=? , password=?, firstname=? , lastname=?,phone=? WHERE empid=?",[employeeModel.email,employeeModel.password,employeeModel.firstname,employeeModel.lastname,employeeModel.phone,employeeModel.empid],function(err,rows){
         if(err){
             console.log(err);
             res.send(err);
@@ -54,7 +55,7 @@ employeeController.update = function(req,res){
 }
 
 employeeController.delete = function(req,res){
-    db.query("DELETE FROM EMPLOYEE WHERE empid=?",[req.params.id],function(err,rows){
+    db.query("DELETE FROM user WHERE empid=?",[req.params.id],function(err,rows){
         if(err){
             console.log(err);
             res.send(err);
@@ -65,3 +66,4 @@ employeeController.delete = function(req,res){
 }
 
 module.exports = employeeController;
+*/

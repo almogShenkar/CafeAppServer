@@ -7,11 +7,11 @@ var reviewlistsController = require('../controllers/reviewlists');
 
 
 // --- Reviewlists API---//
-router.get('/reviewlists', reviewlistsController.list);
-router.get('/reviewlists/:id', reviewlistsController.get);
-router.get('/reviewlists/:userid/:orderid', reviewlistsController.getItemRevByUser);
-router.put('/reviewlists',reviewlistsController.update);
-router.post('/reviewlists', reviewlistsController.add);
-router.delete('/reviewlists/:id', reviewlistsController.delete);
+router.get('/', reviewlistsController.list);
+router.get('/:id', reviewlistsController.get);
+router.get('/:userid/:orderid', reviewlistsController.getItemRevByUser);
+router.put('/',reviewlistsController.update);
+router.post('/', reviewlistsController.add);
+router.delete('/:id', reviewlistsController.delete);
 
 module.exports = router;

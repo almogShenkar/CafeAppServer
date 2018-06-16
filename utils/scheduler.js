@@ -35,7 +35,7 @@ scheduler.addOrder = function (orderedlistData, callback) {
     //orderedlistData.ol_dttm = "2018-06-07T13:30:00.000Z";
     //orderedlistData.totalpreptime = 10;
     //orderedlistData.olid = 8888;
-    orderedlistData.status = "none";
+    orderedlistData.status = "None";
     orderedlistData.hasreview = 0;
     scheduler.list = new dblyLinkedList();
     db.query("SELECT * FROM todayfutureorders", function (err, rows) {
@@ -45,8 +45,6 @@ scheduler.addOrder = function (orderedlistData, callback) {
         }
         scheduler.populateLinkedList(rows);
         console.log(scheduler.list.getSize());
-        //var i = scheduler.findValidSlot(orderedlistData);
-        //console.log("findValidSlot:" + i);
         while (scheduler.addToList(orderedlistData) == false) {
             orderedlistData.ol_dttm = moment(orderedlistData.ol_dttm).add(5, 'minutes').toISOString();
         }

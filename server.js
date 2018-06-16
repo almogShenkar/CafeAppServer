@@ -51,12 +51,12 @@ app.use('/api/suppliers', require('./api/suppliers'));
 app.use('/api/shifts', require('./api/shifts'));
 app.use('/api/reviews', require('./api/reviews'));
 app.use('/api/reviewlists', require('./api/reviewlists'));
-app.use('/api/queries', require('./api/queries'));
+app.use('/api/query', require('./api/queries'));
 app.use('/api/orderedlist', require('./api/orderedlist'));
 app.use('/api/items', require('./api/items'));
 app.use('/api/files', require('./api/files'));
-app.use('/api/employees', require('./api/employees'));
 app.use('/api/ordereditems', require('./api/ordereditemsapi'));
+//app.use('/api/employees', require('./api/employees'));
 
 app.get('/', function (req, res) {
     res.send('API :: Hello World!AAAAAA');
