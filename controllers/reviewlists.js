@@ -74,5 +74,4 @@ reviewlistController.delete = function(req,res){
 }
 
 
-
 module.exports = reviewlistController;

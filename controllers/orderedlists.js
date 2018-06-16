@@ -4,10 +4,10 @@ var orderedlistsModel = require('../models/orderedlist');
 //var orderedlistsNode = require('../models/orderedlists-node');
 //var itemModel = require('../models/item-model');
 //main object
-var orderedlistsController = {};
+var orderedlistController = {};
 
 
-orderedlistsController.list = function(req,res){
+orderedlistController.list = function(req,res){
     db.query("SELECT * FROM orderlist ORDER BY ol_dttm DESC;",function(err,rows){
         if(err){
             console.log(err);
@@ -18,7 +18,7 @@ orderedlistsController.list = function(req,res){
     });
 }
 
-orderedlistsController.getByOlid = function(req,res){
+orderedlistController.getByOlid = function(req,res){
     db.query("SELECT * FROM orderlist WHERE olid = ? ;",req.params.id,function(err,rows){
         if(err){
             console.log(err);
@@ -31,7 +31,7 @@ orderedlistsController.getByOlid = function(req,res){
 
 
 //GET ALL by userid
-orderedlistsController.listByUserid = function(req,res){
+orderedlistController.listByUserid = function(req,res){
     db.query("SELECT * FROM orderlist WHERE userid = ? ORDER BY ol_dttm DESC;",req.params.id,function(err,rows){
         if(err){
             console.log(err);
@@ -45,7 +45,7 @@ orderedlistsController.listByUserid = function(req,res){
 
 
 //GET ALL by status
-orderedlistsController.listByStatus = function(req,res){
+orderedlistController.listByStatus = function(req,res){
     db.query("SELECT * FROM orderlist WHERE status = ? ORDER BY ol_dttm DESC;",req.params.status,function(err,rows){
         if(err){
             console.log(err);
@@ -57,7 +57,7 @@ orderedlistsController.listByStatus = function(req,res){
 }
 
 //PUT
-orderedlistsController.update = function(req,res){
+orderedlistController.update = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
     db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ? , timestamp = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.timestamp,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview,orderedlistsModel.olid],
@@ -72,7 +72,7 @@ orderedlistsController.update = function(req,res){
 }
 
 //POST
-orderedlistsController.add = function(req,res){
+orderedlistController.add = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
     db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.totalpreptime],
@@ -87,7 +87,7 @@ orderedlistsController.add = function(req,res){
     });
 }
 
-orderedlistsController.delete = function(req,res){
+orderedlistController.delete = function(req,res){
     db.query("DELETE FROM orderlist WHERE olid = ?;",[req.params.id],
     function(err,rows){
         if(err){
@@ -99,14 +99,14 @@ orderedlistsController.delete = function(req,res){
     });
 }
 
-orderedlistsController.checkTime = function(req,res){
+orderedlistController.checkTime = function(req,res){
     orderedlistsModel.clear();
     orderedlistsModel.parse(req.body);
-    scheduler.addOrder(orderedlistsModel,function(result) {orderedlistsController.sendSchedulerResult(res,result);});
+    scheduler.addOrder(orderedlistsModel,function(result) {orderedlistController.sendSchedulerResult(res,result);});
 }
 
-orderedlistsController.sendSchedulerResult = function(res,result){
+orderedlistController.sendSchedulerResult = function(res,result){
     res.json(result);
 }
                  
-module.exports = orderedlistsController;
+module.exports = orderedlistController;

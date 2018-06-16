@@ -3,10 +3,10 @@ var db = require('../db');
 //var con=sql.getConnection();
 var orderModel = require('../models/ordereditem');
 //main object
-var ordereditemsController = {};
+var ordereditemController = {};
 
 //GET ALL
-ordereditemsController.list = function(req, res){
+ordereditemController.list = function(req, res){
     db.query("SELECT * FROM ordereditem;",function(err,rows){
         if(err){
             console.log(err);
@@ -17,7 +17,7 @@ ordereditemsController.list = function(req, res){
 }
 
 //GET one by ID
-ordereditemsController.get = function(req, res){
+ordereditemController.get = function(req, res){
     db.query("SELECT * FROM ordereditem WHERE orderid = ?;",[req.params.id],function(err,rows){
         if(err){
             console.log(err);
@@ -29,7 +29,7 @@ ordereditemsController.get = function(req, res){
 
 
 //GET ALL by olid
-ordereditemsController.listByOlid = function(req, res){
+ordereditemController.listByOlid = function(req, res){
     db.query("SELECT * FROM ordereditem WHERE olid = ?;",[req.params.id],function(err,rows){
         if(err){
             console.log(err);
@@ -41,7 +41,7 @@ ordereditemsController.listByOlid = function(req, res){
 
 
 //POST
-ordereditemsController.add = function(req, res){
+ordereditemController.add = function(req, res){
     orderModel.clear();
     orderModel.parse(req.body);
     db.query("INSERT INTO ordereditem VALUES(?,?,?,?);",[null,orderModel.itemid,orderModel.olid,orderModel.qty],function(err,rows){
@@ -56,7 +56,7 @@ ordereditemsController.add = function(req, res){
 }
 
 //PUT by ID - update the order
-ordereditemsController.update = function(req, res){
+ordereditemController.update = function(req, res){
     orderModel.clear();
     orderModel.parse(req.body);
     db.query("UPDATE ordereditem SET itemid = ?, olid = ?, qty = ? WHERE orderid = ?;",[orderModel.itemid,orderModel.olid,orderModel.qty,orderModel.orderid],function(err,rows){
@@ -69,7 +69,7 @@ ordereditemsController.update = function(req, res){
 }
 
 //DELETE by ID
-ordereditemsController.delete = function(req, res){
+ordereditemController.delete = function(req, res){
     db.query("DELETE FROM ordereditem WHERE orderid = ?;",[req.params.id],function(err,rows){
         if(err){
             console.log(err);
@@ -80,4 +80,4 @@ ordereditemsController.delete = function(req, res){
 }
 
 
-module.exports = ordereditemsController;
+module.exports = ordereditemController;
