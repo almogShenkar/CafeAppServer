@@ -27,7 +27,6 @@ var minutes = 5, the_interval = minutes * 60 * 1000;
 app.use(express.static(__dirname+'/../images'));
 app.use(fileUpload());
 
-console.log(__dirname);
 
 
 // Parsers for POST data
@@ -54,13 +53,13 @@ app.use('/api/reviews', require('./api/reviews'));
 app.use('/api/reviewlists', require('./api/reviewlists'));
 app.use('/api/queries', require('./api/queries'));
 app.use('/api/orderedlist', require('./api/orderedlist'));
-//app.use('/api/ordereditems', require('./api/ordereditems'));
+app.use('/api/ordereditems', require('./api/ordereditems'));
 app.use('/api/items', require('./api/items'));
 app.use('/api/files', require('./api/files'));
 app.use('/api/employees', require('./api/employees'));
 
 app.get('/', function (req, res) {
-    res.send('API :: Hello World!');
+    res.send('API :: Hello World!AAAAAA');
   });
 
 
@@ -71,4 +70,5 @@ app.set('tz', 'GMT+2');
 const server = http.createServer(app);
 
 // Start listening to requests
-server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
+//server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
+server.listen(port, () => console.log(`Listening on ${port}`));
