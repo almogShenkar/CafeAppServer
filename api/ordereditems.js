@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 //Controllers
-var orderitemController = require('../controllers/ordereditems');
+var ordereditemController = require('../controllers/ordereditems');
    
     
 
@@ -11,17 +11,17 @@ var orderitemController = require('../controllers/ordereditems');
 // --- Ordereditems API---//
 
 //localhost:3000/api/ordereditems
-router.get('/', orderitemController.list);
+router.get('/', ordereditemController.list);
 //localhost:3000/api/ordereditems/2
-router.get('/:id', orderitemController.get);
+router.get('/:id', ordereditemController.get);
 //localhost:3000/api/ordereditems/olid/5
-router.get('/olid/:id', orderitemController.listByOlid);
+router.get('/olid/:id', ordereditemController.listByOlid);
 //localhost:3000/api/ordereditems
-router.put('/',orderitemController.update);
+router.put('/',ordereditemController.update);
 //localhost:3000/api/ordereditems
-router.post('/', orderitemController.add);
+router.post('/', ordereditemController.add);
 //localhost:3000/api/ordereditems/6
-router.delete('/:id', orderitemController.delete);
+router.delete('/:id', ordereditemController.delete);
 
 
 module.exports = router;
