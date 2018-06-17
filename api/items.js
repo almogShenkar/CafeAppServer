@@ -4,9 +4,6 @@ var router = express.Router();
 //Controllers
 var itemsController = require('../controllers/items');
 
-router.get('/', function (req, res) {
-  res.send('API :: Hello World!');
-});
 
 
 // --- Items API---//
