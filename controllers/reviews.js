@@ -26,6 +26,18 @@ reviewController.get = function(req,res){
     });
 }
 
+//3 desc , 3 asc
+reviewController.gethonestreviews = function(req,res){
+    db.query("SELECT * FROM review WHERE revid = ? ORDER BY;",req.params.id,function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json(rows[0]);
+
+    });
+}
+
 reviewController.getReviewsByItem = function(req,res){
     db.query("SELECT * FROM review WHERE revid in(SELECT rlid FROM reviewlist WHERE itemid=?)",req.params.itemid,function(err,rows){
         if(err){

@@ -17,6 +17,8 @@ router.get('/userid/:id', orderedlistsController.listByUserid);
 router.get('/status/:status', orderedlistsController.listByStatus);
 //localhost:3000/api/orderedlist/todayfutureorders
 router.get('/todayfutureorders',orderedlistsController.todayfutureorders);
+//localhost:3000/api/orderedlist/todayactiveorders
+router.get('/todayactiveorders',orderedlistsController.todayactiveorders);
 //localhost:3000/api/orderedlist
 router.put('/',orderedlistsController.update);
 //localhost:3000/api/orderedlist

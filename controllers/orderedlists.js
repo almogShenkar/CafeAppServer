@@ -66,6 +66,19 @@ orderedlistController.listByStatus = function(req,res){
     });
 }
 
+//GET todayactiveorders
+orderedlistController.todayactiveorders = function(req,res){
+    db.query("SELECT olid,ol_dttm,status,totalpreptime FROM orderlist WHERE status = 'Active' AND (curdate() <= cast(ol_dttm as date)) ORDER BY ol_dttm DESC;",req.params.status,function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json(rows);
+
+    });
+}
+
+
 //PUT
 orderedlistController.update = function(req,res){
     orderedlistsModel.clear();

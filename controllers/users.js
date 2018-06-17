@@ -6,6 +6,8 @@ var smsSender=require('../utils/smsSender');
 var mailSender=require('../utils/mailSender');
 
 //GET ALL
+
+//Todo: Delete all passwords from get reqeusts only on signup
 userController.list = function(req, res){
     
     db.query("SELECT * FROM user;",function(err,rows){
@@ -176,6 +178,16 @@ userController.sendSms = function(req,res){
     });
 }
 
+userController.getCredit = function(req,res){
+    db.query("SELECT credit FROM user WHERE userid = ? ",req.params.id,function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json(rows[0]);
+
+    });
+}
 
 
 module.exports = userController;

@@ -40,10 +40,17 @@ queries.MonthHardEmployee= function(queryParams){
     return "SELECT EMPLOYEE.firstname , EMPLOYEE.lastname ,COUNT(*) FROM SHIFT LEFT OUTER JOIN EMPLOYEE ON EMPLOYEE.EMPID = SHIFT.EMPID WHERE MONTH(SHIFT.START_DTTM) = MONTH(CURDATE()) GROUP BY EMPLOYEE.EMPID ORDER BY COUNT(*) DESC";
 };
 
+//return firstname,lastname,qtyInOrderlist,totalPrice desc
 queries.orderlistreportFromDateToDate= function(queryParams){
     var fromDate= queryParams.param1;
     var toDate= queryParams.param2;
-    return "SELECT * FROM ORDERLIST WHERE ol_dttm BETWEEN DATE(\'"+fromDate+"\') AND DATE(\'"+toDate+"\')" ;
+    return "SELECT user.firstname || user.lastname , ORDERLIST.qty FROM ORDERLIST JOIN user ON user.userid=ORDERLIST.userid WHERE ol_dttm BETWEEN DATE(\'"+fromDate+"\') AND DATE(\'"+toDate+"\')  ORDER BY ol_dttm DESC" ;
+};
+
+//TODO
+//items desc by rank
+queries.ItemsByRank= function(queryParams){
+    return "SELECT * FROM item ORDER BY ";
 };
 
 

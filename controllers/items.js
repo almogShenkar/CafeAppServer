@@ -55,6 +55,19 @@ itemController.update = function(req, res){
     });
 }
 
+itemController.updateQty = function(req,res){
+    itemModel.clear();
+    itemModel.parse(req.body);
+    db.query("UPDATE item SET qty = qty-? WHERE itemid= ?;",[req.params.amount,req.params.id],
+    function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json({changedRows:rows.changedRows});
+    })
+}
+
 //DELETE by ID
 itemController.delete = function(req, res){
     db.query("DELETE FROM item WHERE itemid = ?;",[req.params.id],function(err,rows){

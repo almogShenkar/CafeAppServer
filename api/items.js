@@ -19,6 +19,8 @@ router.get('/:id', itemsController.get);
 router.get('/type/:type', itemsController.listByType);
 //localhost:3000/api/items
 router.put('/',itemsController.update);
+//localhost:3000/api/items/deduction/12/3
+router.put('/deduction/:id/:amount',itemsController.updateQty);
 //localhost:3000/api/items
 router.post('/', itemsController.add);
 //localhost:3000/api/items/27

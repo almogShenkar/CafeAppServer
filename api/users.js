@@ -23,6 +23,8 @@ router.put('/', usersController.update);
 router.put('/url', usersController.updateUrl);
 //localhost:3000/api/users/credit
 router.put('/credit', usersController.updateCredit);
+//localhost:3000/api/users/credit
+router.get('/credit/:id',usersController.getCredit);
 //localhost:3000/api/users/signup
 router.post('/signup', usersController.signup);
 //localhost:3000/api/users/emp
