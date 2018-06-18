@@ -158,7 +158,7 @@ userController.sendSms = function(req,res){
             return res.send(err);
         }
         rows[0].phone="0544222722";
-        smsSender.sendSms(rows[0].phone,"Hello "+rows[0].firstname+" youre order "+req.params.olid+" is ready for pickUp! ");
+        smsSender.sendSms(rows[0].phone,"Hello "+rows[0].firstname+" , your order "+req.params.olid+" is ready for pick up! please come and take it , Enjoy Team AA ");
         
     });
 }

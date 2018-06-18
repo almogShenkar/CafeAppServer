@@ -48,7 +48,7 @@ queries.orderlistreportFromDateToDate= function(queryParams){
 };
 
 //TODO
-//items desc by rank
+// items revies descending by rank
 queries.ItemsByRank= function(queryParams){
     return "SELECT * FROM item ORDER BY ";
 };
