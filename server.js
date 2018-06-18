@@ -58,10 +58,11 @@ app.use('/api/files', require('./api/files'));
 app.use('/api/ordereditems', require('./api/ordereditemsapi'));
 //app.use('/api/employees', require('./api/employees'));
 
+/*
 app.get('/', function (req, res) {
     res.send('API :: Hello World!AAAAAA');
   });
-
+*/
 
 app.set('tz', 'GMT+2');
 
@@ -72,3 +73,5 @@ const server = http.createServer(app);
 // Start listening to requests
 //server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
 server.listen(port, () => console.log(`Listening on port:${port}`));
+
+

@@ -9,8 +9,6 @@ var orderedlistsController = require('../controllers/orderedlists');
 
 //localhost:3000/api/orderedlist
 router.get('/', orderedlistsController.list);
-//localhost:3000/api/orderedlist/48
-router.get('/:id', orderedlistsController.getByOlid);
 //localhost:3000/api/orderedlist/userid/2
 router.get('/userid/:id', orderedlistsController.listByUserid);
 //localhost:3000/api/orderedlist/status/incoming
@@ -27,7 +25,8 @@ router.post('/', orderedlistsController.add);
 router.delete('/:id', orderedlistsController.delete);
 //post "CheckTime" TODO
 router.post('/orderedlistsTime', orderedlistsController.checkTime);
-
+//localhost:3000/api/orderedlist/48
+router.get('/:id', orderedlistsController.getByOlid);
 
 
 module.exports = router;

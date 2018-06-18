@@ -4,11 +4,7 @@ var router = express.Router();
 //Controllers
 var usersController = require('../controllers/users');
 
-/*
-router.get('/', function (req, res) {
-  res.send('API :: Hello World!');
-});
-*/
+
 // --- Users API---//
 
 //localhost:3000/api/users
@@ -28,9 +24,9 @@ router.get('/credit/:id',usersController.getCredit);
 //localhost:3000/api/users/signup
 router.post('/signup', usersController.signup);
 //localhost:3000/api/users/emp
-router.post('/emp', usersController.signupEmployee);
+//router.post('/emp', usersController.signupEmployee);
 //localhost:3000/api/users/emp/12
-router.get('/emp/:id', usersController.getEmployee);
+//router.get('/emp/:id', usersController.getEmployee);
 //localhost:3000/api/users/emp
 router.get('/emp', usersController.listEmployee);
 //localhost:3000/api/users/login

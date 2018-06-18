@@ -37,4 +37,8 @@ userModel.clear = function(){
 
 }
 
+userModel.deletePass= function(){
+    userModel.password="****";
+}
+
 module.exports = userModel;

@@ -18,16 +18,13 @@ mailSender.sendEmail=function(toEmail,textEmail){
     var mail = {
         from: "cafeappserver@gmail.com",
         to: toEmail,
-        subject: "Invitaion to littile cafeteria",
-        text: textEmail,
-        html: "<b></b>"
+        subject: "Invitation to littile cafeteria",
+        html: "<b>"+textEmail+"</b>"
     };
     console.log(mail);
     mailSender.transporter.sendMail(mail, function(error, response){
         if(error){
             console.log(error);
-        }else{
-            console.log("Message sent: " + response.message);
         }
         mailSender.transporter.close();
     });

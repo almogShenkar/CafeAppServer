@@ -49,6 +49,7 @@ orderedlistController.todayfutureorders = function(req,res){
             console.log(err);
             return res.send(err);
         }
+        console.log(rows);
         return res.json(rows);
     });
 }

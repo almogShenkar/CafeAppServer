@@ -15,6 +15,9 @@ userController.list = function(req, res){
             console.log(err);
             return res.send(err);
         }
+        rows.forEach(element => {
+            element.password="****";
+        });
         return res.json(rows);
     });
 
@@ -27,7 +30,10 @@ userController.get = function(req, res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows[0]);
+        userModel.clear();
+        userModel.parse(rows[0]);
+        userModel.deletePass();
+        return res.json(userModel);
     });
 }
 
@@ -38,7 +44,10 @@ userController.getByRole = function(req, res){
             console.log(err);
             return res.send(err);
         }
-        return res.json(rows);
+        userModel.clear();
+        userModel.parse(rows[0]);
+        userModel.deletePass();
+        return res.json(userModel);
     });
 }
 
@@ -54,36 +63,12 @@ userController.signup = function(req, res){
             console.log(err);
             return res.send(err);
         }
-        userModel.clear;
+        if(userModel.role==='Employee'){
+            mailSender.sendEmail(userModel.email,"Hi "+userModel.firstname+" you've been added as an employee to little cafetria. please use your email and password to connect: "+userModel.password+" wish to see you soon!");
+        }
+        userModel.clear();
         userModel.userid=rows.insertId;
         return res.json({userid:userModel.userid});
-    });
-}
-
-//POST - SIGNUP employee
-userController.signupEmployee = function(req, res){
-    userModel.clear();
-    userModel.parse(req.body);
-    //VALUES (NULL, 'eli@gmail.com', '1234', 'eli', 'cohen', '1000', '0542254548','Employee')
-    db.query("INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?);",[userModel.userid,userModel.email,userModel.password,userModel.firstname,userModel.lastname,userModel.credit,userModel.phone,userModel.url,userModel.role],function(err,rows){
-        if(err){
-            console.log(err);
-            return res.send(err);
-        }
-        userModel.clear;
-        userModel.userid=rows.insertId;
-        //mailSender.sendEmail(userModel.email,"Hi "+userModel.firstname+" you've been added as an employee to little cafetria. please use the password to connect: "+userModel.password);
-        return res.json({userid:userModel.userid});
-    });
-}
-
-userController.getEmployee = function(req,res){
-    db.query("SELECT * FROM user WHERE userid = ? AND role='Employee';",[req.params.id],function(err,rows){
-        if(err){
-            console.log(err);
-            return res.send(err);
-        }
-        return res.json(rows[0]);
     });
 }
 
@@ -178,6 +163,8 @@ userController.sendSms = function(req,res){
     });
 }
 
+//forget password user
+
 userController.getCredit = function(req,res){
     db.query("SELECT credit FROM user WHERE userid = ? ",req.params.id,function(err,rows){
         if(err){
@@ -189,5 +176,33 @@ userController.getCredit = function(req,res){
     });
 }
 
+/*
+//POST - SIGNUP employee
+userController.signupEmployee = function(req, res){
+    userModel.clear();
+    userModel.parse(req.body);
+    //VALUES (NULL, 'eli@gmail.com', '1234', 'eli', 'cohen', '1000', '0542254548','Employee')
+    db.query("INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?);",[userModel.userid,userModel.email,userModel.password,userModel.firstname,userModel.lastname,userModel.credit,userModel.phone,userModel.url,userModel.role],function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        userModel.clear;
+        userModel.userid=rows.insertId;
+        
+        return res.json({userid:userModel.userid});
+    });
+}
+
+userController.getEmployee = function(req,res){
+    db.query("SELECT * FROM user WHERE userid = ? AND role='Employee';",[req.params.id],function(err,rows){
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        return res.json(rows[0]);
+    });
+}
+*/
 
 module.exports = userController;
