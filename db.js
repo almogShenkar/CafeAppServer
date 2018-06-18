@@ -17,7 +17,7 @@ var dbProdConfing = {
   database: "heroku_ee97203c1d832f5",
   timezone: 'utc'
 }
-var pool = mysql.createPool(dbDevConfing);
+var pool = mysql.createPool(dbProdConfing);
 
 pool.on('acquire', function (connection) {
   console.log('Connection %d acquired', connection.threadId);
