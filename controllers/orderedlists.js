@@ -44,7 +44,7 @@ orderedlistController.listByUserid = function(req,res){
 
 //GET TodayasOrders
 orderedlistController.todayfutureorders = function(req,res){
-    db.query("SELECT OLID,OL_DTTM,STATUS,TOTALPREPTIME,TOTALPRICE,USERID FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS in ('Incoming','None') ORDER BY OL_DTTM;",function(err,rows){
+    db.query("SELECT olid,ol_dttm,status,totalpreptime,totalprice,userid FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS in ('Incoming','None') ORDER BY OL_DTTM;",function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
@@ -69,7 +69,7 @@ orderedlistController.listByStatus = function(req,res){
 
 //GET todayactiveorders
 orderedlistController.todayactiveorders = function(req,res){
-    db.query("SELECT OLID,OL_DTTM,STATUS,TOTALPREPTIME,TOTALPRICE,USERID FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS='ACTIVE' ORDER BY OL_DTTM;",req.params.status,function(err,rows){
+    db.query("SELECT olid,ol_dttm,status,totalpreptime,totalprice,userid FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS='ACTIVE' ORDER BY OL_DTTM;",req.params.status,function(err,rows){
         if(err){
             console.log(err);
             return res.send(err);
