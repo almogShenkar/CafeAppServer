@@ -21,7 +21,7 @@ let dbProdConfing = {
   timezone: 'utc'
 }
 
-let pool = mysql.createPool(dbDevConfing);
+let pool = mysql.createPool(dbProdConfing);
 logger.info("DB set to dbDevConfing");
 
 pool.on('acquire', function (connection) {
