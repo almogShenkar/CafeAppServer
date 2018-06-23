@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+let router = express.Router();
 
 //Controllers
 
-var reviewsController = require('../controllers/reviews');
+const reviewsController = require('../controllers/reviews');
 
 // --- Reviews API---//
 router.get('/', reviewsController.list);

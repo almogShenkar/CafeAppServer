@@ -1,64 +1,58 @@
-var db = require('../db');
-var supplierModel = require('../models/suppllier');
+const db = require('../db');
+const supplierBluePrint = require('../models/suppllier');
 //main object
-var supplierController = {};
+let supplierController = {};
 
-supplierController.list = function(req,res){
-    db.query("SELECT * FROM supplier;",function(err,rows){
+supplierController.list = (req,res,next)=>{
+    db.query("SELECT * FROM supplier;",(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
     });
 }
 
-supplierController.get = function(req,res){
-    db.query("SELECT * FROM supplier WHERE supid = ? ;",[req.params.id],function(err,rows){
+supplierController.get = (req,res,next)=>{
+    db.query("SELECT * FROM supplier WHERE supid = ? ;",[req.params.id],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows[0]);
     });
 }
 
-supplierController.add = function(req,res){
-    supplierModel.clear();
-    supplierModel.parse(req.body);
-    db.query("INSERT INTO supplier VALUES(?,?,?,?);",[null,supplierModel.name,supplierModel.phone,supplierModel.email],function(err,rows){
+supplierController.add = (req,res,next)=>{
+    let suppllier=new supplierBluePrint(req.body);
+    let suppllierData=suppllier.getData();
+    db.query("INSERT INTO supplier VALUES(?,?,?,?);",[null,suppllierData.name,suppllierData.phone,suppllierData.email],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
-        supplierModel.clear();
-        supplierModel.supid=rows.insertId;
-        return res.json({"supid":supplierModel.supid});
+        suppllierData.data.supid=rows.insertId;
+        return res.json({supid:suppllierData.data.supid});
     });
 
 }
 
-supplierController.update = function(req,res){
-    supplierModel.clear();
-    supplierModel.parse(req.body);
-    db.query("UPDATE supplier SET name = ? , phone = ? , email = ? WHERE supid = ?;",[supplierModel.name,supplierModel.phone,supplierModel.email,supplierModel.supid],function(err,rows){
+supplierController.update = (req,res,next)=>{
+    let supplier=new supplierBluePrint(req.body);
+    suppllierData=supplier.getData();
+    db.query("UPDATE supplier SET name = ? , phone = ? , email = ? WHERE supid = ?;",[suppllierData.name,suppllierData.phone,suppllierData.email,suppllierData.supid],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
-        return res.json(rows);
+        return res.json({changedRows:rows.changedRows});
     });
 }
 
 
 //DELETE
-supplierController.delete = function(req,res){
-    db.query("DELETE FROM supplier WHERE supid = ?;",[req.params.id],function(err,rows){
+supplierController.delete = (req,res)=>{
+    db.query("DELETE FROM supplier WHERE supid = ?;",[req.params.id],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
-        return res.json(rows);
+        return res.json({affectedRows:rows.affectedRows});
     });
 }
 

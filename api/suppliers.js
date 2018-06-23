@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+let router = express.Router();
 
 //Controllers
-var suppliersController = require('../controllers/suppliers');
+const suppliersController = require('../controllers/suppliers');
 
 
 //localhost:3000/api/suppliers

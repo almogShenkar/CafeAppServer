@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+let router = express.Router();
 
 //Controllers
-var shiftsController = require('../controllers/shifts');
+const shiftsController = require('../controllers/shifts');
 
 // --- Shifts API---//
 router.get('/', shiftsController.list);

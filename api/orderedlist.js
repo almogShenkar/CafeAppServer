@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+let router = express.Router();
 
 //Controllers
-var orderedlistsController = require('../controllers/orderedlists');
+const orderedlistsController = require('../controllers/orderedlists');
 
 
 // --- orderedlist API---//

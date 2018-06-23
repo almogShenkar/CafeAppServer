@@ -1,35 +1,28 @@
-var orderedlistsModel = require('../models/orderedlist');
-var moment = require('moment');
-var dblyLinkedList = require('dbly-linked-list');
-var db = require('../db');
+const orderlistBluePrint = require('../models/orderedlist');
+const moment = require('moment');
+const dblyLinkedList = require('dbly-linked-list');
+const db = require('../db');
 
-var scheduler = {};
+let scheduler = {};
 
 scheduler.list;
 scheduler.closeHour = 19;
 scheduler.openHour = 07;
 scheduler.minTimeOut = 120;
 
-scheduler.ctor = function () {
-    //console.log("isempty: "+scheduler.list.isEmpty());
-    //scheduler.addOrder();
-    console.log('Scheduler created and runing...');
-}
 
-
-scheduler.clearNonUseSlots = function (orderedlistData) {
-    db.query("DELETE FROM orderlist WHERE olid=? AND status='None' ",orderedlistData.olid, function (err, rows) {
+scheduler.clearNonUseSlots =(orderedlistData)=>{
+    db.query("DELETE FROM orderlist WHERE olid=? AND status='None' ",orderedlistData.olid,(err, rows)=>{
         if (err) {
             console.log(err);
         }
         else {
             console.log("Deleted " + rows.affectedRows + " Successfully");
         }
-
     });
 }
 
-scheduler.addOrder = function (orderedlistData, callback) {
+scheduler.addOrder = (orderedlistData, next, callback)=>{
     //orderedlistData = {};
     //2018-06-05T15:02:00.000Z
     //orderedlistData.ol_dttm = "2018-06-07T13:30:00.000Z";
@@ -38,24 +31,22 @@ scheduler.addOrder = function (orderedlistData, callback) {
     orderedlistData.status = "None";
     orderedlistData.hasreview = 0;
     scheduler.list = new dblyLinkedList();
-    db.query("SELECT * FROM todayfutureorders", function (err, rows) {
+    db.query("SELECT * FROM todayfutureorders",(err, rows)=>{
         if (err) {
-            console.log(err);
-            return;
+            return next(err);
         }
         scheduler.populateLinkedList(rows);
-        console.log(scheduler.list.getSize());
         while (scheduler.addToList(orderedlistData) == false) {
             orderedlistData.ol_dttm = moment(orderedlistData.ol_dttm).add(5, 'minutes').toISOString();
         }
         //scheduler.list.forEach(function(elem){console.log(elem.data);},false);
-        scheduler.syncListToDB(orderedlistData, callback);
-        setTimeout(function(){scheduler.clearNonUseSlots(orderedlistData);}, scheduler.minTimeOut * 1000);
+        scheduler.syncListToDB(orderedlistData,next,callback);
+        setTimeout(()=>{scheduler.clearNonUseSlots(orderedlistData);}, scheduler.minTimeOut * 1000);
     });
 }
 
 
-scheduler.populateLinkedList = function (rows) {
+scheduler.populateLinkedList =(rows)=>{
     rows.forEach(element => {
         scheduler.list.insert(JSON.parse(JSON.stringify(element)));
         //console.log("MOM " + moment.utc(element.ol_dttm).format());;
@@ -63,11 +54,11 @@ scheduler.populateLinkedList = function (rows) {
 }
 
 
-scheduler.addToList = function (orderedlistData) {
-    var isFound = false;
-    var head = scheduler.list.getHeadNode();
-    var it = head;
-    var tail = scheduler.list.getTailNode();
+scheduler.addToList = (orderedlistData)=>{
+    let isFound = false;
+    let head = scheduler.list.getHeadNode();
+    let it = head;
+    let tail = scheduler.list.getTailNode();
     //console.log(`it head : ${it==head}`);
     if (it == null) {
         console.log("head null-inserted as head");
@@ -93,10 +84,10 @@ scheduler.addToList = function (orderedlistData) {
             }
             //insert after had
             else {
-                var isValidAfterHead = false;
+                let isValidAfterHead = false;
                 //if there is element after head
                 if (it.hasNext()) {
-                    var nextToit = it.next;
+                    let nextToit = it.next;
                     nextToit.data.endTime = moment(nextToit.data.ol_dttm).add(nextToit.data.totalpreptime, 'minutes');
                     if (moment(it.data.ol_dttm).isBefore(moment(orderedlistData.ol_dttm)) &&
                         nextToit.data.endTime.diff(it.data.endTime, 'minutes') > orderedlistData.totalpreptime &&
@@ -136,7 +127,7 @@ scheduler.addToList = function (orderedlistData) {
         else if (it != head && it != tail) {
             //try insert somewhere at the middle
             //if list has only one element - check alg
-            var nextToit = it.next;
+            let nextToit = it.next;
             nextToit.data.endTime = moment(nextToit.data.ol_dttm).add(nextToit.data.totalpreptime, 'minutes');
             if (moment(orderedlistData.ol_dttm).isBefore(moment(nextToit.data.ol_dttm)) &&
                 moment(orderedlistData.ol_dttm).isAfter(moment(it.data.ol_dttm)) &&
@@ -155,19 +146,18 @@ scheduler.addToList = function (orderedlistData) {
 }
 
 
-scheduler.syncListToDB = function (orderedlistData, callback) {
-    var newNode = scheduler.list.find(orderedlistData);
+scheduler.syncListToDB = function (orderlistData,next,callback) {
+    let newNode = scheduler.list.find(orderlistData);
     console.log(scheduler.list.getSize());
     if (newNode != -1) {
-        db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?);", [null, orderedlistData.userid, orderedlistData.totalprice, orderedlistData.ol_dttm, orderedlistData.ol_dttm_real, orderedlistsModel.status, orderedlistData.hasreview, orderedlistData.totalpreptime],
-            function (err, rows) {
+        db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?);", [null, orderlistData.userid, orderlistData.totalprice, orderlistData.ol_dttm, orderlistData.ol_dttm_real, orderlistData.status, orderlistData.hasreview, orderlistData.totalpreptime],
+            (err, rows)=>{
                 if (err) {
-                    console.log(err);
-                    return err;
+                    return next(err);
                 }
-                orderedlistData.olid = rows.insertId;
+                orderlistData.olid = rows.insertId;
                 console.log("sync finish: " + rows.insertId);
-                return callback({ olid: orderedlistData.olid, ol_dttm: orderedlistData.ol_dttm });
+                return callback({ olid: orderlistData.olid, ol_dttm: orderlistData.ol_dttm });
             });
     }
     else {

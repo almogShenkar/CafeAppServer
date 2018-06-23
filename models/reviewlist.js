@@ -1,16 +1,8 @@
-var reviewlistModel ={};
+function Reviewlist(data){
+    this.data=data;
 
-reviewlistModel.rlid;
-reviewlistModel.itemid;
-
-reviewlistModel.parse=function(body){
-    reviewlistModel.rlid=body.rlid;
-    reviewlistModel.itemid=body.itemid;
+    this.getData=()=>{
+        return this.data;
+    }
 }
-
-reviewlistModel.clear = function(){
-    reviewlistModel.rlid=null;
-    reviewlistModel.itemid=null;
-        
-}
-module.exports = reviewlistModel;
+module.exports = Reviewlist;

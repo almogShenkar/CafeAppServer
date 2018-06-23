@@ -1,135 +1,116 @@
-var db = require('../db');
-var scheduler = require('../utils/scheduler');
-var orderedlistsModel = require('../models/orderedlist');
-//var orderedlistsNode = require('../models/orderedlists-node');
-//var itemModel = require('../models/item-model');
-//main object
-var orderedlistController = {};
+const db = require('../db');
+const scheduler = require('../utils/scheduler');
+const orderlistBluePrint = require('../models/orderedlist');
+
+let orderedlistController = {};
 
 
-orderedlistController.list = function(req,res){
-    db.query("SELECT * FROM orderlist ORDER BY ol_dttm DESC;",function(err,rows){
+orderedlistController.list = (req,res,next)=>{
+    db.query("SELECT * FROM orderlist ORDER BY ol_dttm DESC;",(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
-
     });
 }
 
-orderedlistController.getByOlid = function(req,res){
-    db.query("SELECT * FROM orderlist WHERE olid = ? ;",req.params.id,function(err,rows){
+orderedlistController.getByOlid = (req,res,next)=>{
+    db.query("SELECT * FROM orderlist WHERE olid = ? ;",req.params.id,(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows[0]);
-
     });
 }
 
 
 //GET ALL by userid
-orderedlistController.listByUserid = function(req,res){
-    db.query("SELECT * FROM orderlist WHERE userid = ? ORDER BY ol_dttm DESC;",req.params.id,function(err,rows){
+orderedlistController.listByUserid = (req,res,next)=>{
+    db.query("SELECT * FROM orderlist WHERE userid = ? ORDER BY ol_dttm DESC;",req.params.id,(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
-
     });
 }
 
 //GET TodayasOrders
-orderedlistController.todayfutureorders = function(req,res){
-    db.query("SELECT olid,ol_dttm,status,totalpreptime,totalprice,userid FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS in ('Incoming','None') ORDER BY OL_DTTM;",function(err,rows){
+orderedlistController.todayfutureorders =(req,res,next)=>{
+    db.query("SELECT olid,ol_dttm,status,totalpreptime,totalprice,userid FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS in ('Incoming','None') ORDER BY OL_DTTM;",(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
-        console.log(rows);
         return res.json(rows);
     });
 }
 
 
 //GET ALL by status
-orderedlistController.listByStatus = function(req,res){
-    db.query("SELECT * FROM orderlist WHERE status = ? ORDER BY ol_dttm DESC;",req.params.status,function(err,rows){
+orderedlistController.listByStatus = (req,res,next)=>{
+    db.query("SELECT * FROM orderlist WHERE status = ? ORDER BY ol_dttm DESC;",req.params.status,(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
-
     });
 }
 
 //GET todayactiveorders
-orderedlistController.todayactiveorders = function(req,res){
-    db.query("SELECT olid,ol_dttm,status,totalpreptime,totalprice,userid FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS='ACTIVE' ORDER BY OL_DTTM;",req.params.status,function(err,rows){
+orderedlistController.todayactiveorders =(req,res,next)=>{
+    db.query("SELECT olid,ol_dttm,status,totalpreptime,totalprice,userid FROM ORDERLIST WHERE ((CURDATE() <= CAST(OL_DTTM AS DATE))) AND STATUS='ACTIVE' ORDER BY OL_DTTM;",req.params.status,(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
-
     });
 }
 
 
 //PUT
-orderedlistController.update = function(req,res){
-    orderedlistsModel.clear();
-    orderedlistsModel.parse(req.body);
-    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ?, totalpreptime= ? , timestamp = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.status,orderedlistsModel.totalpreptime,orderedlistsModel.timestamp,orderedlistsModel.ol_dttm_real,orderedlistsModel.hasreview,orderedlistsModel.olid],
-    function(err,rows){
+orderedlistController.update = (req,res,next)=>{
+    let orderlist = new orderlistBluePrint(req.body);
+    let orderedlistData = orderlist.getData();
+    db.query("UPDATE orderlist SET userid=?, totalprice=?, ol_dttm=?, status = ?, totalpreptime= ? , timestamp = ? , ol_dttm_real = ? , hasreview = ? WHERE olid = ? ;",[orderedlistData.userid,orderedlistData.totalprice,orderedlistData.ol_dttm,orderedlistData.status,orderedlistData.totalpreptime,orderedlistData.timestamp,orderedlistData.ol_dttm_real,orderedlistData.hasreview,orderedlistData.olid],
+    (err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json({changedRows:rows.changedRows});
-
     });
 }
 
 //POST
-orderedlistController.add = function(req,res){
-    orderedlistsModel.clear();
-    orderedlistsModel.parse(req.body);
-    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?);",[null,orderedlistsModel.userid,orderedlistsModel.totalprice,orderedlistsModel.ol_dttm,orderedlistsModel.ol_dttm_real,orderedlistsModel.status,orderedlistsModel.hasreview,orderedlistsModel.totalpreptime],
-    function(err,rows){
+orderedlistController.add = (req,res,next)=>{
+    let orderlist = new orderlistBluePrint(req.body);
+    let orderedlistData = orderlist.getData();
+    db.query("INSERT INTO orderlist  VALUES(?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?);",[null,orderedlistData.userid,orderedlistData.totalprice,orderedlistData.ol_dttm,orderedlistData.ol_dttm_real,orderedlistData.status,orderedlistData.hasreview,orderedlistData.totalpreptime],
+    (err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
-        orderedlistsModel.clear();
-        orderedlistsModel.olid=rows.insertId;
-        return res.json({olid:orderedlistsModel.olid});
+        orderlist.data.olid=rows.insertId;
+        return res.json({olid:orderlist.data.olid});
     });
 }
 
-orderedlistController.delete = function(req,res){
+orderedlistController.delete = (req,res,next)=>{
     db.query("DELETE FROM orderlist WHERE olid = ?;",[req.params.id],
-    function(err,rows){
+    (err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json({affectedRows:rows.affectedRows});
-
     });
 }
 
-orderedlistController.checkTime = function(req,res){
-    orderedlistsModel.clear();
-    orderedlistsModel.parse(req.body);
-    scheduler.addOrder(orderedlistsModel,function(result) {orderedlistController.sendSchedulerResult(res,result);});
+orderedlistController.checkTime = (req,res,next)=>{
+    let orderlist = new orderlistBluePrint(req.body);
+    let orderedlistData = orderlist.getData();
+    scheduler.addOrder(orderedlistData,next,(result)=>{orderedlistController.sendSchedulerResult(res,result);});
 }
 
-orderedlistController.sendSchedulerResult = function(res,result){
+orderedlistController.sendSchedulerResult = (res,result)=>{
+    res.status(404);
     res.json(result);
 }
                  

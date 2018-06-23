@@ -1,25 +1,25 @@
-var db = require('../db');
-var shiftModel = require('../models/shift');
+const db = require('../db');
+const shiftModel = require('../models/shift');
 //main object
-var shiftController = {};
+let shiftController = {};
 
-shiftController.list = function(req,res){
+shiftController.list = (req,res)=>{
     
 }
 
-shiftController.get = function(req,res){
+shiftController.get = (req,res)=>{
     
 }
 
-shiftController.add = function(req,res){
+shiftController.add = (req,res)=>{
     
 }
 
-shiftController.update = function(req,res){
+shiftController.update = (req,res)=>{
     
 }
 
-shiftController.delete = function(req,res){
+shiftController.delete = (req,res)=>{
     
 }
 

@@ -18,8 +18,8 @@ mailSender.sendEmail=function(toEmail,textEmail){
     var mail = {
         from: "cafeappserver@gmail.com",
         to: toEmail,
-        subject: "Invitation to littile cafeteria",
-        html: "<b>"+textEmail+"</b>"
+        subject: "Littile cafeteria",
+        html: textEmail
     };
     console.log(mail);
     mailSender.transporter.sendMail(mail, function(error, response){

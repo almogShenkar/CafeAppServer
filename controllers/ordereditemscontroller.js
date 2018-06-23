@@ -1,27 +1,24 @@
 
-var db = require('../db');
-//var con=sql.getConnection();
-var orderModel = require('../models/ordereditem');
+const db = require('../db');
+const orderedItemBluePrint = require('../models/ordereditem');
 //main object
-var ordereditemController = {};
+let ordereditemController = {};
 
 //GET ALL
-ordereditemController.list = function(req, res){
-    db.query("SELECT * FROM ordereditem;",function(err,rows){
+ordereditemController.list = (req, res,next)=>{
+    db.query("SELECT * FROM ordereditem;",(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
     });
 }
 
 //GET one by ID
-ordereditemController.get = function(req, res){
-    db.query("SELECT * FROM ordereditem WHERE orderid = ?;",[req.params.id],function(err,rows){
+ordereditemController.get = (req, res,next)=>{
+    db.query("SELECT * FROM ordereditem WHERE orderid = ?;",[req.params.id],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows[0]);
     });
@@ -29,11 +26,10 @@ ordereditemController.get = function(req, res){
 
 
 //GET ALL by olid
-ordereditemController.listByOlid = function(req, res){
-    db.query("SELECT * FROM ordereditem WHERE olid = ?;",[req.params.id],function(err,rows){
+ordereditemController.listByOlid = (req, res,next)=>{
+    db.query("SELECT * FROM ordereditem WHERE olid = ?;",[req.params.id],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
     });
@@ -41,39 +37,35 @@ ordereditemController.listByOlid = function(req, res){
 
 
 //POST
-ordereditemController.add = function(req, res){
-    orderModel.clear();
-    orderModel.parse(req.body);
-    db.query("INSERT INTO ordereditem VALUES(?,?,?,?);",[null,orderModel.itemid,orderModel.olid,orderModel.qty],function(err,rows){
+ordereditemController.add = (req, res,next)=>{
+    let orderedItem=new orderedItemBluePrint(req.body);
+    let data=orderedItem.getData();
+    db.query("INSERT INTO ordereditem VALUES(?,?,?,?);",[null,data.itemid,data.olid,data.qty],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
-        orderModel.clear();
-        orderModel.orderid=rows.insertId;
-        return res.json({orderid:orderModel.orderid});
+        orderedItem.data.orderid=rows.insertId;
+        return res.json({orderid:orderedItem.data.orderid});
     });
 }
 
 //PUT by ID - update the order
-ordereditemController.update = function(req, res){
-    orderModel.clear();
-    orderModel.parse(req.body);
-    db.query("UPDATE ordereditem SET itemid = ?, olid = ?, qty = ? WHERE orderid = ?;",[orderModel.itemid,orderModel.olid,orderModel.qty,orderModel.orderid],function(err,rows){
+ordereditemController.update = (req, res,next)=>{
+    let orderedItem=new orderedItemBluePrint(req.body);
+    let data=orderedItem.getData();
+    db.query("UPDATE ordereditem SET itemid = ?, olid = ?, qty = ? WHERE orderid = ?;",[data.itemid,data.olid,data.qty,data.orderid],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json({changedRows:rows.changedRows});
     });
 }
 
 //DELETE by ID
-ordereditemController.delete = function(req, res){
-    db.query("DELETE FROM ordereditem WHERE orderid = ?;",[req.params.id],function(err,rows){
+ordereditemController.delete =(req, res,next)=>{
+    db.query("DELETE FROM ordereditem WHERE orderid = ?;",[req.params.id],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json({affectedRows:rows.affectedRows});
     });

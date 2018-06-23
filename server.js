@@ -1,51 +1,35 @@
-
-// Get dependencies
+//app required modules
 const log4js=require('log4js');
 const logConfig= require('./utils/logConfig');
 const logger = log4js.getLogger('cafeappserver');
-logger.trace("XXXXXX");
+const errHandlerBluePrint = require('./utils/errHandler');
 const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
-var scheduler = require('./utils/scheduler');
-//var scheduler = require('./scheduler2');
-const cors = require('cors');
+const port = process.env.PORT || 3000;
+
+logger.info("Server is starting");
 
 //Init app
-const app = express();
+let app = express();
 
+//Create errHndler instance
+let errHandler=new errHandlerBluePrint();
 
-
-scheduler.ctor();
-
-var minutes = 5, the_interval = minutes * 60 * 1000;
-//setInterval(scheduler.clearSlots,the_interval);
-
-//Set static folder
+//Set files static folder
 app.use(express.static(__dirname+'/../images'));
-app.use(fileUpload());
-
-
-
-// Parsers for POST data
+//Json parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors({
-    origin: '*',
-    credentials: true
-}));
-
-
-// Set server port
-const port = process.env.PORT || 3000;
+//File upload support
+app.use(fileUpload());
+//Set server config
 app.set('port', port);
+app.set('tz', 'GMT+2');
 
-
-
-
-// Set our api routes
+//app middlewhere of cafeappserver objects
 app.use('/api/users', require('./api/users'));
 app.use('/api/suppliers', require('./api/suppliers'));
 app.use('/api/shifts', require('./api/shifts'));
@@ -54,24 +38,26 @@ app.use('/api/reviewlists', require('./api/reviewlists'));
 app.use('/api/query', require('./api/queries'));
 app.use('/api/orderedlist', require('./api/orderedlist'));
 app.use('/api/items', require('./api/items'));
-app.use('/api/files', require('./api/files'));
-app.use('/api/ordereditems', require('./api/ordereditemsapi'));
-//app.use('/api/employees', require('./api/employees'));
+app.use('/api/', require('./api/files'));
+app.use('/api/ordereditems', require('./api/ordereditem'));
+app.use(errHandler.writeErr);
+//end of middlewhere
 
-/*
+//just print somthing on first page
 app.get('/', function (req, res) {
-    res.send('API :: Hello World!AAAAAA');
+    res.send('Welcome to cafeappserver!');
   });
-*/
-
-app.set('tz', 'GMT+2');
 
 
 // Create http server
 const server = http.createServer(app);
 
 // Start listening to requests
-//server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
-server.listen(port, () => console.log(`Listening on port:${port}`));
+server.listen(port, () => {
+  console.log(`Listening on port:${port}`);logger.info(`Listening on port:${port}`);
+});
+
+
+
 
 

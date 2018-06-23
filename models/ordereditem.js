@@ -1,22 +1,7 @@
-var orderModel ={};
-
-orderModel.orderid;
-orderModel.itemid;
-orderModel.olid;
-orderModel.qty;
-
-orderModel.parse=function(body){
-    orderModel.orderid=body.orderid;
-    orderModel.itemid=body.itemid;
-    orderModel.olid=body.olid;
-    orderModel.qty=body.qty;
+function orderdItem(data){
+    this.data=data;
+    this.getData=()=>{
+        return this.data;
+    }
 }
-
-orderModel.clear = function(){
-    orderModel.orderid=null;
-    orderModel.itemid=null;
-    orderModel.olid=null;
-    orderModel.qty=null;
-}
-
-module.exports = orderModel;
+module.exports = orderdItem;

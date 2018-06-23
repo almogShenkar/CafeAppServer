@@ -1,14 +1,17 @@
+let mysql = require('mysql');
+const log4js=require('log4js');
+const logConfig= require('./utils/logConfig');
+const logger = log4js.getLogger('cafeappserver');
 
-var mysql = require('mysql');
-
-var dbDevConfing = {
+let dbDevConfing = {
   //dev env
   host: "localhost",
   user: "root",
   database: "cafeapp",
   timezone: 'utc'
 };
-var dbProdConfing = {
+
+let dbProdConfing = {
   //production env
   connectionLimit: 10,
   host: "us-cdbr-iron-east-04.cleardb.net",
@@ -17,7 +20,9 @@ var dbProdConfing = {
   database: "heroku_ee97203c1d832f5",
   timezone: 'utc'
 }
-var pool = mysql.createPool(dbProdConfing);
+
+let pool = mysql.createPool(dbDevConfing);
+logger.info("DB set to dbDevConfing");
 
 pool.on('acquire', function (connection) {
   console.log('Connection %d acquired', connection.threadId);
@@ -30,5 +35,7 @@ pool.on('connection', function (connection) {
 pool.on('release', function (connection) {
   console.log('Connection %d released', connection.threadId);
 });
+
+
 module.exports = pool;
 

@@ -1,89 +1,81 @@
-var db = require('../db');
-var itemModel = require('../models/item');
+const db = require('../db');
+const itemBluePrint = require('../models/item');
 //main object
-var itemController = {};
+let itemController = {};
+
 
 //GET ALL
-itemController.list = function(req, res){
-    db.query("SELECT * FROM item;",function(err,rows){
+itemController.list = (req, res,next)=>{
+    db.query("SELECT * FROM item;",(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
     });
 }
 
 //GET one by ID
-itemController.get = function(req, res){
-    db.query("SELECT * FROM item WHERE itemID = ?;",[req.params.id],function(err,rows){
+itemController.get = (req, res , next)=>{
+    db.query("SELECT * FROM item WHERE itemID = ?;",[req.params.id],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows[0]);
     });
 }
 
 //POST
-itemController.add = function(req, res){
-    itemModel.clear();
-    itemModel.parse(req.body);
-    db.query("INSERT INTO item VALUES(?,?,?,?,?,?,?,?,?,?);",[null,itemModel.supid,itemModel.name,itemModel.description,itemModel.qty,itemModel.url,itemModel.price,itemModel.type,itemModel.ispublished,itemModel.preptime],
-    function(err,rows){
+itemController.add =(req, res, next)=>{
+    let item = new itemBluePrint(req.body);
+    let itemData = item.getData();
+    db.query("INSERT INTO item VALUES(?,?,?,?,?,?,?,?,?,?);",[null,itemData.supid,itemData.name,itemData.description,itemData.qty,itemData.url,itemData.price,itemData.type,itemData.ispublished,itemData.preptime],
+    (err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
-        itemModel.clear();
-        itemModel.itemid=rows.insertId;
-        return res.json({"itemid":itemModel.itemid});
+        
+        item.data.itemid=rows.insertId;
+        return res.json({"itemid":item.data.itemid});
     });
 }
 
 //PUT by ID - update the item
-itemController.update = function(req, res){
-    itemModel.clear();
-    itemModel.parse(req.body);
-    db.query("UPDATE item SET supid = ?, name = ?, description = ?, qty = ?, url = ?, price = ?, type = ? , ispublished = ?  WHERE itemid = ?;",[itemModel.supid,itemModel.name,itemModel.description,itemModel.qty,itemModel.url,itemModel.price,itemModel.type,itemModel.ispublished,itemModel.itemid],
-    function(err,rows){
+itemController.update = (req, res,next)=>{
+    let item = new itemBluePrint(req.body);
+    let itemData = item.getData();
+    db.query("UPDATE item SET supid = ?, name = ?, description = ?, qty = ?, url = ?, price = ?, type = ? , ispublished = ? , preptime = ? WHERE itemid = ?;",[itemData.supid,itemData.name,itemData.description,itemData.qty,itemData.url,itemData.price,itemData.type,itemData.ispublished,itemData.preptime,itemData.itemid],
+    (err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json({changedRows:rows.changedRows});
     });
 }
 
-itemController.updateQty = function(req,res){
-    itemModel.clear();
-    itemModel.parse(req.body);
+itemController.updateQty = (req,res,next)=>{
     db.query("UPDATE item SET qty = qty-? WHERE itemid= ?;",[req.params.amount,req.params.id],
-    function(err,rows){
+    (err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json({changedRows:rows.changedRows});
     })
 }
 
 //DELETE by ID
-itemController.delete = function(req, res){
-    db.query("DELETE FROM item WHERE itemid = ?;",[req.params.id],function(err,rows){
+itemController.delete = (req, res,next)=>{
+    db.query("DELETE FROM item WHERE itemid = ?;",[req.params.id],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json({affectedRows:rows.affectedRows});
     });
 }
 
-itemController.listByType = function(req,res){
-    db.query("SELECT * FROM item WHERE type = ?;",[req.params.type],function(err,rows){
+itemController.listByType =(req,res,next)=>{
+    db.query("SELECT * FROM item WHERE type = ?;",[req.params.type],(err,rows)=>{
         if(err){
-            console.log(err);
-            return res.send(err);
+            return next(err);
         }
         return res.json(rows);
     });
