@@ -10,6 +10,8 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const port = process.env.PORT || 3000;
+const cors = require('cors');
+
 
 loggerHeroku.info("Server is starting");
 logger.info("Server is starting");
@@ -25,6 +27,10 @@ app.use(express.static(__dirname+'/../images'));
 //Json parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors({
+  origin: '*',
+  credentials: true
+}));
 //File upload support
 app.use(fileUpload());
 //Set server config
