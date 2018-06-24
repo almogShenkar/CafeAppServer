@@ -2,6 +2,8 @@ let mysql = require('mysql');
 const log4js=require('log4js');
 const logConfig= require('./utils/logConfig');
 const logger = log4js.getLogger('cafeappserver');
+const loggerHeroku = require('heroku-logger');
+
 
 let dbDevConfing = {
   //dev env
@@ -22,7 +24,9 @@ let dbProdConfing = {
 }
 
 let pool = mysql.createPool(dbProdConfing);
+
 logger.info("DB set to dbProdConfing");
+loggerHeroku.info("DB set to dbProdConfing");
 
 pool.on('acquire', function (connection) {
   console.log('Connection %d acquired', connection.threadId);

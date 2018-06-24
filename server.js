@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const port = process.env.PORT || 3000;
 
+loggerHeroku.info("Server is starting");
 logger.info("Server is starting");
 
 //Init app
