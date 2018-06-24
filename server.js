@@ -1,6 +1,7 @@
 //app required modules
 const log4js=require('log4js');
 const logConfig= require('./utils/logConfig');
+const loggerHeroku = require('heroku-logger');
 const logger = log4js.getLogger('cafeappserver');
 const errHandlerBluePrint = require('./utils/errHandler');
 const express = require('express');

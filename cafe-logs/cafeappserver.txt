@@ -1,0 +1,9 @@
+[2018-06-24T09:50:00.451] [INFO] cafeappserver - Server is starting
+[2018-06-24T09:50:00.543] [INFO] cafeappserver - DB set to dbDevConfing
+[2018-06-24T09:50:00.872] [INFO] cafeappserver - Listening on port:3000
+[2018-06-24T09:50:48.873] [INFO] cafeappserver - Server is starting
+[2018-06-24T09:50:48.943] [INFO] cafeappserver - DB set to dbProdConfing
+[2018-06-24T09:50:49.253] [INFO] cafeappserver - Listening on port:3000
+[2018-06-24T09:59:59.208] [INFO] cafeappserver - Server is starting
+[2018-06-24T09:59:59.292] [INFO] cafeappserver - DB set to dbProdConfing
+[2018-06-24T09:59:59.616] [INFO] cafeappserver - Listening on port:3000

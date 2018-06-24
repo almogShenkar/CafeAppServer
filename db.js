@@ -22,7 +22,7 @@ let dbProdConfing = {
 }
 
 let pool = mysql.createPool(dbProdConfing);
-logger.info("DB set to dbDevConfing");
+logger.info("DB set to dbProdConfing");
 
 pool.on('acquire', function (connection) {
   console.log('Connection %d acquired', connection.threadId);
