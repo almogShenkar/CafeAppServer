@@ -7,3 +7,102 @@
 [2018-06-24T09:59:59.208] [INFO] cafeappserver - Server is starting
 [2018-06-24T09:59:59.292] [INFO] cafeappserver - DB set to dbProdConfing
 [2018-06-24T09:59:59.616] [INFO] cafeappserver - Listening on port:3000
+[2018-06-24T17:35:07.998] [INFO] cafeappserver - Server is starting
+[2018-06-24T17:35:08.169] [INFO] cafeappserver - DB set to dbDevConfing
+[2018-06-24T17:35:08.762] [INFO] cafeappserver - Listening on port:3000
+[2018-06-24T17:35:32.170] [ERROR] cafeappserver - { Error: ER_BAD_FIELD_ERROR: Unknown column 'ORDERLIST.qty' in 'field list'
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at queriesController.run (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\controllers\queries.js:11:8)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:281:22
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:354:14)
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:365:14)
+    at Function.process_params (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:410:3)
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: 'Unknown column \'ORDERLIST.qty\' in \'field list\'',
+  sqlState: '42S22',
+  index: 0,
+  sql: 'SELECT user.firstname || user.lastname , ORDERLIST.qty FROM ORDERLIST JOIN user ON user.userid=ORDERLIST.userid WHERE ol_dttm BETWEEN DATE(\'2018-06-08T12:58:00.000Z\') AND DATE(\'2018-06-08T12:58:00.000Z\')  ORDER BY ol_dttm DESC' }
+[2018-06-24T17:39:08.172] [INFO] cafeappserver - Server is starting
+[2018-06-24T17:39:08.277] [INFO] cafeappserver - DB set to dbDevConfing
+[2018-06-24T17:39:08.715] [INFO] cafeappserver - Listening on port:3000
+[2018-06-24T17:39:12.857] [ERROR] cafeappserver - { Error: ER_BAD_FIELD_ERROR: Unknown column 'ORDERLIST.qty' in 'field list'
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at queriesController.run (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\controllers\queries.js:11:8)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:281:22
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:354:14)
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:365:14)
+    at Function.process_params (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:410:3)
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: 'Unknown column \'ORDERLIST.qty\' in \'field list\'',
+  sqlState: '42S22',
+  index: 0,
+  sql: 'SELECT user.firstname || user.lastname , ORDERLIST.qty FROM ORDERLIST JOIN user ON user.userid=ORDERLIST.userid WHERE ol_dttm BETWEEN DATE(\'2018-06-08T12:58:00.000Z\') AND DATE(\'2018-06-08T12:58:00.000Z\')  ORDER BY ol_dttm DESC' }
+[2018-06-24T17:39:58.221] [INFO] cafeappserver - Server is starting
+[2018-06-24T17:39:58.304] [INFO] cafeappserver - DB set to dbDevConfing
+[2018-06-24T17:39:58.641] [INFO] cafeappserver - Listening on port:3000
+[2018-06-24T17:40:06.006] [ERROR] cafeappserver - { Error: ER_BAD_FIELD_ERROR: Unknown column 'ORDERLIST.qty' in 'field list'
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at queriesController.run (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\controllers\queries.js:10:8)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:281:22
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:354:14)
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:365:14)
+    at Function.process_params (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:410:3)
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: 'Unknown column \'ORDERLIST.qty\' in \'field list\'',
+  sqlState: '42S22',
+  index: 0,
+  sql: 'SELECT user.firstname || user.lastname , ORDERLIST.qty FROM ORDERLIST JOIN user ON user.userid=ORDERLIST.userid WHERE ol_dttm BETWEEN DATE(\'2018-06-08T12:58:00.000Z\') AND DATE(\'2018-06-08T12:58:00.000Z\')  ORDER BY ol_dttm DESC' }
+[2018-06-24T17:57:57.886] [INFO] cafeappserver - Server is starting
+[2018-06-24T17:57:57.994] [INFO] cafeappserver - DB set to dbDevConfing
+[2018-06-24T17:57:58.362] [INFO] cafeappserver - Listening on port:3000
+[2018-06-24T17:58:56.738] [INFO] cafeappserver - Server is starting
+[2018-06-24T17:58:56.834] [INFO] cafeappserver - DB set to dbProdConfing
+[2018-06-24T17:58:57.208] [INFO] cafeappserver - Listening on port:3000

@@ -6,8 +6,7 @@ let queriesController = {};
 
 queriesController.run = (req,res,next)=>{
     let query = req.params.selectedquery;
-    //console.log(req.query.param1);
-    //console.log(queries[query](req.query));
+    console.log(queries[query](req.query));
     db.query(queries[query](req.query) , (err,rows)=>{
         if(err){
             return next(err);
