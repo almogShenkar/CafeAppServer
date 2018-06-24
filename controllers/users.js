@@ -56,7 +56,7 @@ userController.signup = (req, res,next)=>{
             return next(err);
         }
         if(userData.role==='Employee'){
-            mailSender.sendEmail(userData.email,"Hi "+userData.firstname+" you've been added as an employee to little cafetria. please use your email and password to connect: "+userData.password+" wish to see you soon!");
+            mailSender.sendEmail(userData.email,"Hi "+userData.firstname+" you've been added as an employee to little cafetria. please use your email and password to connect: "+userData.password+" wish to see you soon!",next);
         }
         userData.userid=rows.insertId;
         return res.json({userid:userData.userid});
@@ -146,7 +146,7 @@ userController.sendSms = (req,res,next)=>{
             return next(err);
         }
         rows[0].phone="0544222722";
-        smsSender.sendSms(rows[0].phone,"Hello "+rows[0].firstname+" , your order "+req.params.olid+" is ready for pick up! please come and take it , Enjoy @cafeapp ");
+        smsSender.sendSms(rows[0].phone,"Hello "+rows[0].firstname+" , your order "+req.params.olid+" is ready for pick up! please come and take it , Enjoy @cafeapp ",next);
         
     });
 }

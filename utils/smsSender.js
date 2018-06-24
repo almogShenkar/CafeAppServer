@@ -4,13 +4,13 @@ const nexmo = new Nexmo({
   apiSecret: "JeB8x972YSmOLxN8"
 });
 
-var smsSender={};
-smsSender.sendSms = function(to,text){
+let smsSender={};
+smsSender.sendSms = (to,text,next)=>{
     nexmo.message.sendSms(
         "0544222722", "972"+to.substr(1), text,
           (err, responseData) => {
             if (err) {
-              console.log(err);
+              next(err);
             } else {
               //console.dir(responseData);
             }

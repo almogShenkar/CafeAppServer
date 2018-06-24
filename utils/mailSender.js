@@ -1,6 +1,6 @@
-var mailer = require("nodemailer");
+const mailer = require("nodemailer");
 
-var mailSender = {};
+let mailSender = {};
 
 
 // Use Smtp Protocol to send Email
@@ -14,17 +14,16 @@ mailSender.transporter = mailer.createTransport({
 
 
 
-mailSender.sendEmail=function(toEmail,textEmail){
-    var mail = {
+mailSender.sendEmail=(toEmail,textEmail,next)=>{
+    let mail = {
         from: "cafeappserver@gmail.com",
         to: toEmail,
         subject: "Littile cafeteria",
         html: textEmail
     };
-    console.log(mail);
-    mailSender.transporter.sendMail(mail, function(error, response){
+    mailSender.transporter.sendMail(mail,next,(error, response)=>{
         if(error){
-            console.log(error);
+            next(err);
         }
         mailSender.transporter.close();
     });

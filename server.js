@@ -29,7 +29,7 @@ app.use(fileUpload());
 app.set('port', port);
 app.set('tz', 'GMT+2');
 
-//app middlewhere of cafeappserver objects
+//app middlewhere of cafeappserver core objects
 app.use('/api/users', require('./api/users'));
 app.use('/api/suppliers', require('./api/suppliers'));
 app.use('/api/shifts', require('./api/shifts'));
@@ -41,10 +41,10 @@ app.use('/api/items', require('./api/items'));
 app.use('/api/', require('./api/files'));
 app.use('/api/ordereditems', require('./api/ordereditem'));
 app.use(errHandler.writeErr);
-//end of middlewhere
+//end of core middlewhere
 
 //just print somthing on first page
-app.get('/', function (req, res) {
+app.get('/', (req, res)=>{
     res.send('Welcome to cafeappserver!');
   });
 
