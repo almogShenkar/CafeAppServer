@@ -1,5 +1,5 @@
 const db = require('../db');
-const shiftModel = require('../models/shift');
+const shiftModel = require('../models/dataObject');
 //main object
 let shiftController = {};
 

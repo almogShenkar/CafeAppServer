@@ -4,40 +4,40 @@ const logConfig= require('./utils/logConfig');
 const logger = log4js.getLogger('cafeappserver');
 const loggerHeroku = require('heroku-logger');
 
-
-let dbDevConfing = {
+let dbConfig={
   //dev env
-  host: "localhost",
-  user: "root",
-  database: "cafeapp",
-  timezone: 'utc'
-};
-
-let dbProdConfing = {
+  dbDevConfing : {
+    host: "localhost",
+    user: "root",
+    database: "cafeapp",
+    timezone: 'utc'
+  },
   //production env
-  connectionLimit: 10,
-  host: "us-cdbr-iron-east-04.cleardb.net",
-  user: "b6295e767bfea4",
-  password: "4049d2f6",
-  database: "heroku_ee97203c1d832f5",
-  timezone: 'utc'
+  dbProdConfing : {
+    connectionLimit: 10,
+    host: "us-cdbr-iron-east-04.cleardb.net",
+    user: "b6295e767bfea4",
+    password: "4049d2f6",
+    database: "heroku_ee97203c1d832f5",
+    timezone: 'utc'
+  }
 }
+let selectedConfig=dbConfig.dbProdConfing;
+let pool = mysql.createPool(selectedConfig);
 
-let pool = mysql.createPool(dbProdConfing);
-
-logger.info("DB set to dbProdConfing");
-loggerHeroku.info("DB set to dbProdConfing");
+logger.info(`DB set to ${selectedConfig.database}`);
+loggerHeroku.info(`DB set to ${selectedConfig.database}`);
 
 pool.on('acquire', function (connection) {
-  console.log('Connection %d acquired', connection.threadId);
+  logger.info('Connection %d acquired', connection.threadId);
 });
 
 pool.on('connection', function (connection) {
-  console.log("Connected to db");
+  logger.info("Connected to db");
 });
 
 pool.on('release', function (connection) {
-  console.log('Connection %d released', connection.threadId);
+  logger.info('Connection %d released', connection.threadId);
 });
 
 

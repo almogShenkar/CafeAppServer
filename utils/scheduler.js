@@ -1,4 +1,4 @@
-const orderlistBluePrint = require('../models/orderedlist');
+const orderlistBluePrint = require('../models/dataObject');
 const moment = require('moment');
 const dblyLinkedList = require('dbly-linked-list');
 const db = require('../db');

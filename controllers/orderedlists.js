@@ -1,6 +1,6 @@
 const db = require('../db');
 const scheduler = require('../utils/scheduler');
-const orderlistBluePrint = require('../models/orderedlist');
+const orderlistBluePrint = require('../models/dataObject');
 
 let orderedlistController = {};
 

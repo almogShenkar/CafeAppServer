@@ -106,3 +106,38 @@
 [2018-06-24T17:58:56.738] [INFO] cafeappserver - Server is starting
 [2018-06-24T17:58:56.834] [INFO] cafeappserver - DB set to dbProdConfing
 [2018-06-24T17:58:57.208] [INFO] cafeappserver - Listening on port:3000
+[2018-06-25T09:16:09.998] [INFO] cafeappserver - Server is starting
+[2018-06-25T09:16:10.102] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-06-25T09:16:10.442] [INFO] cafeappserver - Listening on port:3000
+[2018-06-25T11:46:15.916] [INFO] cafeappserver - Server is starting
+[2018-06-25T11:46:16.011] [INFO] cafeappserver - DB set to cafeapp
+[2018-06-25T11:46:16.331] [INFO] cafeappserver - Listening on port:3000
+[2018-06-25T11:53:30.636] [INFO] cafeappserver - Server is starting
+[2018-06-25T11:53:30.743] [INFO] cafeappserver - DB set to cafeapp
+[2018-06-25T11:53:31.149] [INFO] cafeappserver - Listening on port:3000
+[2018-06-25T12:18:57.359] [INFO] cafeappserver - Server is starting
+[2018-06-25T12:18:57.480] [INFO] cafeappserver - DB set to cafeapp
+[2018-06-25T12:18:58.110] [INFO] cafeappserver - Listening on port:3000
+[2018-06-25T12:19:10.143] [ERROR] cafeappserver - TypeError: queries[query] is not a function
+    at queriesController.run (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\controllers\queries.js:9:31)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:281:22
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:354:14)
+    at param (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:365:14)
+    at Function.process_params (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:410:3)
+    at next (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:275:10)
+[2018-06-25T12:19:35.561] [INFO] cafeappserver - Connected to db
+[2018-06-25T12:19:35.562] [INFO] cafeappserver - Connection 2291 acquired
+[2018-06-25T12:19:35.566] [INFO] cafeappserver - Connection 2291 released
+[2018-06-25T14:00:54.801] [INFO] cafeappserver - Server is starting
+[2018-06-25T14:00:54.920] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-06-25T14:00:55.304] [INFO] cafeappserver - Listening on port:3000
+[2018-06-25T14:09:24.801] [INFO] cafeappserver - Server is starting
+[2018-06-25T14:09:24.884] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-06-25T14:09:25.167] [INFO] cafeappserver - Listening on port:3000
+[2018-06-25T14:10:04.388] [INFO] cafeappserver - Connected to db
+[2018-06-25T14:10:04.389] [INFO] cafeappserver - Connection 2793934224 acquired
+[2018-06-25T14:10:04.543] [INFO] cafeappserver - Connection 2793934224 released

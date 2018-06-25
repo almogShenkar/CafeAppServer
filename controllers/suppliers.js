@@ -1,5 +1,5 @@
 const db = require('../db');
-const supplierBluePrint = require('../models/suppllier');
+const supplierBluePrint = require('../models/dataObject');
 //main object
 let supplierController = {};
 

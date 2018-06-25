@@ -1,4 +1,4 @@
-function User(data){
+function DataObject(data){
     this.data=data;
     
     this.getData=()=>{
@@ -9,4 +9,4 @@ function User(data){
         this.data.password="****";
     }
 }
-module.exports = User;
+module.exports = DataObject;

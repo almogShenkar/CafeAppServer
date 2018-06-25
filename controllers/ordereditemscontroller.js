@@ -1,6 +1,6 @@
 
 const db = require('../db');
-const orderedItemBluePrint = require('../models/ordereditem');
+const orderedItemBluePrint = require('../models/dataObject');
 //main object
 let ordereditemController = {};
 

@@ -1,6 +1,6 @@
 
 const db = require('../db');
-const reviewlistBluePrint = require('../models/reviewlist');
+const reviewlistBluePrint = require('../models/dataObject');
 //main object
 let reviewlistController = {};
 

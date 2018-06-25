@@ -1,6 +1,6 @@
 
 const db = require('../db');
-const reviewBluePrint = require('../models/review');
+const reviewBluePrint = require('../models/dataObject');
 //main object
 let reviewController = {};
 
@@ -24,7 +24,7 @@ reviewController.get = (req,res,next)=>{
 
 //3 desc , 3 asc
 reviewController.gethonestreviews = (req,res,next)=>{
-    db.query("SELECT * FROM review WHERE revid = ? ORDER BY;",req.params.id,(err,rows)=>{
+    db.query("(SELECT * FROM review WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4) UNION ALL (SELECT * FROM review  WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4);",[req.params.id,req.params.id],(err,rows)=>{
         if(err){
             return next(err);
         }
@@ -33,7 +33,7 @@ reviewController.gethonestreviews = (req,res,next)=>{
 }
 
 reviewController.getReviewsByItem =(req,res,next)=>{
-    db.query("SELECT * FROM review WHERE revid in(SELECT rlid FROM reviewlist WHERE itemid=?)",req.params.itemid,(err,rows)=>{
+    db.query("SELECT * FROM review WHERE rlid in(SELECT rlid FROM reviewlist WHERE itemid=?)",req.params.itemid,(err,rows)=>{
         if(err){
             return next(err);
         }

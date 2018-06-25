@@ -1,5 +1,5 @@
 const db = require('../db');
-const userBluePrint=require('../models/user');
+const userBluePrint=require('../models/dataObject');
 const smsSender=require('../utils/smsSender');
 const mailSender=require('../utils/mailSender');
 
