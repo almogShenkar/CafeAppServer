@@ -24,7 +24,7 @@ reviewController.get = (req,res,next)=>{
 
 //3 desc , 3 asc
 reviewController.gethonestreviews = (req,res,next)=>{
-    db.query("(SELECT * FROM review WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4) UNION ALL (SELECT * FROM review  WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4);",[req.params.id,req.params.id],(err,rows)=>{
+    db.query("(SELECT * FROM review WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4) UNION ALL (SELECT * FROM review  WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4);",[req.params.itemid,req.params.itemid],(err,rows)=>{
         if(err){
             return next(err);
         }
