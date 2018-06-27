@@ -110,7 +110,6 @@ orderedlistController.checkTime = (req,res,next)=>{
 }
 
 orderedlistController.sendSchedulerResult = (res,result)=>{
-    res.status(404);
     res.json(result);
 }
                  
