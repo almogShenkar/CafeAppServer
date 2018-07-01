@@ -44,18 +44,16 @@ router.post('/login', (req, res, next) => {
         bcrypt.compare(user.data.password, rows[0].password, (err, result) => {
             if (result) {
                 user.data=rows[0];
-                const payload = {
+                /*const payload = {
                     email: user.data.email
                 };
                 let token = jwt.sign(payload, req.app.get('secretvar'), {
                     expiresIn: '24h' // expires in 24 hours
                 });
+                */
                 // return the information including token as JSON
                 return res.json({
                     userid:user.data.userid,
-                    success: true,
-                    message: 'Enjoy your token!',
-                    token: token
                 });
             }
             else {
@@ -81,7 +79,7 @@ router.post('/forgetpassword',(req,res,next)=>{
                     return next(err);
                 }
                 user.data=rows[0];
-                user.data.email="almogassu@gmail.com"
+                //user.data.email="almogassu@gmail.com";
                 mailSender.sendEmail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:0000"+" please change your password. best regards @cafeapp ")
                 return res.json({password:"haschanged"});
             })
@@ -110,7 +108,7 @@ router.post('/changePassword',(req,res,next)=>{
                 if(result){
                     db.query("UPDATE user SET password = ? WHERE userid= ?",[hashValueNew,user.data.userid],(err,rows)=>{
                         if(err){
-                            next(err);
+                            next(err);ד
                         }
                         return res.json({password:"haschanged"});
                     });
@@ -124,7 +122,7 @@ router.post('/changePassword',(req,res,next)=>{
     });
 });
 
-
+/*
 router.use((req, res, next) => {
     // check header or url parameters or post parameters for token
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -154,6 +152,7 @@ router.use((req, res, next) => {
 
     }
 });
+*/
 
 
 module.exports = router;
