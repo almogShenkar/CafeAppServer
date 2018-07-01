@@ -27,17 +27,16 @@ app.use(express.static(__dirname+'/../images'));
 //Json parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors({
-  origin: '*',
-  credentials: true
-}));
+app.use(cors());
 //File upload support
 app.use(fileUpload());
 //Set server config
 app.set('port', port);
 app.set('tz', 'GMT+2');
+app.set('secretvar', "cafeappsecretvar"); // secret variable
 
 //app middlewhere of cafeappserver core objects
+app.use('/api',require('./api/auth'));
 app.use('/api/users', require('./api/users'));
 app.use('/api/suppliers', require('./api/suppliers'));
 app.use('/api/shifts', require('./api/shifts'));

@@ -22,15 +22,15 @@ router.put('/credit', usersController.updateCredit);
 //localhost:3000/api/users/credit
 router.get('/credit/:id',usersController.getCredit);
 //localhost:3000/api/users/signup
-router.post('/signup', usersController.signup);
+
 router.get('/emp', usersController.listEmployee);
 //localhost:3000/api/users/login
-router.post('/login', usersController.login);
+//router.post('/login', usersController.login);
 //localhost:3000/api/users/11
 router.delete('/:id', usersController.delete);
 router.post('/sms/:olid',usersController.sendSms);
-router.post('/forgetpassword',usersController.forgetPassword);
-router.post('/changepassword',usersController.changePassword);
+//router.post('/forgetpassword',usersController.forgetPassword);
+//router.post('/changepassword',usersController.changePassword);
 
 
 module.exports = router;

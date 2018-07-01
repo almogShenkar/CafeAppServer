@@ -46,6 +46,7 @@ userController.getByRole = (req, res,next)=>{
     });
 }
 
+/*
 //POST - SIGNUP
 userController.signup = (req, res,next)=>{
     let user = new userBluePrint(req.body);
@@ -62,7 +63,7 @@ userController.signup = (req, res,next)=>{
         return res.json({userid:userData.userid});
     });
 }
-
+*/
 userController.listEmployee=(req,res,next)=>{
     db.query("SELECT * FROM user role='Employee';",(err,rows)=>{
         if(err){
@@ -76,6 +77,7 @@ userController.listEmployee=(req,res,next)=>{
     });
 }
 
+/*
 //LOGIN
 userController.login = (req, res, next)=>{
     let user = new userBluePrint(req.body);
@@ -92,7 +94,7 @@ userController.login = (req, res, next)=>{
             return res.send("bad credentials");
     });
 }
-
+*/
 //PUT by ID - update credit
 userController.updateCredit = (req, res, next)=>{
     let user = new userBluePrint(req.body);
@@ -161,6 +163,7 @@ userController.getCredit = (req,res)=>{
     });
 }
 
+/*
 //forget password user
 userController.forgetPassword = (req,res,next)=>{
     let user=new userBluePrint(req.body);
@@ -208,5 +211,5 @@ userController.changePassword = (req,res,next)=>{
     });
 }
 
-
+*/
 module.exports = userController;
