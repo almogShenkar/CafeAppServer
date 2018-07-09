@@ -147,7 +147,7 @@ userController.sendSms = (req,res,next)=>{
         if(err){
             return next(err);
         }
-        rows[0].phone="0544222722";
+        //rows[0].phone="0544222722";
         smsSender.sendSms(rows[0].phone,"Hello "+rows[0].firstname+" , your order "+req.params.olid+" is ready for pick up! please come and take it , Enjoy @cafeapp ",next);
         
     });

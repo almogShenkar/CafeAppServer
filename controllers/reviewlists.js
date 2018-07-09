@@ -54,6 +54,37 @@ reviewlistController.getItemRevByUser = (req,res,next)=>{
         });
 }
 
+reviewlistController.tryToaddReview=(req,res,next)=>{
+    let reviewTobePublished = new revirelistData(req.body);
+    db.query("SELECT * FROM reviewlist WHERE itemid= ?",reviewTobePublished.data.itemid,(err,rows)=>{
+        if(err){
+            return next(err);
+        }
+        //no reviewlist
+        if(rows.length==0){
+            db.query("INSERT INTO reviewlist VALUES(?,?);",[null,reviewTobePublished.itemid],(err,rows)=>{
+                if(err){
+                    return next(err);
+                }
+                reviewTobePublished.data.rlid=rows.insertId;
+            });
+        }
+        //reviewlist exist
+        else{
+            reviewTobePublished.data.rlid=rows[0].rlid;
+        }
+        //post review by the reviewlist
+        let revData=reviewTobePublished.getData();
+        db.query("INSERT INTO review VALUES(?,?,?,?,?);",[null,revData.userid,revData.rlid,revData.stars,revData.comment],(err,rows)=>{
+            if(err){
+                return next(err);
+            }
+            review.data.revid=rows.insertId;
+            return res.json({revid:review.data.revid});
+        });
+    });
+}
+
 reviewlistController.hasReviewlistByItem=(req,res,next)=>{
     db.query("SELECT * from reviewlist WHERE itemid = ? ;",req.params.itemid,(err,rows)=>{
         if(err){
