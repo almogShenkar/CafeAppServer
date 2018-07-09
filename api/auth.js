@@ -69,12 +69,12 @@ router.post('/login', (req, res, next) => {
 router.post('/forgetpassword',(req,res,next)=>{
     let user=new userBluePrint(req.body);
     let hashValue=bcrypt.hashSync('0000',3);
-    db.query("UPDATE user SET password=? WHERE userid = ? AND email = ? ",[hashValue,user.data.userid,user.data.email],(err,rows)=>{
+    db.query("UPDATE user SET password=? WHERE email = ? ",[hashValue,user.data.email],(err,rows)=>{
         if(err){
             return next(err);
         }
         if(rows.affectedRows==1){
-            db.query("SELECT email , firstname FROM user WHERE userid = ? ",[user.data.userid],(err,rows)=>{
+            db.query("SELECT email , firstname FROM user WHERE email = ? ",[user.data.email],(err,rows)=>{
                 if(err){
                     return next(err);
                 }

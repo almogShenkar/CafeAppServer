@@ -54,6 +54,17 @@ reviewlistController.getItemRevByUser = (req,res,next)=>{
         });
 }
 
+reviewlistController.hasReviewlistByItem=(req,res,next)=>{
+    db.query("SELECT * from reviewlist WHERE itemid = ? ;",req.params.itemid,(err,rows)=>{
+        if(err){
+            return next(err);
+        }
+        if(rows.length==1){
+            return res.json(rows[0]);
+        }
+        return res.json({rlid:-1});
+    });
+}
 
 reviewlistController.delete = (req,res,next)=>{
     db.query("DELETE FROM reviewlist WHERE rlid=?;",[req.params.id],(err,rows)=>{
