@@ -833,3 +833,379 @@
 [2018-07-09T16:54:15.922] [INFO] cafeappserver - Server is starting
 [2018-07-09T16:54:16.009] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
 [2018-07-09T16:54:16.365] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T09:36:55.047] [INFO] cafeappserver - Server is starting
+[2018-07-11T09:36:55.239] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T09:36:56.009] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T09:41:25.791] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:41:25.791] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:41:25.952] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:41:26.413] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:41:26.413] [INFO] cafeappserver - Connection 2923286799 acquired
+[2018-07-11T09:41:26.574] [ERROR] cafeappserver - { Error: ER_BAD_NULL_ERROR: Column 'userid' cannot be null
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at Object.scheduler.syncListToDB (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:153:12)
+    at Query.db.query [as _callback] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:43:19)
+    at Query.Sequence.end (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sqlMessage: 'Column \'userid\' cannot be null',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO orderlist  VALUES(NULL,NULL,NULL,\'2018-06-27T16:30:00.000Z\',NULL,CURRENT_TIMESTAMP,\'None\',0,8);' }
+[2018-07-11T09:41:26.581] [INFO] cafeappserver - Connection 2923286799 released
+[2018-07-11T09:41:57.935] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:41:58.179] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:41:58.329] [INFO] cafeappserver - Connection 2923286799 acquired
+[2018-07-11T09:41:58.492] [ERROR] cafeappserver - { Error: ER_BAD_NULL_ERROR: Column 'totalprice' cannot be null
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at Object.scheduler.syncListToDB (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:153:12)
+    at Query.db.query [as _callback] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:43:19)
+    at Query.Sequence.end (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sqlMessage: 'Column \'totalprice\' cannot be null',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO orderlist  VALUES(NULL,2,NULL,\'2018-06-27T16:30:00.000Z\',NULL,CURRENT_TIMESTAMP,\'None\',0,8);' }
+[2018-07-11T09:41:58.492] [INFO] cafeappserver - Connection 2923286799 released
+[2018-07-11T09:42:17.037] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:42:17.195] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:42:17.345] [INFO] cafeappserver - Connection 2923286799 acquired
+[2018-07-11T09:42:17.508] [ERROR] cafeappserver - { Error: ER_BAD_NULL_ERROR: Column 'ol_dttm_real' cannot be null
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at Object.scheduler.syncListToDB (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:153:12)
+    at Query.db.query [as _callback] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:43:19)
+    at Query.Sequence.end (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sqlMessage: 'Column \'ol_dttm_real\' cannot be null',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO orderlist  VALUES(NULL,2,8.5,\'2018-06-27T16:30:00.000Z\',NULL,CURRENT_TIMESTAMP,\'None\',0,8);' }
+[2018-07-11T09:42:17.508] [INFO] cafeappserver - Connection 2923286799 released
+[2018-07-11T09:42:46.543] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:42:46.704] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:42:46.854] [INFO] cafeappserver - Connection 2923286799 acquired
+[2018-07-11T09:42:47.012] [ERROR] cafeappserver - { Error: ER_BAD_NULL_ERROR: Column 'ol_dttm_real' cannot be null
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at Object.scheduler.syncListToDB (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:153:12)
+    at Query.db.query [as _callback] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\utils\scheduler.js:43:19)
+    at Query.Sequence.end (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sqlMessage: 'Column \'ol_dttm_real\' cannot be null',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO orderlist  VALUES(NULL,2,8.5,\'2018-06-27T16:30:00.000Z\',NULL,CURRENT_TIMESTAMP,\'None\',0,8);' }
+[2018-07-11T09:42:47.013] [INFO] cafeappserver - Connection 2923286799 released
+[2018-07-11T09:42:56.864] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:42:57.018] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:42:57.169] [INFO] cafeappserver - Connection 2923286799 acquired
+[2018-07-11T09:42:57.324] [INFO] cafeappserver - Connection 2923286799 released
+[2018-07-11T09:43:26.103] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:43:26.264] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:43:58.331] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:43:58.484] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:44:04.254] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:44:04.407] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:44:04.940] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:44:04.940] [INFO] cafeappserver - Connection 2923297769 acquired
+[2018-07-11T09:44:05.096] [INFO] cafeappserver - Connection 2923297769 released
+[2018-07-11T09:44:17.348] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:44:17.512] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:44:29.709] [INFO] cafeappserver - Connection 2923297769 acquired
+[2018-07-11T09:44:29.875] [INFO] cafeappserver - Connection 2923297769 released
+[2018-07-11T09:44:30.027] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:44:30.183] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:44:46.854] [INFO] cafeappserver - Connection 2923297769 acquired
+[2018-07-11T09:44:47.007] [INFO] cafeappserver - Connection 2923297769 released
+[2018-07-11T09:44:57.170] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:44:57.323] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:45:54.605] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:45:54.781] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:45:55.306] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:45:55.307] [INFO] cafeappserver - Connection 2923307539 acquired
+[2018-07-11T09:45:55.460] [INFO] cafeappserver - Connection 2923307539 released
+[2018-07-11T09:46:04.561] [INFO] cafeappserver - Connection 2923286741 acquired
+[2018-07-11T09:46:04.713] [INFO] cafeappserver - Connection 2923286741 released
+[2018-07-11T09:46:30.032] [INFO] cafeappserver - Connection 2923307539 acquired
+[2018-07-11T09:46:30.204] [INFO] cafeappserver - Connection 2923307539 released
+[2018-07-11T09:47:55.420] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:47:55.420] [INFO] cafeappserver - Connection 2923316725 acquired
+[2018-07-11T09:47:55.573] [INFO] cafeappserver - Connection 2923316725 released
+[2018-07-11T09:48:09.063] [INFO] cafeappserver - Connection 2923316725 acquired
+[2018-07-11T09:48:09.324] [INFO] cafeappserver - Connection 2923316725 released
+[2018-07-11T09:48:09.779] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:48:09.780] [INFO] cafeappserver - Connection 2923317260 acquired
+[2018-07-11T09:48:09.940] [INFO] cafeappserver - Connection 2923317260 released
+[2018-07-11T09:48:21.413] [INFO] cafeappserver - Connection 2923316725 acquired
+[2018-07-11T09:48:21.569] [INFO] cafeappserver - Connection 2923316725 released
+[2018-07-11T09:48:21.719] [INFO] cafeappserver - Connection 2923317260 acquired
+[2018-07-11T09:48:21.872] [INFO] cafeappserver - Connection 2923317260 released
+[2018-07-11T09:50:09.862] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:50:09.863] [INFO] cafeappserver - Connection 2923336438 acquired
+[2018-07-11T09:50:10.013] [INFO] cafeappserver - Connection 2923336438 released
+[2018-07-11T09:50:21.719] [INFO] cafeappserver - Connection 2923336438 acquired
+[2018-07-11T09:50:22.387] [INFO] cafeappserver - Connection 2923336438 released
+[2018-07-11T09:51:12.528] [INFO] cafeappserver - Connection 2923336438 acquired
+[2018-07-11T09:51:12.691] [INFO] cafeappserver - Connection 2923336438 released
+[2018-07-11T09:51:13.268] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:51:13.268] [INFO] cafeappserver - Connection 2923342086 acquired
+[2018-07-11T09:51:13.432] [INFO] cafeappserver - Connection 2923342086 released
+[2018-07-11T09:51:21.286] [INFO] cafeappserver - Connection 2923336438 acquired
+[2018-07-11T09:51:21.441] [INFO] cafeappserver - Connection 2923336438 released
+[2018-07-11T09:51:21.601] [INFO] cafeappserver - Connection 2923342086 acquired
+[2018-07-11T09:51:21.763] [INFO] cafeappserver - Connection 2923342086 released
+[2018-07-11T09:51:28.861] [INFO] cafeappserver - Connection 2923336438 acquired
+[2018-07-11T09:51:29.014] [INFO] cafeappserver - Connection 2923336438 released
+[2018-07-11T09:51:29.174] [INFO] cafeappserver - Connection 2923342086 acquired
+[2018-07-11T09:51:29.336] [INFO] cafeappserver - Connection 2923342086 released
+[2018-07-11T09:53:13.236] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:53:13.238] [INFO] cafeappserver - Connection 2923352603 acquired
+[2018-07-11T09:53:13.390] [INFO] cafeappserver - Connection 2923352603 released
+[2018-07-11T09:53:21.591] [INFO] cafeappserver - Connection 2923352603 acquired
+[2018-07-11T09:53:21.742] [INFO] cafeappserver - Connection 2923352603 released
+[2018-07-11T09:53:29.177] [INFO] cafeappserver - Connection 2923352603 acquired
+[2018-07-11T09:53:29.329] [INFO] cafeappserver - Connection 2923352603 released
+[2018-07-11T09:56:00.744] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:56:00.744] [INFO] cafeappserver - Connection 2923367981 acquired
+[2018-07-11T09:56:00.898] [INFO] cafeappserver - Connection 2923367981 released
+[2018-07-11T09:56:01.457] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:56:01.457] [INFO] cafeappserver - Connection 2923368046 acquired
+[2018-07-11T09:56:01.615] [INFO] cafeappserver - Connection 2923368046 released
+[2018-07-11T09:56:09.854] [INFO] cafeappserver - Connection 2923367981 acquired
+[2018-07-11T09:56:10.035] [INFO] cafeappserver - Connection 2923367981 released
+[2018-07-11T09:56:10.194] [INFO] cafeappserver - Connection 2923368046 acquired
+[2018-07-11T09:56:10.350] [INFO] cafeappserver - Connection 2923368046 released
+[2018-07-11T09:56:19.838] [INFO] cafeappserver - Connection 2923367981 acquired
+[2018-07-11T09:56:20.004] [INFO] cafeappserver - Connection 2923367981 released
+[2018-07-11T09:56:20.159] [INFO] cafeappserver - Connection 2923368046 acquired
+[2018-07-11T09:56:20.318] [INFO] cafeappserver - Connection 2923368046 released
+[2018-07-11T09:58:01.390] [INFO] cafeappserver - Connected to db
+[2018-07-11T09:58:01.391] [INFO] cafeappserver - Connection 2923379857 acquired
+[2018-07-11T09:58:01.544] [INFO] cafeappserver - Connection 2923379857 released
+[2018-07-11T09:58:10.187] [INFO] cafeappserver - Connection 2923379857 acquired
+[2018-07-11T09:58:10.343] [INFO] cafeappserver - Connection 2923379857 released
+[2018-07-11T09:58:20.156] [INFO] cafeappserver - Connection 2923379857 acquired
+[2018-07-11T09:58:20.312] [INFO] cafeappserver - Connection 2923379857 released
+[2018-07-11T10:01:00.212] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:01:00.212] [INFO] cafeappserver - Connection 2923395606 acquired
+[2018-07-11T10:01:00.376] [INFO] cafeappserver - Connection 2923395606 released
+[2018-07-11T10:01:00.862] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:01:00.863] [INFO] cafeappserver - Connection 2923395653 acquired
+[2018-07-11T10:01:01.025] [INFO] cafeappserver - Connection 2923395653 released
+[2018-07-11T10:01:04.495] [INFO] cafeappserver - Connection 2923395606 acquired
+[2018-07-11T10:01:04.650] [INFO] cafeappserver - Connection 2923395606 released
+[2018-07-11T10:01:04.809] [INFO] cafeappserver - Connection 2923395653 acquired
+[2018-07-11T10:01:04.969] [INFO] cafeappserver - Connection 2923395653 released
+[2018-07-11T10:01:11.713] [INFO] cafeappserver - Connection 2923395606 acquired
+[2018-07-11T10:01:11.874] [INFO] cafeappserver - Connection 2923395606 released
+[2018-07-11T10:01:12.032] [INFO] cafeappserver - Connection 2923395653 acquired
+[2018-07-11T10:01:12.194] [INFO] cafeappserver - Connection 2923395653 released
+[2018-07-11T10:03:00.982] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:03:00.982] [INFO] cafeappserver - Connection 2923403939 acquired
+[2018-07-11T10:03:01.136] [INFO] cafeappserver - Connection 2923403939 released
+[2018-07-11T10:03:04.819] [INFO] cafeappserver - Connection 2923403939 acquired
+[2018-07-11T10:03:04.976] [INFO] cafeappserver - Connection 2923403939 released
+[2018-07-11T10:03:12.031] [INFO] cafeappserver - Connection 2923403939 acquired
+[2018-07-11T10:03:12.184] [INFO] cafeappserver - Connection 2923403939 released
+[2018-07-11T10:09:39.288] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:09:39.468] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:09:40.462] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:09:51.637] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:09:51.637] [INFO] cafeappserver - Connection 2923433751 acquired
+[2018-07-11T10:09:52.100] [INFO] cafeappserver - Connection 2923433751 released
+[2018-07-11T10:09:52.724] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:09:52.725] [INFO] cafeappserver - Connection 2923433788 acquired
+[2018-07-11T10:09:52.887] [INFO] cafeappserver - Connection 2923433788 released
+[2018-07-11T10:09:56.721] [INFO] cafeappserver - Connection 2923433751 acquired
+[2018-07-11T10:09:56.990] [INFO] cafeappserver - Connection 2923433751 released
+[2018-07-11T10:09:57.141] [INFO] cafeappserver - Connection 2923433788 acquired
+[2018-07-11T10:09:57.299] [INFO] cafeappserver - Connection 2923433788 released
+[2018-07-11T10:10:00.842] [INFO] cafeappserver - Connection 2923433751 acquired
+[2018-07-11T10:10:01.276] [INFO] cafeappserver - Connection 2923433751 released
+[2018-07-11T10:10:01.441] [INFO] cafeappserver - Connection 2923433788 acquired
+[2018-07-11T10:10:01.595] [INFO] cafeappserver - Connection 2923433788 released
+[2018-07-11T10:10:14.425] [INFO] cafeappserver - Connection 2923433751 acquired
+[2018-07-11T10:10:14.813] [INFO] cafeappserver - Connection 2923433751 released
+[2018-07-11T10:10:14.965] [INFO] cafeappserver - Connection 2923433788 acquired
+[2018-07-11T10:10:15.128] [INFO] cafeappserver - Connection 2923433788 released
+[2018-07-11T10:11:52.697] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:11:52.698] [INFO] cafeappserver - Connection 2923441333 acquired
+[2018-07-11T10:11:52.852] [INFO] cafeappserver - Connection 2923441333 released
+[2018-07-11T10:11:57.144] [INFO] cafeappserver - Connection 2923441333 acquired
+[2018-07-11T10:11:57.304] [INFO] cafeappserver - Connection 2923441333 released
+[2018-07-11T10:12:01.430] [INFO] cafeappserver - Connection 2923441333 acquired
+[2018-07-11T10:12:01.583] [INFO] cafeappserver - Connection 2923441333 released
+[2018-07-11T10:12:14.966] [INFO] cafeappserver - Connection 2923441333 acquired
+[2018-07-11T10:12:15.119] [INFO] cafeappserver - Connection 2923441333 released
+[2018-07-11T10:30:56.486] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:30:56.486] [INFO] cafeappserver - Connection 2923534021 acquired
+[2018-07-11T10:30:56.645] [INFO] cafeappserver - Connection 2923534021 released
+[2018-07-11T10:33:53.077] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:33:53.077] [INFO] cafeappserver - Connection 2923546106 acquired
+[2018-07-11T10:33:53.246] [INFO] cafeappserver - Connection 2923546106 released
+[2018-07-11T10:37:56.195] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:37:56.392] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:37:57.847] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:38:03.378] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:38:03.378] [INFO] cafeappserver - Connection 2923563702 acquired
+[2018-07-11T10:38:03.565] [INFO] cafeappserver - Connection 2923563702 released
+[2018-07-11T10:42:11.416] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:42:11.587] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:42:12.162] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:42:24.586] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:42:24.586] [INFO] cafeappserver - Connection 2923598108 acquired
+[2018-07-11T10:42:24.748] [INFO] cafeappserver - Connection 2923598108 released
+[2018-07-11T10:42:58.160] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:42:58.275] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:42:58.976] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:44:41.791] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:44:42.126] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:44:42.583] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:44:55.697] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:44:55.697] [INFO] cafeappserver - Connection 2923611599 acquired
+[2018-07-11T10:44:55.859] [ERROR] cafeappserver - { Error: ER_DUP_ENTRY: Duplicate entry 'almogassu@gmail.com' for key 'email'
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at bcrypt.hash (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\api\auth.js:19:12)
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sqlMessage: 'Duplicate entry \'almogassu@gmail.com\' for key \'email\'',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO user VALUES(NULL,\'almogassu@gmail.com\',\'$2b$04$VE11cAFPjl3Z0s9rUNIYj.wq53axgmvNaXM3puC1nRWmYTYvSfvQy\',\'almog\',\'asulin\',7282,\'0542783330\',\'profile/male.png\',\'Employee\');' }
+[2018-07-11T10:44:55.868] [INFO] cafeappserver - Connection 2923611599 released
+[2018-07-11T10:45:17.406] [INFO] cafeappserver - Connection 2923611599 acquired
+[2018-07-11T10:45:17.577] [INFO] cafeappserver - Connection 2923611599 released
+[2018-07-11T10:46:17.952] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:46:18.170] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:46:18.681] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:46:32.102] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:46:32.102] [INFO] cafeappserver - Connection 2923620588 acquired
+[2018-07-11T10:46:32.268] [INFO] cafeappserver - Connection 2923620588 released
+[2018-07-11T10:47:28.326] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:47:28.458] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:47:28.840] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:47:47.936] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:47:47.936] [INFO] cafeappserver - Connection 2923628135 acquired
+[2018-07-11T10:47:48.097] [INFO] cafeappserver - Connection 2923628135 released
+[2018-07-11T10:48:19.469] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:48:19.751] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:48:20.220] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:48:35.100] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:48:35.100] [INFO] cafeappserver - Connection 2923632844 acquired
+[2018-07-11T10:48:35.263] [INFO] cafeappserver - Connection 2923632844 released
+[2018-07-11T10:50:27.199] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:50:27.304] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:50:27.793] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:50:40.908] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:50:40.908] [INFO] cafeappserver - Connection 2923645165 acquired
+[2018-07-11T10:50:41.080] [INFO] cafeappserver - Connection 2923645165 released
+[2018-07-11T10:51:15.638] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:51:15.760] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:51:16.209] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:51:30.582] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:51:30.582] [INFO] cafeappserver - Connection 2923649110 acquired
+[2018-07-11T10:51:30.750] [INFO] cafeappserver - Connection 2923649110 released
+[2018-07-11T10:52:58.056] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:52:58.218] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:52:59.707] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:53:14.151] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:53:14.151] [INFO] cafeappserver - Connection 2923657466 acquired
+[2018-07-11T10:53:14.312] [INFO] cafeappserver - Connection 2923657466 released
+[2018-07-11T10:53:44.122] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:53:44.457] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:53:45.300] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:54:01.522] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:54:01.522] [INFO] cafeappserver - Connection 2923661174 acquired
+[2018-07-11T10:54:01.686] [INFO] cafeappserver - Connection 2923661174 released
+[2018-07-11T10:54:58.779] [INFO] cafeappserver - Server is starting
+[2018-07-11T10:54:58.960] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-07-11T10:54:59.377] [INFO] cafeappserver - Listening on port:3000
+[2018-07-11T10:55:14.553] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:55:14.553] [INFO] cafeappserver - Connection 2923666597 acquired
+[2018-07-11T10:55:14.715] [INFO] cafeappserver - Connection 2923666597 released
+[2018-07-11T10:56:32.600] [INFO] cafeappserver - Connected to db
+[2018-07-11T10:56:32.600] [INFO] cafeappserver - Connection 2923672025 acquired
+[2018-07-11T10:56:32.762] [INFO] cafeappserver - Connection 2923672025 released
+[2018-07-11T10:57:20.105] [INFO] cafeappserver - Connection 2923672025 acquired
+[2018-07-11T10:57:20.259] [INFO] cafeappserver - Connection 2923672025 released

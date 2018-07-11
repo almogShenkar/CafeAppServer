@@ -9,7 +9,7 @@ scheduler.list;
 scheduler.closeHour = 19;
 scheduler.openHour = 07;
 scheduler.minTimeOut = 120;
-
+scheduler.deltaFactor;
 
 scheduler.clearNonUseSlots =(orderedlistData)=>{
     db.query("DELETE FROM orderlist WHERE olid=? AND status='None' ",orderedlistData.olid,(err, rows)=>{
@@ -74,8 +74,8 @@ scheduler.addToList = (orderedlistData)=>{
     while (it != null) {
         //try insert to head
         it.data.endTime = moment(it.data.ol_dttm).add(it.data.totalpreptime, 'minutes');
-        if (it == head) {
-            //unsert before had
+        if (it == head && scheduler.list.getSize()==1) {
+            //insert before had
             if (moment(orderedlistData.ol_dttm).isBefore(moment(it.data.ol_dttm)) && it.data.endTime.diff(orderedlistData.endTime, 'minutes') > orderedlistData.totalpreptime) {
                 console.log("inserted before head");
                 scheduler.clearRedurantDataFromNodes(orderedlistData,it);
@@ -91,8 +91,7 @@ scheduler.addToList = (orderedlistData)=>{
                     nextToit.data.endTime = moment(nextToit.data.ol_dttm).add(nextToit.data.totalpreptime, 'minutes');
                     if (moment(it.data.ol_dttm).isBefore(moment(orderedlistData.ol_dttm)) &&
                         nextToit.data.endTime.diff(it.data.endTime, 'minutes') > orderedlistData.totalpreptime &&
-                        moment(nextToit.data.ol_dttm).isAfter(orderedlistData.ol_dttm)
-                    ) {
+                        moment(nextToit.data.ol_dttm).isAfter(orderedlistData.ol_dttm)) {
                         console.log("head+1");
                         isValidAfterHead = true;
                     }
@@ -139,6 +138,8 @@ scheduler.addToList = (orderedlistData)=>{
                 return true;
             }
         }
+        //Todo Almog - deltafactor
+        scheduler.deltaFactor=Math.min(scheduler.deltaFactor,it.data.totalpreptime);
         it = it.next;
     }
     //scheduler.list.forEach(function(elem){console.log(elem.data);},false);

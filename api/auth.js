@@ -9,6 +9,7 @@ let router = express.Router();
 //signup
 router.post('/signup', (req, res, next) => {
     let user = new userBluePrint(req.body);
+    let unHashedPass=user.data.password;
     bcrypt.hash(user.data.password, 3, (err, hash) => {
         if (err) {
             return next(err);
@@ -20,7 +21,7 @@ router.post('/signup', (req, res, next) => {
                 return next(err);
             }
             if (userData.role === 'Employee') {
-                mailSender.sendEmail(userData.email, "Hi " + userData.firstname + " you've been added as an employee to little cafetria. please use your email and password to connect: " + userData.password + " wish to see you soon!", next);
+                mailSender.sendEmail(userData.email, "Hi " + userData.firstname + " you've been added as an employee to little cafetria. please use your email and password to connect: " + unHashedPass + " wish to see you soon!", next);
             }
             userData.userid = rows.insertId;
             return res.json({ userid: userData.userid });
