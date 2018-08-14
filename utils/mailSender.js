@@ -26,7 +26,7 @@ mailSender.sendEmail=(next)=>{
     
     mailSender.transporter.sendMail(mailSender.mail,next,(error, response)=>{
         if(error){
-            next(err);
+            return next(err);
         }
         mailSender.transporter.close();
     });
