@@ -13,15 +13,18 @@ mailSender.transporter = mailer.createTransport({
 });
 
 
-
-mailSender.sendEmail=(toEmail,textEmail,next)=>{
-    let mail = {
+mailSender.setMail = (toEmail,textEmail)=>{
+    mailSender.mail = {
         from: "cafeappserver@gmail.com",
         to: toEmail,
         subject: "Littile cafeteria",
         html: textEmail
-    };
-    mailSender.transporter.sendMail(mail,next,(error, response)=>{
+    };   
+}
+
+mailSender.sendEmail=(next)=>{
+    
+    mailSender.transporter.sendMail(mailSender.mail,next,(error, response)=>{
         if(error){
             next(err);
         }

@@ -21,7 +21,8 @@ router.post('/signup', (req, res, next) => {
                 return next(err);
             }
             if (userData.role === 'Employee') {
-                mailSender.sendEmail(userData.email, "Hi " + userData.firstname + " you've been added as an employee to little cafetria. please use your email and password to connect: " + unHashedPass + " wish to see you soon!", next);
+                mailSender.setMail(userData.email, "Hi " + userData.firstname + " you've been added as an employee to little cafetria. please use your email and password to connect: " + unHashedPass + " wish to see you soon!");
+                mailSender.sendEmail(next);
             }
             userData.userid = rows.insertId;
             return res.json({ userid: userData.userid });

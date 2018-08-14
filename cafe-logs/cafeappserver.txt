@@ -1215,3 +1215,37 @@
 [2018-08-14T18:10:10.569] [INFO] cafeappserver - Connected to db
 [2018-08-14T18:10:10.570] [INFO] cafeappserver - Connection 3195743657 acquired
 [2018-08-14T18:10:10.837] [INFO] cafeappserver - Connection 3195743657 released
+[2018-08-15T01:41:17.901] [INFO] cafeappserver - Server is starting
+[2018-08-15T01:41:18.007] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-15T01:41:18.545] [INFO] cafeappserver - Listening on port:3000
+[2018-08-15T01:41:23.767] [INFO] cafeappserver - Connected to db
+[2018-08-15T01:41:23.767] [INFO] cafeappserver - Connection 3198154374 acquired
+[2018-08-15T01:41:23.934] [ERROR] cafeappserver - { Error: ER_DUP_ENTRY: Duplicate entry 'aya.malkin@gmail.com' for key 'email'
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at bcrypt.hash (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\api\auth.js:19:12)
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sqlMessage: 'Duplicate entry \'aya.malkin@gmail.com\' for key \'email\'',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO user VALUES(NULL,\'aya.malkin@gmail.com\',\'$2b$04$47U5A1naT953moxAqbm9ZeAnJOj4RrBOuAii5G60W7ygPF4pW/gsu\',\'aya\',\'malkin\',0,\'0544222722\',\'profile/male.png\',\'Emloyee\');' }
+[2018-08-15T01:41:23.959] [INFO] cafeappserver - Connection 3198154374 released
+[2018-08-15T01:41:46.869] [INFO] cafeappserver - Connection 3198154374 acquired
+[2018-08-15T01:41:47.027] [INFO] cafeappserver - Connection 3198154374 released
+[2018-08-15T01:58:27.559] [INFO] cafeappserver - Server is starting
+[2018-08-15T01:58:27.668] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-15T01:58:28.263] [INFO] cafeappserver - Listening on port:3000
+[2018-08-15T01:59:17.594] [INFO] cafeappserver - Connected to db
+[2018-08-15T01:59:17.594] [INFO] cafeappserver - Connection 3198242526 acquired
+[2018-08-15T01:59:17.777] [INFO] cafeappserver - Connection 3198242526 released
