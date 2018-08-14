@@ -22,13 +22,14 @@ mailSender.setMail = (toEmail,textEmail)=>{
     };   
 }
 
-mailSender.sendEmail=(next)=>{
+mailSender.sendEmail=(next,callback)=>{
     
-    mailSender.transporter.sendMail(mailSender.mail,next,(error, response)=>{
+    mailSender.transporter.sendMail(mailSender.mail,next,(error, callback)=>{
         if(error){
             return next(err);
         }
         mailSender.transporter.close();
+        callback();
     });
 }
 

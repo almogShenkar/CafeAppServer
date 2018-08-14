@@ -22,10 +22,14 @@ router.post('/signup', (req, res, next) => {
             }
             if (userData.role === 'Employee') {
                 mailSender.setMail(userData.email, "Hi " + userData.firstname + " you've been added as an employee to little cafetria. please use your email and password to connect: " + unHashedPass + " wish to see you soon!");
-                mailSender.sendEmail(next);
+                mailSender.sendEmail(next,()=>{userData.userid = rows.insertId;
+                    return res.json({ userid: userData.userid });});
             }
-            userData.userid = rows.insertId;
-            return res.json({ userid: userData.userid });
+            else{
+                userData.userid = rows.insertId;
+                return res.json({ userid: userData.userid });
+            }
+            
         });
     });
 });
