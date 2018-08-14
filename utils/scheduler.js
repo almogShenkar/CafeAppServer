@@ -36,8 +36,9 @@ scheduler.addOrder = (orderedlistData, next, callback)=>{
             return next(err);
         }
         scheduler.populateLinkedList(rows);
+        
         while (scheduler.addToList(orderedlistData) == false) {
-            orderedlistData.ol_dttm = moment(orderedlistData.ol_dttm).add(5, 'minutes').toISOString();
+            orderedlistData.ol_dttm = moment(orderedlistData.ol_dttm).add(1, 'minutes').toISOString();
         }
         //scheduler.list.forEach(function(elem){console.log(elem.data);},false);
         scheduler.syncListToDB(orderedlistData,next,callback);
@@ -139,7 +140,7 @@ scheduler.addToList = (orderedlistData)=>{
             }
         }
         //Todo Almog - deltafactor
-        scheduler.deltaFactor=Math.min(scheduler.deltaFactor,it.data.totalpreptime);
+        //scheduler.deltaFactor=Math.min(scheduler.deltaFactor,it.data.totalpreptime);
         it = it.next;
     }
     //scheduler.list.forEach(function(elem){console.log(elem.data);},false);
