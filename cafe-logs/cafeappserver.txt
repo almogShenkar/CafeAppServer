@@ -1249,3 +1249,9 @@
 [2018-08-15T01:59:17.594] [INFO] cafeappserver - Connected to db
 [2018-08-15T01:59:17.594] [INFO] cafeappserver - Connection 3198242526 acquired
 [2018-08-15T01:59:17.777] [INFO] cafeappserver - Connection 3198242526 released
+[2018-08-15T02:37:47.261] [INFO] cafeappserver - Server is starting
+[2018-08-15T02:37:47.361] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-15T02:37:48.026] [INFO] cafeappserver - Listening on port:3000
+[2018-08-15T02:38:06.082] [INFO] cafeappserver - Connected to db
+[2018-08-15T02:38:06.083] [INFO] cafeappserver - Connection 3198401034 acquired
+[2018-08-15T02:38:06.253] [INFO] cafeappserver - Connection 3198401034 released

@@ -28,7 +28,6 @@ mailSender.sendEmail=(next,callback)=>{
         if(error){
             return next(err);
         }
-        mailSender.transporter.close();
         callback();
     });
 }
