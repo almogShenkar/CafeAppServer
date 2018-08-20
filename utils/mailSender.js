@@ -22,7 +22,7 @@ mailSender.email = {
   text: 'Hello world',
   html: '<b>Hello world</b>'
 };
-
+/*
 mailSender.client.sendMail(mailSender.email,(err,info)=>{
     if(err) {
         return err;
@@ -34,4 +34,5 @@ mailSender.client.sendMail(mailSender.email,(err,info)=>{
     if(err)
         console.log(err);
 });
+*/
 module.exports = mailSender;
