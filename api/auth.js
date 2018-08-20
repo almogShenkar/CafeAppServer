@@ -86,7 +86,7 @@ router.post('/forgetpassword',(req,res,next)=>{
                 }
                 user.data=rows[0];
                 //user.data.email="almogassu@gmail.com";
-                mailSender.sendEmail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:0000"+" please change your password. best regards @cafeapp ")
+                //mailSender.client.sendEmail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:0000"+" please change your password. best regards @cafeapp ")
                 return res.json({password:"haschanged"});
             })
         }

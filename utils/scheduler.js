@@ -77,7 +77,7 @@ scheduler.addToList = (orderedlistData)=>{
         it.data.endTime = moment(it.data.ol_dttm).add(it.data.totalpreptime, 'minutes');
         if (it == head && scheduler.list.getSize()==1) {
             //insert before had
-            if (moment(orderedlistData.ol_dttm).isBefore(moment(it.data.ol_dttm)) && it.data.endTime.diff(orderedlistData.endTime, 'minutes') > orderedlistData.totalpreptime) {
+            if (moment(orderedlistData.ol_dttm).isBefore(moment(it.data.ol_dttm)) && it.data.endTime.diff(orderedlistData.endTime, 'minutes') >= orderedlistData.totalpreptime) {
                 console.log("inserted before head");
                 scheduler.clearRedurantDataFromNodes(orderedlistData,it);
                 scheduler.list.insertFirst(orderedlistData);
@@ -91,7 +91,7 @@ scheduler.addToList = (orderedlistData)=>{
                     let nextToit = it.next;
                     nextToit.data.endTime = moment(nextToit.data.ol_dttm).add(nextToit.data.totalpreptime, 'minutes');
                     if (moment(it.data.ol_dttm).isBefore(moment(orderedlistData.ol_dttm)) &&
-                        nextToit.data.endTime.diff(it.data.endTime, 'minutes') > orderedlistData.totalpreptime &&
+                        nextToit.data.endTime.diff(it.data.endTime, 'minutes') >= orderedlistData.totalpreptime &&
                         moment(nextToit.data.ol_dttm).isAfter(orderedlistData.ol_dttm)) {
                         console.log("head+1");
                         isValidAfterHead = true;
@@ -100,7 +100,7 @@ scheduler.addToList = (orderedlistData)=>{
                 //if ther head is the only one
                 else {
                     if (moment(it.data.ol_dttm).isBefore(moment(orderedlistData.ol_dttm)) &&
-                        orderedlistData.endTime.diff(it.data.endTime, 'minutes') > it.data.totalpreptime
+                        orderedlistData.endTime.diff(it.data.endTime, 'minutes') >= it.data.totalpreptime
                     ) {
                         console.log(moment(it.data.ol_dttm).isBefore(moment(orderedlistData.ol_dttm)));
                         console.log("only one");
@@ -117,7 +117,7 @@ scheduler.addToList = (orderedlistData)=>{
         }
         //try insert to tail
         else if (it == tail) {
-            if (moment(it.data.ol_dttm).isBefore(moment(orderedlistData.ol_dttm)) && orderedlistData.endTime.diff(it.data.endTime, 'minutes') > orderedlistData.totalpreptime) {
+            if (moment(it.data.ol_dttm).isBefore(moment(orderedlistData.ol_dttm)) && orderedlistData.endTime.diff(it.data.endTime, 'minutes') >= orderedlistData.totalpreptime) {
                 console.log("inserted after tail");
                 scheduler.clearRedurantDataFromNodes(orderedlistData,it);
                 scheduler.list.insert(orderedlistData);
@@ -131,8 +131,8 @@ scheduler.addToList = (orderedlistData)=>{
             nextToit.data.endTime = moment(nextToit.data.ol_dttm).add(nextToit.data.totalpreptime, 'minutes');
             if (moment(orderedlistData.ol_dttm).isBefore(moment(nextToit.data.ol_dttm)) &&
                 moment(orderedlistData.ol_dttm).isAfter(moment(it.data.ol_dttm)) &&
-                orderedlistData.endTime.diff(it.data.endTime, 'minutes') > orderedlistData.totalpreptime &&
-                nextToit.data.endTime.diff(orderedlistData.endTime, 'minutes') > orderedlistData.totalpreptime) {
+                orderedlistData.endTime.diff(it.data.endTime, 'minutes') >= orderedlistData.totalpreptime &&
+                nextToit.data.endTime.diff(orderedlistData.endTime, 'minutes') >= orderedlistData.totalpreptime) {
                 console.log("inserterd after body: " + scheduler.list.indexOf(it.data));
                 scheduler.clearRedurantDataFromNodes(orderedlistData,it);
                 scheduler.list.insertAfter(it.data, orderedlistData);
