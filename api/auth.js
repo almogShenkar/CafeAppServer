@@ -22,11 +22,10 @@ router.post('/signup', (req, res, next) => {
             }
             if (userData.role === 'Employee') {
                 mailSender.setMail(userData.email, "Hi " + userData.firstname + " you've been added as an employee to little cafetria. please use your email and password to connect: " + unHashedPass + " wish to see you soon!");
-                mailSender.sendEmail(next,(err,info)=>{
+                mailSender.sendEmail((err,info,next)=>{
                     if(err){
                         return next(err);
                     }
-                    console.log('Message sent: ' + info.response);
                     userData.userid = rows.insertId;
                     return res.json({ userid: userData.userid });});
             }
@@ -91,7 +90,7 @@ router.post('/forgetpassword',(req,res,next)=>{
                 }
                 user.data=rows[0];
                 //user.data.email="almogassu@gmail.com";
-                mailSender.client.sendEmail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:0000"+" please change your password. best regards @cafeapp ")
+                //mailSender.client.sendEmail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:0000"+" please change your password. best regards @cafeapp ")
                 return res.json({password:"haschanged"});
             })
         }

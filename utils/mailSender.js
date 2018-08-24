@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const sgTransport = require('nodemailer-sendgrid-transport');
 
-let mailSender = {};
+let mailSender={};
 
 
 // Use Smtp Protocol to send Email
@@ -33,9 +33,9 @@ mailSender.setMail=(to,body)=>{
 
 
 
-mailSender.sendEmail=(next,callback)=>{
+mailSender.sendEmail=(callback)=>{
     //console.log(mailSender.email);
-    mailSender.client.sendMail(mailSender.email,callback);  
+    mailSender.client.sendMail(mailSender.email,callback);
 };
 
 /*
