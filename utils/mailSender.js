@@ -15,24 +15,38 @@ mailSender.options={
 
 mailSender.client = nodemailer.createTransport(sgTransport(mailSender.options));
 
-mailSender.email = {
-  from: 'awesome@bar.com',
-  to: 'almogassu@gmail.com',
-  subject: 'Hello',
-  text: 'Hello world',
-  html: '<b>Hello world</b>'
+
+mailSender.email={
+    from:'cafeappserver@gmail.com',
+    to:"",
+    subject:'Little-Cafe invitaion',
+    html:""
 };
+
+
+mailSender.setMail=(to,body)=>{
+    //console.log('Here');
+    mailSender.email.to=to;
+    mailSender.email.html=body;
+    mailSender.email.text=body;
+};
+
+
+
+mailSender.sendEmail=(next,callback)=>{
+    //console.log(mailSender.email);
+    mailSender.client.sendMail(mailSender.email,callback);  
+};
+
 /*
-mailSender.client.sendMail(mailSender.email,(err,info)=>{
+mailSender.client.sendMail=(mailSender.email,(err,info)=>{
     if(err) {
         return err;
     }
     console.log('Message sent: ' + info.response);
 });
-
-mailSender.client.sendMail(mailSender.email,(err,info)=>{
-    if(err)
-        console.log(err);
-});
 */
+
+
+
 module.exports = mailSender;

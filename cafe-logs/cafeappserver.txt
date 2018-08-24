@@ -1285,3 +1285,94 @@
 [2018-08-20T00:43:48.919] [INFO] cafeappserver - Server is starting
 [2018-08-20T00:43:49.012] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
 [2018-08-20T00:43:49.444] [INFO] cafeappserver - Listening on port:3000
+[2018-08-24T19:34:14.207] [INFO] cafeappserver - Server is starting
+[2018-08-24T19:34:14.375] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-24T19:34:17.577] [INFO] cafeappserver - Listening on port:3000
+[2018-08-24T19:34:28.349] [ERROR] cafeappserver - Error: data and salt arguments required
+    at Object.hash (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\bcrypt\bcrypt.js:138:17)
+    at router.post (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\api\auth.js:13:12)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:335:12)
+    at next (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\express\lib\router\index.js:174:3)
+[2018-08-24T19:38:31.831] [INFO] cafeappserver - Server is starting
+[2018-08-24T19:38:31.916] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-24T19:38:32.343] [INFO] cafeappserver - Listening on port:3000
+[2018-08-24T19:38:39.949] [INFO] cafeappserver - Connected to db
+[2018-08-24T19:38:39.949] [INFO] cafeappserver - Connection 3269589579 acquired
+[2018-08-24T19:38:40.111] [ERROR] cafeappserver - { Error: ER_BAD_NULL_ERROR: Column 'credit' cannot be null
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at bcrypt.hash (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\api\auth.js:19:12)
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sqlMessage: 'Column \'credit\' cannot be null',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO user VALUES(NULL,\'almogassu@gmail.com\',\'$2b$04$PBxZ82vBwv.ujH8rheVZAuMuLHfrBt2szvknckWSR8Q94FV3xZUre\',\'almog\',\'asulin\',NULL,\'053-542-1952\',NULL,\'Employee\');' }
+[2018-08-24T19:38:40.120] [INFO] cafeappserver - Connection 3269589579 released
+[2018-08-24T19:40:57.731] [INFO] cafeappserver - Server is starting
+[2018-08-24T19:40:57.840] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-24T19:40:58.248] [INFO] cafeappserver - Listening on port:3000
+[2018-08-24T19:41:13.560] [INFO] cafeappserver - Connected to db
+[2018-08-24T19:41:13.560] [INFO] cafeappserver - Connection 3269600434 acquired
+[2018-08-24T19:41:13.722] [ERROR] cafeappserver - { Error: ER_BAD_NULL_ERROR: Column 'url' cannot be null
+    at Query.Sequence._packetToError (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\mysql\lib\Pool.js:199:23)
+    at bcrypt.hash (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\api\auth.js:19:12)
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sqlMessage: 'Column \'url\' cannot be null',
+  sqlState: '23000',
+  index: 0,
+  sql: 'INSERT INTO user VALUES(NULL,\'almogassu@gmail.com\',\'$2b$04$dxAhD6dcnK59UuxzEYB1FOx4TyPPHkWX1V/73/mQvQrFcgqq/PYjO\',\'almog\',\'asulin\',0,\'053-542-1952\',NULL,\'Employee\');' }
+[2018-08-24T19:41:13.730] [INFO] cafeappserver - Connection 3269600434 released
+[2018-08-24T19:42:02.167] [INFO] cafeappserver - Connection 3269600434 acquired
+[2018-08-24T19:42:02.362] [INFO] cafeappserver - Connection 3269600434 released
+[2018-08-24T19:42:03.200] [ERROR] cafeappserver - Error: Missing email body
+    at Request._callback (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\sendgrid\lib\sendgrid.js:88:25)
+    at Request.self.callback (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\request\request.js:185:22)
+    at emitTwo (events.js:126:13)
+    at Request.emit (events.js:214:7)
+    at Request.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\request\request.js:1157:10)
+    at emitOne (events.js:116:13)
+    at Request.emit (events.js:211:7)
+    at IncomingMessage.<anonymous> (C:\Users\almog\OneDrive\Documents\Visual Studio 2017\CafeApp\node_modules\request\request.js:1079:12)
+    at Object.onceWrapper (events.js:313:30)
+    at emitNone (events.js:111:20)
+[2018-08-24T19:45:02.424] [INFO] cafeappserver - Server is starting
+[2018-08-24T19:45:02.513] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-24T19:45:02.978] [INFO] cafeappserver - Listening on port:3000
+[2018-08-24T19:54:34.352] [INFO] cafeappserver - Server is starting
+[2018-08-24T19:54:34.427] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-24T19:54:34.807] [INFO] cafeappserver - Listening on port:3000
+[2018-08-24T19:54:43.665] [INFO] cafeappserver - Connected to db
+[2018-08-24T19:54:43.666] [INFO] cafeappserver - Connection 3269669200 acquired
+[2018-08-24T19:54:43.825] [INFO] cafeappserver - Connection 3269669200 released
+[2018-08-24T19:56:18.374] [INFO] cafeappserver - Server is starting
+[2018-08-24T19:56:18.477] [INFO] cafeappserver - DB set to heroku_ee97203c1d832f5
+[2018-08-24T19:56:18.994] [INFO] cafeappserver - Listening on port:3000
