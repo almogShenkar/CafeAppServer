@@ -1,10 +1,20 @@
 # CafeAppServer - Final project 2018 - Shenkar
 
-Restful API for Little-cafe Student-app and Cafeteria-app
+Restful API for Little-cafe Student-app and Cafeteria-app.
+The API support all clients requests - Student-app and Cafeteria-app.
+* Online-remote-orderering.
+* Manage all incoming orders.
+* Compute available time for a new order
+* Cafeteria reports
+* Users signup/login
+
+And More.
 
 ## Getting Started
 
 Clone the project
+
+git clone https://github.com/almogShenkar/CafeAppServer.git
 
 ### Prerequisites
 
