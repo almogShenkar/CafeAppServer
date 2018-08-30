@@ -1,3 +1,7 @@
+/**
+ * Suppliers router- responsible for suppliers api routes
+ */
+
 const express = require('express');
 let router = express.Router();
 

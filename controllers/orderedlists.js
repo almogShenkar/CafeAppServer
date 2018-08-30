@@ -1,10 +1,14 @@
+/**
+ * OrderedlistController module - implementaion of orderedlist-api 
+ * 
+ */
+
 const db = require('../db');
 const scheduler = require('../utils/scheduler');
 const orderlistBluePrint = require('../models/dataObject');
-
 let orderedlistController = {};
 
-
+//GET ALL
 orderedlistController.list = (req,res,next)=>{
     db.query("SELECT * FROM orderlist ORDER BY ol_dttm DESC;",(err,rows)=>{
         if(err){
@@ -14,6 +18,7 @@ orderedlistController.list = (req,res,next)=>{
     });
 }
 
+//GET one by id
 orderedlistController.getByOlid = (req,res,next)=>{
     db.query("SELECT * FROM orderlist WHERE olid = ? ;",req.params.id,(err,rows)=>{
         if(err){
@@ -66,7 +71,7 @@ orderedlistController.todayactiveorders =(req,res,next)=>{
 }
 
 
-//PUT
+//PUT - update existing
 orderedlistController.update = (req,res,next)=>{
     let orderlist = new orderlistBluePrint(req.body);
     let orderedlistData = orderlist.getData();
@@ -79,7 +84,7 @@ orderedlistController.update = (req,res,next)=>{
     });
 }
 
-//POST
+//POST - create new orderlist
 orderedlistController.add = (req,res,next)=>{
     let orderlist = new orderlistBluePrint(req.body);
     let orderedlistData = orderlist.getData();
@@ -93,6 +98,7 @@ orderedlistController.add = (req,res,next)=>{
     });
 }
 
+//DELETE - delete one by id
 orderedlistController.delete = (req,res,next)=>{
     db.query("DELETE FROM orderlist WHERE olid = ?;",[req.params.id],
     (err,rows)=>{
@@ -103,14 +109,12 @@ orderedlistController.delete = (req,res,next)=>{
     });
 }
 
+//POST - check scheduler algorithm result
 orderedlistController.checkTime = (req,res,next)=>{
     let orderlist = new orderlistBluePrint(req.body);
     let orderedlistData = orderlist.getData();
-    scheduler.addOrder(orderedlistData,next,(result)=>{orderedlistController.sendSchedulerResult(res,result);});
+    scheduler.addOrder(orderedlistData,next,(result)=>{res.json(result);});
 }
 
-orderedlistController.sendSchedulerResult = (res,result)=>{
-    res.json(result);
-}
                  
 module.exports = orderedlistController;

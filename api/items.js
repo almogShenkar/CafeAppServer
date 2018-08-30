@@ -1,7 +1,10 @@
+/**
+ * Items router- responsible for items api routes
+ */
+
 const express = require('express');
 let router = express.Router();
 
-//Controllers
 const itemsController = require('../controllers/items');
 
 

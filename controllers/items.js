@@ -1,6 +1,11 @@
+/**
+ * ItemController module - implementaion of item-api 
+ * 
+ */
+
+
 const db = require('../db');
 const itemBluePrint = require('../models/dataObject');
-//main object
 let itemController = {};
 
 
@@ -24,7 +29,7 @@ itemController.get = (req, res , next)=>{
     });
 }
 
-//POST
+//POST - create new item
 itemController.add =(req, res, next)=>{
     let item = new itemBluePrint(req.body);
     let itemData = item.getData();
@@ -52,6 +57,7 @@ itemController.update = (req, res,next)=>{
     });
 }
 
+//PUT - update existing item qty
 itemController.updateQty = (req,res,next)=>{
     db.query("UPDATE item SET qty = qty-? WHERE itemid= ?;",[req.params.amount,req.params.id],
     (err,rows)=>{
@@ -72,6 +78,7 @@ itemController.delete = (req, res,next)=>{
     });
 }
 
+//GET all of type='foo'
 itemController.listByType =(req,res,next)=>{
     db.query("SELECT * FROM item WHERE type = ?;",[req.params.type],(err,rows)=>{
         if(err){

@@ -1,3 +1,12 @@
+/**
+ * CafeApp server -  by Almog Asulin
+ * Written in node.js using express
+ * Shenkar 2018 Final Project
+ * This file is the project entry-point
+ * RestFul API 
+ */
+
+
 //app required modules
 const log4js=require('log4js');
 const logConfig= require('./utils/logConfig');
@@ -35,7 +44,7 @@ app.set('port', port);
 app.set('tz', 'GMT+2');
 app.set('secretvar', "cafeappsecretvar"); // secret variable
 
-//app middlewhere of cafeappserver core objects
+//app middleware of cafeappserver core objects
 app.use('/api',require('./api/auth'));
 app.use('/api/users', require('./api/users'));
 app.use('/api/suppliers', require('./api/suppliers'));
@@ -48,7 +57,7 @@ app.use('/api/items', require('./api/items'));
 app.use('/api/', require('./api/files'));
 app.use('/api/ordereditems', require('./api/ordereditem'));
 app.use(errHandler.writeErr);
-//end of core middlewhere
+//end of core middleware
 
 //just print somthing on first page
 app.get('/', (req, res)=>{

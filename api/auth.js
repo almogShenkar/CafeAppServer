@@ -1,3 +1,7 @@
+/**
+ * Auth module - responsible for login/signup and password reset
+ */
+
 const express = require('express');
 const db = require('../db');
 const userBluePrint = require('../models/dataObject');
@@ -6,7 +10,12 @@ const jwt = require('jsonwebtoken');
 const mailSender = require('../utils/mailSender');
 let router = express.Router();
 
-//signup
+/**
+ * Signup user - signup new user 
+ * input:user details
+ * output: return the new userid onSuccess
+ *         return err onFail 
+ */
 router.post('/signup', (req, res, next) => {
     let user = new userBluePrint(req.body);
     let unHashedPass=user.data.password;
@@ -20,6 +29,7 @@ router.post('/signup', (req, res, next) => {
             if (err) {
                 return next(err);
             }
+            //diff logic for employee role - email invitaion
             if (userData.role === 'Employee') {
                 mailSender.setMail(userData.email, "Hi " + userData.firstname + " you've been added as an employee to little cafetria. please use your email and password to connect: " + unHashedPass + " wish to see you soon!");
                 mailSender.sendEmail((err,info,next)=>{
@@ -39,7 +49,12 @@ router.post('/signup', (req, res, next) => {
 });
 
 
-//login auth user before any request - if auth=success then contiue process the request
+/**
+ * Login user - login by email,password 
+ * input:email , password
+ * output: onSuccess - continue process the request
+ *         onFail - throw err (handled next)
+ */
 router.post('/login', (req, res, next) => {
     // find the user
     let user = new userBluePrint(req.body);
@@ -54,6 +69,7 @@ router.post('/login', (req, res, next) => {
         bcrypt.compare(user.data.password, rows[0].password, (err, result) => {
             if (result) {
                 user.data=rows[0];
+                // Token-based mechnisem - client should implemnt [Future work]
                 /*const payload = {
                     email: user.data.email
                 };
@@ -75,7 +91,12 @@ router.post('/login', (req, res, next) => {
     });
 });
 
-//forget password user
+
+/**
+ * Forgetpassword- send defult password to client email
+ * input:email
+ * output: none
+ */
 router.post('/forgetpassword',(req,res,next)=>{
     let user=new userBluePrint(req.body);
     let hashValue=bcrypt.hashSync('0000',3);
@@ -90,9 +111,13 @@ router.post('/forgetpassword',(req,res,next)=>{
                 }
                 user.data=rows[0];
                 //user.data.email="almogassu@gmail.com";
-                //mailSender.client.sendEmail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:0000"+" please change your password. best regards @cafeapp ")
-                return res.json({password:"haschanged"});
-            })
+                mailSender.setMail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:0000"+" please change your password. best regards @cafeapp ");
+                mailSender.sendEmail((err,info,next)=>{
+                    if(err){
+                        return next(err);
+                    }
+                    return res.json({password:"haschanged"});});  
+            });
         }
         else{
             res.status(401);
@@ -102,6 +127,12 @@ router.post('/forgetpassword',(req,res,next)=>{
   
 });
 
+/**
+ * ChangePassword- change user password
+ * input: userid , newpassword
+ * output: OnSuccess = haschanged
+ *         OnFail = bad credentials
+ */
 router.post('/changePassword',(req,res,next)=>{
     let user = new userBluePrint(req.body);
     let hashValueOld = bcrypt.hashSync(user.data.oldpassword,3);
@@ -132,6 +163,11 @@ router.post('/changePassword',(req,res,next)=>{
     });
 });
 
+
+
+/**
+ * Check header request before processing request - client should implement logic to use it [Future work]
+ */
 /*
 router.use((req, res, next) => {
     // check header or url parameters or post parameters for token

@@ -1,3 +1,6 @@
+/**
+ * DB module- responsible for database config and connections
+ */
 let mysql = require('mysql');
 const log4js=require('log4js');
 const logConfig= require('./utils/logConfig');
@@ -28,15 +31,15 @@ let pool = mysql.createPool(selectedConfig);
 logger.info(`DB set to ${selectedConfig.database}`);
 loggerHeroku.info(`DB set to ${selectedConfig.database}`);
 
-pool.on('acquire', function (connection) {
+pool.on('acquire', (connection)=> {
   logger.info('Connection %d acquired', connection.threadId);
 });
 
-pool.on('connection', function (connection) {
+pool.on('connection', (connection)=> {
   logger.info("Connected to db");
 });
 
-pool.on('release', function (connection) {
+pool.on('release', (connection)=> {
   logger.info('Connection %d released', connection.threadId);
 });
 

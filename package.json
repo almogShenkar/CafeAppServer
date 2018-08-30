@@ -13,12 +13,14 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout 15000"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^2.0.1",
+    "chai": "^4.1.2",
+    "chai-json-equal": "0.0.1",
     "cors": "^2.8.4",
     "dbly-linked-list": "^0.2.0",
     "express": "^4.16.3",
@@ -26,10 +28,13 @@
     "heroku-logger": "^0.3.1",
     "jsonwebtoken": "^8.3.0",
     "log4js": "^2.8.0",
+    "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "mysql": "^2.15.0",
     "nexmo": "^2.3.0",
     "nodemailer": "^4.6.4",
-    "nodemailer-sendgrid-transport": "^0.2.0"
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "request": "^2.88.0",
+    "should": "^13.2.3"
   }
 }

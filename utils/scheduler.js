@@ -1,3 +1,7 @@
+/**
+ * Scheduler module - manage all incoming orders
+ */
+
 const orderlistBluePrint = require('../models/dataObject');
 const moment = require('moment');
 const dblyLinkedList = require('dbly-linked-list');
@@ -11,6 +15,11 @@ scheduler.openHour = 07;
 scheduler.minTimeOut = 120;
 scheduler.deltaFactor;
 
+/**
+ * clearNonUseSlots - Delete empty slot that saved and the user didn't complete the order 
+ * input: orderedlistData
+ * output: none
+ */
 scheduler.clearNonUseSlots =(orderedlistData)=>{
     db.query("DELETE FROM orderlist WHERE olid=? AND status='None' ",orderedlistData.olid,(err, rows)=>{
         if (err) {
@@ -22,6 +31,12 @@ scheduler.clearNonUseSlots =(orderedlistData)=>{
     });
 }
 
+
+/**
+ * addOrder - try to add new order to the database
+ * input: orderedlistData , next callback
+ * output: the time avilable of the new orderedlist
+ */
 scheduler.addOrder = (orderedlistData, next, callback)=>{
     //orderedlistData = {};
     //2018-06-05T15:02:00.000Z
@@ -47,6 +62,11 @@ scheduler.addOrder = (orderedlistData, next, callback)=>{
 }
 
 
+/**
+ * populateLinkedList - populate the linked list with the orders from the database
+ * input: rows
+ * output: none
+ */
 scheduler.populateLinkedList =(rows)=>{
     rows.forEach(element => {
         scheduler.list.insert(JSON.parse(JSON.stringify(element)));
@@ -54,9 +74,12 @@ scheduler.populateLinkedList =(rows)=>{
     });
 }
 
-
+/**
+ * addToList - iterating the list and trying to add a new node that matches the logic
+ * input: orderedlistData
+ * output: true / false
+ */
 scheduler.addToList = (orderedlistData)=>{
-    let isFound = false;
     let head = scheduler.list.getHeadNode();
     let it = head;
     let tail = scheduler.list.getTailNode();
@@ -147,7 +170,11 @@ scheduler.addToList = (orderedlistData)=>{
     return false;
 }
 
-
+/**
+ * syncListToDB - inserting the new order to the database after appropriate node was found
+ * input: orderedlistData ,next ,callback
+ * output: result: -1 failed or time of the new order
+ */
 scheduler.syncListToDB = function (orderlistData,next,callback) {
     let newNode = scheduler.list.find(orderlistData);
     console.log(scheduler.list.getSize());
@@ -168,6 +195,11 @@ scheduler.syncListToDB = function (orderlistData,next,callback) {
 }
 
 
+/**
+ * clearRedurantDataFromNodes - util function- delete unnecessary objects - better perfomance
+ * input: orderedlistData - new orderlist object , it - node from linked list
+ * output: none
+ */
 scheduler.clearRedurantDataFromNodes = function(orderedlistData,it){
     try{
         delete orderedlistData.endTime;

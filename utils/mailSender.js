@@ -1,10 +1,14 @@
+/**
+ * MailSender module- responsible for sending emails
+ */
+
 const nodemailer = require("nodemailer");
 const sgTransport = require('nodemailer-sendgrid-transport');
 
 let mailSender={};
 
 
-// Use Smtp Protocol to send Email
+//configuration
 mailSender.options={
     auth: {
         api_user: "almogassu@gmail.com",
@@ -13,7 +17,8 @@ mailSender.options={
 };
 
 
-mailSender.client = nodemailer.createTransport(sgTransport(mailSender.options));
+let client = nodemailer.createTransport(sgTransport(mailSender.options));
+
 
 
 mailSender.email={
@@ -23,7 +28,11 @@ mailSender.email={
     html:""
 };
 
-
+/**
+ * setMail - set the mail before sending
+ * input: to - mail address ,  body - message content
+ * output: none
+ */
 mailSender.setMail=(to,body)=>{
     //console.log('Here');
     mailSender.email.to=to;
@@ -32,20 +41,17 @@ mailSender.setMail=(to,body)=>{
 };
 
 
-
+/**
+ * sendEmail - send the email
+ * input: callback - what to do onDone
+ * output: none
+ */
 mailSender.sendEmail=(callback)=>{
     //console.log(mailSender.email);
-    mailSender.client.sendMail(mailSender.email,callback);
+    client.sendMail(mailSender.email,callback);
 };
 
-/*
-mailSender.client.sendMail=(mailSender.email,(err,info)=>{
-    if(err) {
-        return err;
-    }
-    console.log('Message sent: ' + info.response);
-});
-*/
+
 
 
 

@@ -1,5 +1,11 @@
+/**
+ * FileController module - implementaion of File-api 
+ * 
+ */
 let fileController = {};
 
+
+//POST - upload file
 fileController.upload=(req,res,next)=>{
     if (!req.files){
       return res.status(400).send('No files were uploaded.');
@@ -15,6 +21,7 @@ fileController.upload=(req,res,next)=>{
   });
 }
 
+//GET - download file by name
 fileController.download=(req,res)=>{
     let file = __dirname+'/../images/'+req.params.imgtype+'/'+req.params.filename;
     res.download(file); 

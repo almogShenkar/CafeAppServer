@@ -1,9 +1,12 @@
-
+/**
+ * ReviewController module - implementaion of review-api 
+ * 
+ */
 const db = require('../db');
 const reviewBluePrint = require('../models/dataObject');
-//main object
 let reviewController = {};
 
+//GET ALL
 reviewController.list = (req,res,next)=>{
     db.query("SELECT * FROM review;",(err,rows)=>{
         if(err){
@@ -13,6 +16,7 @@ reviewController.list = (req,res,next)=>{
     });
 }
 
+//GET one by id
 reviewController.get = (req,res,next)=>{
     db.query("SELECT * FROM review WHERE revid = ?;",req.params.id,(err,rows)=>{
         if(err){
@@ -22,7 +26,7 @@ reviewController.get = (req,res,next)=>{
     });
 }
 
-//3 desc , 3 asc
+//GET 3 minimun rank review Union 3 maximum rank reviews by id
 reviewController.gethonestreviews = (req,res,next)=>{
     db.query("(SELECT * FROM review WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4) UNION ALL (SELECT * FROM review  WHERE rlid IN(SELECT rlid FROM reviewlist WHERE itemid=?) ORDER BY stars DESC LIMIT 4);",[req.params.itemid,req.params.itemid],(err,rows)=>{
         if(err){
@@ -32,6 +36,7 @@ reviewController.gethonestreviews = (req,res,next)=>{
     });
 }
 
+//GET - get all reviews of item by itemid
 reviewController.getReviewsByItem =(req,res,next)=>{
     db.query("SELECT * FROM review WHERE rlid in(SELECT rlid FROM reviewlist WHERE itemid=?)",req.params.itemid,(err,rows)=>{
         if(err){
@@ -41,6 +46,8 @@ reviewController.getReviewsByItem =(req,res,next)=>{
     });
 }
 
+
+//PUT - update existing review
 reviewController.update = (req,res,next)=>{
     let review = new reviewBluePrint(req.body);
     let reviewData=review.getData();
@@ -53,6 +60,7 @@ reviewController.update = (req,res,next)=>{
     });
 }
 
+//POST - create new review
 reviewController.add = (req,res,next)=>{
     let review = new reviewBluePrint(req.body);
     let reviewData=review.getData();
@@ -66,6 +74,7 @@ reviewController.add = (req,res,next)=>{
     });
 }
 
+//DELETE - 
 reviewController.delete = (req,res,next)=>{
     db.query("DELETE FROM review WHERE revid = ?",[req.params.id],
     (err,rows)=>{

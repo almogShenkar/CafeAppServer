@@ -1,7 +1,10 @@
+/**
+ * Queries router- responsible for queries api routes
+ */
+
 const express = require('express');
 let router = express.Router();
 
-//Controllers
 const queriesController = require('../controllers/queries');
 
 

@@ -1,6 +1,10 @@
+/**
+ * Shifts module - [Future work] 
+ */
+
 const db = require('../db');
 const shiftModel = require('../models/dataObject');
-//main object
+
 let shiftController = {};
 
 shiftController.list = (req,res)=>{

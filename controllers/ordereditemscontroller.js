@@ -1,4 +1,7 @@
-
+/**
+ * ordereditemController module - implementaion of ordereditem-api 
+ * 
+ */
 const db = require('../db');
 const orderedItemBluePrint = require('../models/dataObject');
 //main object
@@ -36,7 +39,7 @@ ordereditemController.listByOlid = (req, res,next)=>{
 }
 
 
-//POST
+//POST - create new ordereditem
 ordereditemController.add = (req, res,next)=>{
     let orderedItem=new orderedItemBluePrint(req.body);
     let data=orderedItem.getData();

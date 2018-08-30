@@ -1,7 +1,10 @@
+/**
+ * Reviewlists router- responsible for Reviewlists api routes
+ */
 const express = require('express');
 let router = express.Router();
 
-//Controllers
+
 const reviewlistsController = require('../controllers/reviewlists');
 
 

@@ -1,4 +1,7 @@
-/*Advanced util queries - Report usage */
+/**
+ *Advanced util queries module - example of customization queries
+ */
+
 
 let queries = {};
 

@@ -1,8 +1,13 @@
+/**
+ * SupplierController module - implementaion of supplier-api 
+ */
+
 const db = require('../db');
 const supplierBluePrint = require('../models/dataObject');
-//main object
+
 let supplierController = {};
 
+//GET ALL
 supplierController.list = (req,res,next)=>{
     db.query("SELECT * FROM supplier;",(err,rows)=>{
         if(err){
@@ -12,6 +17,7 @@ supplierController.list = (req,res,next)=>{
     });
 }
 
+//GET one by id
 supplierController.get = (req,res,next)=>{
     db.query("SELECT * FROM supplier WHERE supid = ? ;",[req.params.id],(err,rows)=>{
         if(err){
@@ -21,6 +27,9 @@ supplierController.get = (req,res,next)=>{
     });
 }
 
+
+
+//POST - add new supplier
 supplierController.add = (req,res,next)=>{
     let suppllier=new supplierBluePrint(req.body);
     let suppllierData=suppllier.getData();
@@ -29,11 +38,12 @@ supplierController.add = (req,res,next)=>{
             return next(err);
         }
         suppllierData.data.supid=rows.insertId;
+        console.log(suppllierData);
         return res.json({supid:suppllierData.data.supid});
     });
-
 }
 
+//PUT - update existing supplier
 supplierController.update = (req,res,next)=>{
     let supplier=new supplierBluePrint(req.body);
     suppllierData=supplier.getData();
@@ -46,7 +56,7 @@ supplierController.update = (req,res,next)=>{
 }
 
 
-//DELETE
+//DELETE supplier by id
 supplierController.delete = (req,res)=>{
     db.query("DELETE FROM supplier WHERE supid = ?;",[req.params.id],(err,rows)=>{
         if(err){

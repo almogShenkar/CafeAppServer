@@ -1,3 +1,7 @@
+/**
+ * UserController module - implementaion of user-api 
+ * 
+ */
 const db = require('../db');
 const userBluePrint=require('../models/dataObject');
 const smsSender=require('../utils/smsSender');
@@ -46,24 +50,7 @@ userController.getByRole = (req, res,next)=>{
     });
 }
 
-/*
-//POST - SIGNUP
-userController.signup = (req, res,next)=>{
-    let user = new userBluePrint(req.body);
-    let userData=user.getData();
-    //VALUES (NULL, 'eli@gmail.com', '1234', 'eli', 'cohen', '1000', '0542254548','Student')
-    db.query("INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?);",[userData.userid,userData.email,userData.password,userData.firstname,userData.lastname,userData.credit,userData.phone,userData.url,userData.role],(err,rows)=>{
-        if(err){
-            return next(err);
-        }
-        if(userData.role==='Employee'){
-            mailSender.sendEmail(userData.email,"Hi "+userData.firstname+" you've been added as an employee to little cafetria. please use your email and password to connect: "+userData.password+" wish to see you soon!",next);
-        }
-        userData.userid=rows.insertId;
-        return res.json({userid:userData.userid});
-    });
-}
-*/
+//GET All employees - redurant
 userController.listEmployee=(req,res,next)=>{
     db.query("SELECT * FROM user role='Employee';",(err,rows)=>{
         if(err){
@@ -77,24 +64,7 @@ userController.listEmployee=(req,res,next)=>{
     });
 }
 
-/*
-//LOGIN
-userController.login = (req, res, next)=>{
-    let user = new userBluePrint(req.body);
-    let userData = user.getData();
-    db.query("SELECT * FROM user WHERE email = ? AND password = ?;",[userData.email,userData.password],(err,rows)=>{
-        if(err){
-            return next(err);
-        }
-        if (rows.length==1){
-            user.data.userid=rows[0].userid;
-            return res.json({userid:user.data.userid});
-        }
-        else
-            return res.send("bad credentials");
-    });
-}
-*/
+
 //PUT by ID - update credit
 userController.updateCredit = (req, res, next)=>{
     let user = new userBluePrint(req.body);
@@ -142,17 +112,18 @@ userController.delete = (req, res ,next)=>{
     });
 }
 
+//POST - send sms to the user when order is ready 
 userController.sendSms = (req,res,next)=>{
     db.query("SELECT firstname,phone FROM user WHERE userid=(SELECT userid FROM orderlist WHERE olid=?)",[req.params.olid],(err,rows)=>{
         if(err){
             return next(err);
         }
-        //rows[0].phone="0544222722";
         smsSender.sendSms(rows[0].phone,"Hello "+rows[0].firstname+" , your order "+req.params.olid+" is ready for pick up! please come and take it , Enjoy @cafeapp ",next);
         
     });
 }
 
+//GET - return user credit
 userController.getCredit = (req,res)=>{
     db.query("SELECT credit FROM user WHERE userid = ? ",req.params.id,(err,rows)=>{
         if(err){
@@ -163,53 +134,5 @@ userController.getCredit = (req,res)=>{
     });
 }
 
-/*
-//forget password user
-userController.forgetPassword = (req,res,next)=>{
-    let user=new userBluePrint(req.body);
-    db.query("UPDATE user SET password='12345678' WHERE userid = ? AND email = ? ",[user.data.userid,user.data.email],(err,rows)=>{
-        if(err){
-            return next(err);
-        }
-        if(rows.affectedRows==1){
-            db.query("SELECT email , firstname FROM user WHERE userid = ? ",[user.data.userid],(err,rows)=>{
-                if(err){
-                    return next(err);
-                }
-                user.data=rows[0];
-                user.data.email="almogassu@gmail.com"
-                mailSender.sendEmail(user.data.email,"Dear "+user.data.firstname+" your password has been reset to:12345678"+" please change your password. best regards @cafeapp ")
-                return res.json({password:"haschanged"});
-            })
-        }
-        else{
-            res.status(404);
-            res.send("bad credentials");
-        } 
-    });
-   
-}
 
-userController.changePassword = (req,res,next)=>{
-    let user = new userBluePrint(req.body);
-    db.query("SELECT * FROM user WHERE userid= ? AND password = ? ",[user.data.userid,user.data.oldpassword],(err,rows)=>{
-        if(err){
-            return next(err);
-        }
-        if(rows.length==1){
-            db.query("UPDATE user SET password = ? WHERE userid= ?",[user.data.newpassword,user.data.userid],(err,rows)=>{
-                if(err){
-                    next(err);
-                }
-                return res.json({password:"haschanged"});
-            });
-        }
-        else{
-            res.status(404);
-            res.send("bad credentials");
-        }
-    });
-}
-
-*/
 module.exports = userController;

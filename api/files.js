@@ -1,7 +1,9 @@
+/**
+ * Files router- responsible for files api routes
+ */
+
 const express = require('express');
 let router = express.Router();
-
-//Controllers
 const filesController = require('../controllers/files');
 
 
