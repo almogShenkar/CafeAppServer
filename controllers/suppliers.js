@@ -37,9 +37,8 @@ supplierController.add = (req,res,next)=>{
         if(err){
             return next(err);
         }
-        suppllierData.data.supid=rows.insertId;
-        console.log(suppllierData);
-        return res.json({supid:suppllierData.data.supid});
+        suppllier.data.supid=rows.insertId;
+        return res.json({supid:suppllier.data.supid});
     });
 }
 
