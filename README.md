@@ -14,6 +14,10 @@ node.js version 6.x.x [at least 6.0.0]
 
 npm install
 
+### Runing the project
+
+node server
+
 
 ## Running the tests
 
