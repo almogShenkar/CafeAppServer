@@ -3,7 +3,7 @@
  * Written in node.js using express
  * Shenkar 2018 Final Project
  * This file is the project entry-point
- * RestFul API 
+ * RestFul API. 
  */
 
 
