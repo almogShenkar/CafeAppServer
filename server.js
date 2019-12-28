@@ -1,5 +1,5 @@
 /**
- * CafeApp server -  by Almog Asulin
+ * CafeApp server -  by Almog Solan
  * Written in node.js using express
  * Shenkar 2018 Final Project
  * This file is the project entry-point
